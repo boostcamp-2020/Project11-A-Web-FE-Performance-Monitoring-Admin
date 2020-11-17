@@ -2,7 +2,7 @@
 name: " \U0001F914 Discussion"
 about: Discuss this project
 title: ''
-labels: ''
+labels: discussion
 assignees: ''
 
 ---
