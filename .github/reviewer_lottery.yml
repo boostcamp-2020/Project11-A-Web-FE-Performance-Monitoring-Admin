@@ -1,13 +1,8 @@
-name: "Reviewer lottery"
-on:
-  pull_request:
-    types: [opened, ready_for_review, reopened]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - uses: uesteibar/reviewer-lottery@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+groups:
+  - name: devs
+    reviewers: 4
+    usernames: 
+      - gitdog01
+      - Kangsukmin
+      - maong0927
+      - Eunbin-Kim
