@@ -4,7 +4,10 @@
   "description": "Sentry-like project admin part",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --mode development --open --hot",
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "build": "NODE_ENV=production webpack --mode production --env=build",
+    "test": "react-scripts test"
   },
   "repository": {
     "type": "git",
