@@ -9,7 +9,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 export default function mainListItems ():JSX.Element{
   return (
     <div>
-      <ListItem button>
+      <ListItem button component="a" href="/project">
         <ListItemIcon>
           <FolderOpenIcon />
         </ListItemIcon>
