@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(): JSX.Element {
   const classes = useStyles();
 
   return (
@@ -125,7 +125,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/">
                 Already have an account? Sign in
               </Link>
             </Grid>

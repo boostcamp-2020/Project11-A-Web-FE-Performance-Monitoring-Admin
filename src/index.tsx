@@ -8,6 +8,6 @@ const rootElement = document.getElementById('root');
 
 ReactDOM.render(
   <div>
-  <App />
-  <Router />
-</div>, rootElement);
+    <App />
+    <Router />
+  </div>, rootElement);
