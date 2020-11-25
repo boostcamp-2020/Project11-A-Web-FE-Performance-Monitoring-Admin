@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './app';
-import Login from './login';
+import Router from './route';
 
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(<App>
-    <Login />
-</App>, rootElement);
+ReactDOM.render(
+  <div>
+  <App />
+  <Router />
+</div>, rootElement);
