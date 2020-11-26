@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useState } from 'react';
 import Axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,7 +38,12 @@ async function login(email:string, pwd:string){
       email,
       pwd
     })
-    localStorage.setItem('token', result.data.JWT);
+    if(result.status === 200){
+      localStorage.setItem('token', result.data.JWT);
+      window.location.href="/project";
+    }else{
+      alert(result.data.message);
+    }
   }catch(error){
     alert('로그인을 실패하였습니다 !');
   }
@@ -47,13 +51,12 @@ async function login(email:string, pwd:string){
 export default function SignIn():JSX.Element {
   const classes = useStyles();
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleClick = () => {
     try {
       login(email, password);
-      window.location.href="/project";
     } catch (error) {
       alert("로그인을 실패하였습니다 !");
       setEmail("");
