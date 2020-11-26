@@ -27,7 +27,7 @@ function createData(eventId: number,errorName: string, errorMessage: string, err
 
 const rows = [
   createData(1,'TypeError', '장황한 에러메세지', '(../index/santry.ts)',20, 3),
-  createData(3,'RangeError', '밥먹고 빵빵 배속이 빵빵', '(../index/bread.ts)',30, 1),
+  createData(3,'RangeError', '밥먹고 빵빵 뱃속이 빵빵', '(../index/bread.ts)',30, 1),
 ];
 
 export default function IssueTable() {

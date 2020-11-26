@@ -6,6 +6,8 @@ import SingUp from './signup';
 import Project from './projectlist';
 import NewProject from './newproject';
 import IssueList from './issuelist';
+import Setting from './setting';
+import IssueDetail from './issuedetail';
 
 export default function Router(): JSX.Element{
     return (
@@ -16,6 +18,8 @@ export default function Router(): JSX.Element{
           <Route exact path="/project" component={Project} />
           <Route exact path="/newproject" component={NewProject} />
           <Route exact path="/issue" component={IssueList} />
+          <Route exact path="/setting" component={Setting} />
+          <Route exact path="/issuedetail/:id" component={IssueDetail} />
         </Switch>
       </BrowserRouter>
     );
