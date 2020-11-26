@@ -15,7 +15,7 @@ export default function mainListItems ():JSX.Element{
         </ListItemIcon>
         <ListItemText primary="Projects" />
       </ListItem>
-      <ListItem button>
+      <ListItem button component="a" href="/issue">
         <ListItemIcon>
           <AllInboxIcon />
         </ListItemIcon>

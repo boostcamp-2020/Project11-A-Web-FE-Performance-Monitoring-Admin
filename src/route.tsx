@@ -3,8 +3,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import SignIn from './signin';
 import SingUp from './signup';
-import Project from './project';
+import Project from './projectlist';
 import NewProject from './newproject';
+import IssueList from './issuelist';
 
 export default function Router(): JSX.Element{
     return (
@@ -14,6 +15,7 @@ export default function Router(): JSX.Element{
           <Route exact path="/signup" component={SingUp} />
           <Route exact path="/project" component={Project} />
           <Route exact path="/newproject" component={NewProject} />
+          <Route exact path="/issue" component={IssueList} />
         </Switch>
       </BrowserRouter>
     );
