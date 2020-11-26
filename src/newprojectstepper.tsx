@@ -6,12 +6,15 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import VideoLabelIcon from '@material-ui/icons/VideoLabel';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { StepIconProps } from '@material-ui/core/StepIcon';
 import Papre from '@material-ui/core/Paper';
+import DoneIcon from '@material-ui/icons/Done';
+import { Grid } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -66,8 +69,9 @@ function ColorlibStepIcon(props: StepIconProps) {
 
   const icons: { [index: string]: React.ReactElement } = {
     1: <SettingsIcon />,
-    2: <GroupAddIcon />,
-    3: <VideoLabelIcon />,
+    2: <AssignmentIcon />,
+    3: <GroupAddIcon />,
+    4: <DoneIcon />
   };
 
   return (
@@ -87,7 +91,8 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: '100%',
     },
-    button: {
+    button: { 
+      display: 'flex',
       marginRight: theme.spacing(1),
     },
     instructions: {
@@ -98,13 +103,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return ['Select your platform', 'Write your project info', 'Add assiagn to project','Done !'];
 }
 
 function getStepContent(step: number) {
   switch (step) {
     case 0:
-      return 'Select campaign settings...';
+      return '밀가루';
     case 1:
       return 'What is an ad group anyways?';
     case 2:
@@ -116,7 +121,7 @@ function getStepContent(step: number) {
 
 export default function CustomizedSteppers() {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(1);
+  const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
   const handleNext = () => {
@@ -141,7 +146,7 @@ export default function CustomizedSteppers() {
             </Step>
           ))}
         </Stepper>
-        <div>
+        <Grid container spacing={3}>
           {activeStep === steps.length ? (
             <div>
               <Typography className={classes.instructions}>
@@ -152,24 +157,22 @@ export default function CustomizedSteppers() {
               </Button>
             </div>
           ) : (
-            <div>
-              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-              <div>
+            <Grid item xs={12}>
+              {getStepContent(activeStep)} 
                 <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                   Back
-                </Button>
+                  </Button>
                 <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
-                  className={classes.button}
-                >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-              </div>
-            </div>
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  </Button>
+            </Grid>
           )}
-        </div>
+        </Grid>
       </Papre>
     </div>
   );
