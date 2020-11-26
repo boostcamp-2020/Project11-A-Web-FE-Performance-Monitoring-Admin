@@ -6,10 +6,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useState } from 'react';
+import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,9 +33,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+async function login(email:string, pwd:string){
+  try{
+    const result = await Axios.post("http://localhost:5000/api/auth/login",{
+      email,
+      pwd
+    })
+    localStorage.setItem('token', result.data.JWT);
+  }catch(error){
+    alert('로그인을 실패하였습니다 !');
+  }
+}
 export default function SignIn():JSX.Element {
   const classes = useStyles();
 
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleClick = () => {
+    try {
+      login(email, password);
+      window.location.href="/project";
+    } catch (error) {
+      alert("로그인을 실패하였습니다 !");
+      setEmail("");
+      setPassword("");
+    }
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -41,12 +67,13 @@ export default function SignIn():JSX.Element {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form}>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
+            onChange={({ target: { value } }) => setEmail(value)}
             id="email"
             label="Email Address"
             name="email"
@@ -58,6 +85,7 @@ export default function SignIn():JSX.Element {
             margin="normal"
             required
             fullWidth
+            onChange={({ target: { value } }) => setPassword(value)}
             name="password"
             label="Password"
             type="password"
@@ -69,8 +97,9 @@ export default function SignIn():JSX.Element {
             label="Remember me"
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
+            onClick={handleClick}
             variant="contained"
             color="primary"
             className={classes.submit}
@@ -78,11 +107,7 @@ export default function SignIn():JSX.Element {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
+            <Grid item xs />
             <Grid item>
               <Link href="/signup">
                 {"Don't have an account? Sign Up"}

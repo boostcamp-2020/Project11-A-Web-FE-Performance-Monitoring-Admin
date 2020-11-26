@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container';
 import AppbarShift from './appbarshift';
 import IssueDetailTabs from './issuedetailtap';
-import { Paper } from '@material-ui/core';
+import IssueDetailHeader from './issuedetailheader';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  paper: {
-    padding: theme.spacing(2),
-  }
 }));
 
 export default function IssueDetail():JSX.Element {
@@ -37,16 +34,7 @@ export default function IssueDetail():JSX.Element {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                hi
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper className={classes.paper}>
-                hi
-              </Paper>
-            </Grid>
+            <IssueDetailHeader />
             <Grid item xs={12}>
               <IssueDetailTabs />
             </Grid>
