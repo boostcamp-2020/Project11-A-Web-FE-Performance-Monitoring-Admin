@@ -14,7 +14,6 @@ import { StepIconProps } from '@material-ui/core/StepIcon';
 import Papre from '@material-ui/core/Paper';
 import DoneIcon from '@material-ui/icons/Done';
 import { Grid } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -159,17 +158,17 @@ export default function CustomizedSteppers() {
           ) : (
             <Grid item xs={12}>
               {getStepContent(activeStep)} 
-                <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                  Back
-                  </Button>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                  </Button>
+              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleNext}
+                className={classes.button}
+              >
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              </Button>
             </Grid>
           )}
         </Grid>

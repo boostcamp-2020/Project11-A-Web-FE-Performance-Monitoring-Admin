@@ -30,7 +30,7 @@ const rows = [
   createData(3,'RangeError', '밥먹고 빵빵 뱃속이 빵빵', '(../index/bread.ts)',30, 1),
 ];
 
-export default function IssueTable() {
+export default function IssueTable() :JSX.Element{
   const classes = useStyles();
 
   return (

@@ -23,31 +23,33 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-
-export default function SimpleCard() {
+interface myprop {
+  projectId:number
+}
+export default function SimpleCard(mprop:myprop) :JSX.Element {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  const projectNumber = mprop.projectId;
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
+          #
+          {projectNumber} 
+          프로젝트 
         </Typography>
         <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
+          프로젝트 타입
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          adjective
+          설명입니다.
         </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          피자먹고 싶다.
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">프로젝트 보기</Button>
       </CardActions>
     </Card>
   );

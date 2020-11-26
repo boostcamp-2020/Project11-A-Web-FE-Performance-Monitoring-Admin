@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 async function register(email:string,pwd:string) {
-  const result = await Axios.post("http://localhost:5000/api/auth/join",{
+  const result = await Axios.post("회원가입 주소",{
     email,
     pwd
   });

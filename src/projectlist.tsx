@@ -57,7 +57,7 @@ export default function Project():JSX.Element {
           <Grid container spacing={2}>
             {cards.map((card) => (
               <Grid item key={card} xs={3}>
-                <SimpleCard />
+                <SimpleCard projectId={card}/>
               </Grid>
           ))}
           </Grid>

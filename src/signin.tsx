@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 async function login(email:string, pwd:string){
   try{
-    const result = await Axios.post("http://localhost:5000/api/auth/login",{
+    const result = await Axios.post("로그인 주소",{
       email,
       pwd
     })
