@@ -25,7 +25,13 @@ module.exports = {
       alias: {
         map: [
           ['@', './src'],
+          ['@api', './src/api'],
+          ['@common', './src/common'],
+          ['@hooks', './src/hooks'],
+          ['@pages', './src/pages'],
+          ['@state', './src/state'],
           ['@themes', './src/themes'],
+          ['@utils', './src/utils'],
         ],
       },
     },
