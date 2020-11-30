@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import React, { useState } from 'react';
-import Axios from 'axios';
+import login from '@api/auth/login';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,22 +31,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-async function login(email: string, pwd: string) {
-  try {
-    const result = await Axios.post('로그인 주소', {
-      email,
-      pwd,
-    });
-    if (result.status === 200) {
-      localStorage.setItem('token', result.data.JWT);
-      window.location.href = '/project';
-    } else {
-      alert(result.data.message);
-    }
-  } catch (error) {
-    alert('로그인을 실패하였습니다 !');
-  }
-}
 export default function SignIn(): JSX.Element {
   const classes = useStyles();
 
