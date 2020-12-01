@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
+import React, { FunctionComponent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -6,6 +8,8 @@ import Container from '@material-ui/core/Container';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
+
+import { Project } from '@state/type';
 
 import SimpleCard from './components/simplecard';
 import AppbarShift from '../layout/appbarshift';
@@ -33,9 +37,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
   },
 }));
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-export default function Project(): JSX.Element {
+interface Props {
+  projects: Project[];
+}
+
+const ProjectList: FunctionComponent<Props> = ({ projects }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -52,9 +59,9 @@ export default function Project(): JSX.Element {
         </div>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={2}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={3}>
-                <SimpleCard projectId={card} />
+            {projects.map((project, idx) => (
+              <Grid item key={project._id} xs={3}>
+                <SimpleCard projectId={idx} />
               </Grid>
             ))}
           </Grid>
@@ -62,4 +69,6 @@ export default function Project(): JSX.Element {
       </main>
     </div>
   );
-}
+};
+
+export default ProjectList;
