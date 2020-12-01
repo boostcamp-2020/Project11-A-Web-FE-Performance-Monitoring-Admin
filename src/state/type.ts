@@ -14,3 +14,16 @@ export interface ProjectState {
   projects: Project[];
   error: string;
 }
+
+export interface ProjectDocs {
+  docs?: Project[];
+  totalDocs?: number;
+  limit?: number;
+  totalPages?: number;
+  page?: number;
+  pagingCounter?: number;
+  hasPrevPage?: boolean;
+  hasNextPage?: boolean;
+  prevPage?: number;
+  nextPage?: number;
+}

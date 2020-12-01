@@ -1,17 +1,13 @@
 import { authAxios } from '@utils/axios';
-import { Project } from '@state/type';
+import { ProjectDocs } from '@state/type';
 
-interface Response {
-  docs?: Project[];
-}
-
-const getProjects = async (page?: number): Promise<Project[] | undefined> => {
-  const { data } = await authAxios.get<Response>('/project', {
+const getProjects = async (page?: number): Promise<ProjectDocs | undefined> => {
+  const { data } = await authAxios.get<ProjectDocs>('/project', {
     params: { page },
   });
 
-  if (data.docs) {
-    return data.docs;
+  if (data) {
+    return data;
   }
   return undefined;
 };

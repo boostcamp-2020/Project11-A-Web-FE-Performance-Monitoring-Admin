@@ -1,4 +1,4 @@
-import { Project } from '@state/type';
+import { ProjectDocs } from '@state/type';
 import {
   GET_PROJECTS_REQUEST,
   GET_PROJECTS_SUCCESS,
@@ -8,13 +8,13 @@ import {
 
 interface ProjectsState {
   loading: boolean;
-  projects?: Project[];
+  projects?: ProjectDocs;
   errorMsg?: string;
 }
 
 export const initialProjects: ProjectsState = {
   loading: false,
-  projects: [],
+  projects: {},
   errorMsg: '',
 };
 

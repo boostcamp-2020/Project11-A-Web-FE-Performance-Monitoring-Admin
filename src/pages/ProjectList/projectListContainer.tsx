@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect } from 'react';
-import { Project } from '@state/type';
+import { ProjectDocs } from '@state/type';
 import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
 import fetchProjects from '@state/projects/index';
 
@@ -9,7 +9,7 @@ import ProjectList from './projectlist';
 interface State extends DefaultRootState {
   projectsReducer: {
     loading: boolean;
-    projects: Project[];
+    projects: ProjectDocs;
     errorMsg: string;
   };
 }
