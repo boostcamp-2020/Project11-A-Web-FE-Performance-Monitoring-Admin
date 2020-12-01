@@ -14,6 +14,7 @@ import { StepIconProps } from '@material-ui/core/StepIcon';
 import DoneIcon from '@material-ui/icons/Done';
 import { Grid } from '@material-ui/core';
 import PlatformSelecter from './platformSelecter';
+import ProjectNameInput from './projectNameInput';
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -118,16 +119,17 @@ export default function CustomizedSteppers() : JSX.Element {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [seletedPlatform, setPlatform] = useState('아직 선택하지 않았습니다.');
+  const [projectName, setProjectName] = useState('New Project');
 
   const steps = getSteps();
 
   function getStepContent(step: number) {
-    const props = {seletedPlatform, setPlatform};
+    const props = {seletedPlatform, setPlatform, projectName, setProjectName};
     switch (step) {
       case 0:
         return <PlatformSelecter {...props} />;
       case 1:
-        return 'What is an ad group anyways?';
+        return <ProjectNameInput {...props} />;
       case 2:
         return 'This is the bit I really care about!';
       default:
