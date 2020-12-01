@@ -13,10 +13,12 @@ import Typography from '@material-ui/core/Typography';
 import { StepIconProps } from '@material-ui/core/StepIcon';
 import DoneIcon from '@material-ui/icons/Done';
 import { Grid } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import create from '@api/project/create';
 import PlatformSelecter from './platformSelecter';
 import ProjectNameInput from './projectNameInput';
 import StepperResult from './stepperResult';
-import create from '@api/project/create';
+
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -149,9 +151,15 @@ export default function CustomizedSteppers() : JSX.Element {
   const handleFinish = () => {
     create(projectName,seletedPlatform);
   };
+  const validationInput = () : boolean=>{
+    if(seletedPlatform === '아직 선택하지 않았습니다.' || projectName.length < 3){
+      return true;
+    }
+    return false;
+  }
 
   return (
-    <div className={classes.root}>
+    <Paper className={classes.root}>
       <Grid container spacing={5}>
         <Grid item xs={12}>
           <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
@@ -169,7 +177,7 @@ export default function CustomizedSteppers() : JSX.Element {
                 All steps completed - you&apos;re finished
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6} className={classes.buttons}>
               <Button onClick={handleFinish} className={classes.button}>
                 Finish
               </Button>
@@ -187,6 +195,7 @@ export default function CustomizedSteppers() : JSX.Element {
               <Button
                 variant="contained"
                 color="primary"
+                disabled={validationInput()}
                 onClick={handleNext}
                 className={classes.button}
               >
@@ -196,6 +205,6 @@ export default function CustomizedSteppers() : JSX.Element {
           </Grid>
         )}
       </Grid>
-    </div>
+    </Paper>
   );
 }

@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 interface prop {
   setPlatform: React.Dispatch<React.SetStateAction<string>>;
+  setProjectName: React.Dispatch<React.SetStateAction<string>>;
   seletedPlatform: string;
 }
 
@@ -36,6 +37,7 @@ export default function PlatformSelecter(props : prop) : JSX.Element{
   const classes = useStyles();
   const platfromSelect = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
     props.setPlatform(String(event.currentTarget.textContent));
+    props.setProjectName(`New ${event.currentTarget.textContent} project`);
   }
   const imgsource = (platform:string) => {
     return `public/img/${platform}.svg`;
