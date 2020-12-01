@@ -8,8 +8,9 @@ import Container from '@material-ui/core/Container';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
+import { Pagination } from '@material-ui/lab';
 
-import { Project } from '@state/type';
+import { ProjectDocs } from '@state/type';
 
 import SimpleCard from './components/simplecard';
 import AppbarShift from '../layout/appbarshift';
@@ -38,10 +39,15 @@ const useStyles = makeStyles((theme) => ({
   fab: {
     margin: theme.spacing(2),
   },
+  pagenation: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: 30,
+  },
 }));
 
 interface Props {
-  projects: Project[];
+  projects: ProjectDocs;
 }
 
 const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
@@ -55,7 +61,7 @@ const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
         <section className={classes.section}>
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={2}>
-              {projects.map((project, idx) => (
+              {projects.docs?.map((project, idx) => (
                 <Grid item key={project._id} xs={3}>
                   <SimpleCard projectNumber={idx + 1} project={project} />
                 </Grid>
@@ -70,6 +76,11 @@ const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
             </Tooltip>
           </div>
         </section>
+        <Pagination
+          className={classes.pagenation}
+          count={projects.totalPages}
+          color="primary"
+        />
       </main>
     </div>
   );
