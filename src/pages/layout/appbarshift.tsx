@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AppBarShift():JSX.Element{
+export default function AppBarShift(): JSX.Element {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -95,18 +95,30 @@ export default function AppBarShift():JSX.Element{
   };
   return (
     <div>
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar
+        position="absolute"
+        className={clsx(classes.appBar, open && classes.appBarShift)}
+      >
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            className={clsx(
+              classes.menuButton,
+              open && classes.menuButtonHidden,
+            )}
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
             SAntry
           </Typography>
           <IconButton color="inherit">
@@ -119,8 +131,8 @@ export default function AppBarShift():JSX.Element{
       <Drawer
         variant="permanent"
         classes={{
-              paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-            }}
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+        }}
         open={open}
       >
         <div className={classes.toolbarIcon}>
@@ -129,8 +141,10 @@ export default function AppBarShift():JSX.Element{
           </IconButton>
         </div>
         <Divider />
-        <List><MainListItems /></List>
+        <List>
+          <MainListItems />
+        </List>
       </Drawer>
     </div>
-  )
+  );
 }

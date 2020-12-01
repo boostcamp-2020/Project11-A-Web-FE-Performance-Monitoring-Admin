@@ -1,4 +1,3 @@
-import React , { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -9,7 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Axios from 'axios';
+import React, { useState } from 'react';
+import login from '@api/auth/login';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,37 +31,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-async function login(email:string, pwd:string){
-  try{
-    const result = await Axios.post("로그인 주소",{
-      email,
-      pwd
-    })
-    if(result.status === 200){
-      localStorage.setItem('token', result.data.JWT);
-      window.location.href="/project";
-    }else{
-      alert(result.data.message);
-    }
-  }catch(error){
-    alert('로그인을 실패하였습니다 !');
-  }
-}
-export default function SignIn():JSX.Element {
+export default function SignIn(): JSX.Element {
   const classes = useStyles();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleClick = () => {
     try {
       login(email, password);
     } catch (error) {
-      alert("로그인을 실패하였습니다 !");
-      setEmail("");
-      setPassword("");
+      alert('로그인을 실패하였습니다 !');
+      setEmail('');
+      setPassword('');
     }
-  }
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -111,9 +95,7 @@ export default function SignIn():JSX.Element {
           <Grid container>
             <Grid item xs />
             <Grid item>
-              <Link href="/signup">
-                {"Don't have an account? Sign Up"}
-              </Link>
+              <Link href="/signup">Don't have an account? Sign Up</Link>
             </Grid>
           </Grid>
         </form>

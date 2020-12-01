@@ -1,11 +1,9 @@
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import AppbarShift from './appbarshift';
-import IssueTable from './issuetable';
+import AppbarShift from '../layout/appbarshift';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Issue():JSX.Element {
+export default function Setting(): JSX.Element {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -32,9 +30,7 @@ export default function Issue():JSX.Element {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2}>
-            <IssueTable />
-          </Grid>
+          <Grid container spacing={2} />
         </Container>
       </main>
     </div>

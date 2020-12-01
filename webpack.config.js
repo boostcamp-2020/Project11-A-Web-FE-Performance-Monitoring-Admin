@@ -16,7 +16,13 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@api': path.resolve(__dirname, 'src/api'),
+      '@common': path.resolve(__dirname, 'src/common'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@state': path.resolve(__dirname, 'src/state'),
       '@themes': path.resolve(__dirname, 'src/themes'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
     },
   },
 

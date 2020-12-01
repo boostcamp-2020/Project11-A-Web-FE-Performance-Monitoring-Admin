@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,9 +7,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 
-import SimpleCard from './simplecard';
-import AppbarShift from './appbarshift';
-
+import SimpleCard from './components/simplecard';
+import AppbarShift from '../layout/appbarshift';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,8 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-
-export default function Project():JSX.Element {
+export default function Project(): JSX.Element {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -52,14 +49,14 @@ export default function Project():JSX.Element {
               <AddIcon />
             </Fab>
           </Tooltip>
-        </div> 
+        </div>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={2}>
             {cards.map((card) => (
               <Grid item key={card} xs={3}>
-                <SimpleCard projectId={card}/>
+                <SimpleCard projectId={card} />
               </Grid>
-          ))}
+            ))}
           </Grid>
         </Container>
       </main>
