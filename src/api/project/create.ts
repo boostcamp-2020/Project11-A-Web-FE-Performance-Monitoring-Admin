@@ -1,7 +1,7 @@
-import { baseAxios } from '@utils/axios';
+import { authAxios } from '@utils/axios';
 
 const create = async (projectName: string, platform: string): Promise<void> => {
-  const result = await baseAxios.post('/api/project', {
+  const result = await authAxios.post('/project', {
     platform,
     projectName,
   });

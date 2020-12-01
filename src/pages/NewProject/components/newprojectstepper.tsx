@@ -16,6 +16,7 @@ import { Grid } from '@material-ui/core';
 import PlatformSelecter from './platformSelecter';
 import ProjectNameInput from './projectNameInput';
 import StepperResult from './stepperResult';
+import create from '@api/project/create';
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -111,7 +112,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return ['Select your platform', 'Write your project info', 'Add assiagn to project','Done !'];
+  return ['Select your platform', 'Write your project name', 'Confirm your project','Done !'];
 }
 
 
@@ -132,9 +133,9 @@ export default function CustomizedSteppers() : JSX.Element {
       case 1:
         return <ProjectNameInput {...props} />;
       case 2:
-        return 'This is the bit I really care about!';
-      default:
         return <StepperResult {...props} />;
+      default:
+        return 'O.o 어떻게 하셨나요 ?';
     }
   }
   const handleNext = () => {
@@ -145,8 +146,8 @@ export default function CustomizedSteppers() : JSX.Element {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
+  const handleFinish = () => {
+    create(projectName,seletedPlatform);
   };
 
   return (
@@ -161,7 +162,7 @@ export default function CustomizedSteppers() : JSX.Element {
           ))}
           </Stepper>
         </Grid>
-        {activeStep === steps.length ? (
+        {activeStep === steps.length -1 ? (
           <Grid item xs={12}>
             <Grid item xs={12} sm={6}>
               <Typography className={classes.instructions}>
@@ -169,8 +170,8 @@ export default function CustomizedSteppers() : JSX.Element {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Button onClick={handleReset} className={classes.button}>
-                Reset
+              <Button onClick={handleFinish} className={classes.button}>
+                Finish
               </Button>
             </Grid>
           </Grid>
@@ -189,7 +190,7 @@ export default function CustomizedSteppers() : JSX.Element {
                 onClick={handleNext}
                 className={classes.button}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                Next
               </Button>
             </Grid>
           </Grid>
