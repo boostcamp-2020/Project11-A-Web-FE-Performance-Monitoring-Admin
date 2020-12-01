@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import { makeStyles, Theme, createStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Stepper from '@material-ui/core/Stepper';
@@ -11,9 +11,9 @@ import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { StepIconProps } from '@material-ui/core/StepIcon';
-import Papre from '@material-ui/core/Paper';
 import DoneIcon from '@material-ui/icons/Done';
 import { Grid } from '@material-ui/core';
+import PlatformSelecter from './platformSelecter';
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -89,10 +89,17 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
+      flexGrow: 1,
     },
     button: { 
-      display: 'flex',
       marginRight: theme.spacing(1),
+    },
+    buttons: { 
+      marginLeft: '80%',
+    },
+    content: {
+      marginLeft: '10%',
+      height: '20vh',
     },
     instructions: {
       marginTop: theme.spacing(1),
@@ -108,7 +115,7 @@ function getSteps() {
 function getStepContent(step: number) {
   switch (step) {
     case 0:
-      return '밀가루';
+      return <PlatformSelecter />;
     case 1:
       return 'What is an ad group anyways?';
     case 2:
@@ -118,10 +125,14 @@ function getStepContent(step: number) {
   }
 }
 
-export default function CustomizedSteppers() {
+export default function CustomizedSteppers() : JSX.Element {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
+  const [seletedPlatform, setPlatform] = useState('');
+
+
   const steps = getSteps();
+
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -137,27 +148,35 @@ export default function CustomizedSteppers() {
 
   return (
     <div className={classes.root}>
-      <Papre>
-        <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
-            </Step>
+      <Grid container spacing={5}>
+        <Grid item xs={12}>
+          <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+              </Step>
           ))}
-        </Stepper>
-        <Grid container spacing={3}>
-          {activeStep === steps.length ? (
-            <div>
+          </Stepper>
+        </Grid>
+        {activeStep === steps.length ? (
+          <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <Typography className={classes.instructions}>
                 All steps completed - you&apos;re finished
               </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6}>
               <Button onClick={handleReset} className={classes.button}>
                 Reset
               </Button>
-            </div>
-          ) : (
-            <Grid item xs={12}>
+            </Grid>
+          </Grid>
+        ) : (
+          <Grid item xs={12}>
+            <Grid item xs={12} className={classes.content}>
               {getStepContent(activeStep)} 
+            </Grid>       
+            <Grid item xs={12} sm={6} className={classes.buttons}>     
               <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
               </Button>
@@ -170,9 +189,9 @@ export default function CustomizedSteppers() {
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </Grid>
-          )}
-        </Grid>
-      </Papre>
+          </Grid>
+        )}
+      </Grid>
     </div>
   );
 }
