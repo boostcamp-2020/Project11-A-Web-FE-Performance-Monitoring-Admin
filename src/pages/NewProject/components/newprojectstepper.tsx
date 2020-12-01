@@ -15,6 +15,7 @@ import DoneIcon from '@material-ui/icons/Done';
 import { Grid } from '@material-ui/core';
 import PlatformSelecter from './platformSelecter';
 import ProjectNameInput from './projectNameInput';
+import StepperResult from './stepperResult';
 
 const ColorlibConnector = withStyles({
   alternativeLabel: {
@@ -133,7 +134,7 @@ export default function CustomizedSteppers() : JSX.Element {
       case 2:
         return 'This is the bit I really care about!';
       default:
-        return 'Unknown step';
+        return <StepperResult {...props} />;
     }
   }
   const handleNext = () => {
