@@ -5,14 +5,15 @@ interface Response {
   docs?: Project[];
 }
 
-const getProjects = async (): Promise<Project[] | undefined> => {
+const getProjects = async (page?: number): Promise<Project[] | undefined> => {
   const { data } = await authAxios.get<Response>('/project', {
-    params: { page: 1 },
+    params: { page },
   });
 
   if (data.docs) {
     return data.docs;
   }
+  return undefined;
 };
 
 export default getProjects;
