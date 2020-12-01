@@ -6,6 +6,7 @@ export interface Project {
   members?: string[];
   projectName: string;
   issues?: string[];
+  createdAt: string;
 }
 
 export interface ProjectState {

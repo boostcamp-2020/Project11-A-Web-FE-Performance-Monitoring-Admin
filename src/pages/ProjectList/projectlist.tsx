@@ -42,7 +42,7 @@ interface Props {
   projects: Project[];
 }
 
-const ProjectList: FunctionComponent<Props> = ({ projects }) => {
+const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -61,7 +61,7 @@ const ProjectList: FunctionComponent<Props> = ({ projects }) => {
           <Grid container spacing={2}>
             {projects.map((project, idx) => (
               <Grid item key={project._id} xs={3}>
-                <SimpleCard projectId={idx} />
+                <SimpleCard projectNumber={idx} project={project} />
               </Grid>
             ))}
           </Grid>
