@@ -112,28 +112,28 @@ function getSteps() {
   return ['Select your platform', 'Write your project info', 'Add assiagn to project','Done !'];
 }
 
-function getStepContent(step: number) {
-  switch (step) {
-    case 0:
-      return <PlatformSelecter />;
-    case 1:
-      return 'What is an ad group anyways?';
-    case 2:
-      return 'This is the bit I really care about!';
-    default:
-      return 'Unknown step';
-  }
-}
+
 
 export default function CustomizedSteppers() : JSX.Element {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
-  const [seletedPlatform, setPlatform] = useState('');
-
+  const [seletedPlatform, setPlatform] = useState('아직 선택하지 않았습니다.');
 
   const steps = getSteps();
 
-
+  function getStepContent(step: number) {
+    const props = {seletedPlatform, setPlatform};
+    switch (step) {
+      case 0:
+        return <PlatformSelecter {...props} />;
+      case 1:
+        return 'What is an ad group anyways?';
+      case 2:
+        return 'This is the bit I really care about!';
+      default:
+        return 'Unknown step';
+    }
+  }
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
