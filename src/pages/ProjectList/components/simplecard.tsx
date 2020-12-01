@@ -11,8 +11,8 @@ import { Project } from '@state/type';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
-    maxWidth: 275,
+    minWidth: 260,
+    maxWidth: 260,
     minHeight: 230,
     maxHeight: 230,
     borderRadius: 12,
@@ -50,11 +50,9 @@ const SimpleCard: FunctionComponent<Props> = ({
           color="textSecondary"
           gutterBottom
         >
-          #{projectNumber}
-          <br />
-          {project.platform}
+          #{projectNumber} {project.platform}
         </Typography>
-        <Typography variant="h4" component="h1">
+        <Typography variant="h5" component="h1">
           {project.projectName}
         </Typography>
         <Typography variant="body2" component="p">

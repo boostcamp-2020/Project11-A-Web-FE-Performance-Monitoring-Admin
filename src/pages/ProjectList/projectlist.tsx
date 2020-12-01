@@ -18,9 +18,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  section: {
+    display: 'flex',
+  },
   appBarSpacer: theme.mixins.toolbar,
   tooltipSpacer: {
-    width: '100%',
     display: 'flex',
     flexDirection: 'row-reverse',
   },
@@ -50,22 +52,24 @@ const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
       <AppbarShift />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <div className={classes.tooltipSpacer}>
-          <Tooltip title="Add" aria-label="add">
-            <Fab color="primary" className={classes.fab} href="/newproject">
-              <AddIcon />
-            </Fab>
-          </Tooltip>
-        </div>
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2}>
-            {projects.map((project, idx) => (
-              <Grid item key={project._id} xs={3}>
-                <SimpleCard projectNumber={idx} project={project} />
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+        <section className={classes.section}>
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={2}>
+              {projects.map((project, idx) => (
+                <Grid item key={project._id} xs={3}>
+                  <SimpleCard projectNumber={idx + 1} project={project} />
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
+          <div className={classes.tooltipSpacer}>
+            <Tooltip title="Add" aria-label="add">
+              <Fab color="primary" className={classes.fab} href="/newproject">
+                <AddIcon />
+              </Fab>
+            </Tooltip>
+          </div>
+        </section>
       </main>
     </div>
   );
