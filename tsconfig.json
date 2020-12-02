@@ -21,6 +21,7 @@
       "@state/*": ["src/state/*"],
       "@themes/*": ["src/themes/*"],
       "@utils/*": ["src/utils/*"],
+      "@public/*":["public/*"]
     },
     "moduleResolution": "node"
   },
