@@ -11,6 +11,14 @@ const theme = createMuiTheme({
       fontFamily: 'IBMPlexSansKR-SemiBold',
     },
   },
+  palette: {
+    primary: {
+      main: '#1A1A1D',
+    },
+    secondary: {
+      main: '#C3073F',
+    },
+  },
 });
 
 export default theme;
