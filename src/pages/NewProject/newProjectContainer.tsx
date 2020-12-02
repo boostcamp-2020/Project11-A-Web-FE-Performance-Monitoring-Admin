@@ -4,8 +4,9 @@ import NewProjectForm from './newProjectForm';
 const NewProjectContainer = () : JSX.Element => {
   const [seletedPlatform, setPlatform] = useState('아직 선택하지 않았습니다.');
   const [projectName, setProjectName] = useState('New Project');
+  const [alertSetting, setAlert] = useState('거부');
 
-  const prop = {seletedPlatform,setPlatform,projectName,setProjectName}
+  const prop = {seletedPlatform,setPlatform,projectName,setProjectName,alertSetting,setAlert};
   return (
     <NewProjectForm {...prop} />
   );

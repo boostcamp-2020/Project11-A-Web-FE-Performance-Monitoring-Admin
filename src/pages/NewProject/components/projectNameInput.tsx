@@ -13,31 +13,28 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 interface prop {
-  setProjectName: React.Dispatch<React.SetStateAction<string>>;
   projectName: string;
+  setProjectName: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function ProjectNameInput(props : prop) : JSX.Element{
   const classes = useStyles();
   const [errorText,setErrorText] = useState('');
 
-    
-  
-
   return (
     <div className={classes.root}>
       <Typography>
-        프로젝트의 이름을 선택해주세요.
+        프로젝트의 이름을 입력해주세요. ( 4글자 이상입력해주시기 바랍니다. )
       </Typography>
       <TextField 
-        error={props.projectName.length < 3} 
+        error={props.projectName.length < 4} 
         helperText={errorText}
         id="standard-basic" 
         label="프로젝트 이름" 
         defaultValue={props.projectName} 
         onChange={({ target: { value } }) => {
           props.setProjectName(value);
-          setErrorText((props.projectName.length < 3)?'이름이 너무 짧습니다.':'');
+          setErrorText((props.projectName.length < 4)?'이름이 너무 짧습니다.':'');
         }} />
     </div>
   )
