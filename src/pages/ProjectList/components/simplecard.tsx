@@ -1,15 +1,24 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import React, { FunctionComponent } from 'react';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  makeStyles,
+} from '@material-ui/core';
+import { Project } from '@state/type';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
-    maxWidth: 275,
+    minWidth: 260,
+    maxWidth: 260,
+    minHeight: 230,
+    maxHeight: 230,
+    borderRadius: 12,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   bullet: {
     display: 'inline-block',
@@ -23,29 +32,32 @@ const useStyles = makeStyles({
     marginBottom: 12,
   },
 });
-interface myprop {
-  projectId:number
+interface Props {
+  project: Project;
+  projectNumber: number;
 }
-export default function SimpleCard(mprop:myprop) :JSX.Element {
+const SimpleCard: FunctionComponent<Props> = ({
+  project,
+  projectNumber,
+}: Props): JSX.Element => {
   const classes = useStyles();
-  const projectNumber = mprop.projectId;
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          #
-          {projectNumber} 
-          프로젝트 
+        <Typography
+          className={classes.title}
+          color="textSecondary"
+          gutterBottom
+        >
+          #{projectNumber} {project.platform}
         </Typography>
-        <Typography variant="h5" component="h2">
-          프로젝트 타입
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          설명입니다.
+        <Typography variant="h5" component="h1">
+          {project.projectName}
         </Typography>
         <Typography variant="body2" component="p">
-          피자먹고 싶다.
+          project created:{' '}
+          {new Date(project.createdAt).toISOString().substring(0, 10)}
         </Typography>
       </CardContent>
       <CardActions>
@@ -53,4 +65,6 @@ export default function SimpleCard(mprop:myprop) :JSX.Element {
       </CardActions>
     </Card>
   );
-}
+};
+
+export default SimpleCard;
