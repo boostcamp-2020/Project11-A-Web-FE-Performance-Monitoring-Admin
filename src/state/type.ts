@@ -1,5 +1,5 @@
 export interface Project {
-  _id?: string;
+  _id: string;
   platform: string;
   owner: string;
   admins?: string[];
@@ -15,8 +15,20 @@ export interface ProjectState {
   error: string;
 }
 
-export interface ProjectDocs {
-  docs?: Project[];
+export interface Issue {
+  _id: string;
+  projectId: string;
+  errorName: string;
+  errorMessage: string;
+  isResolved: boolean;
+  comments?: string[];
+  events?: string[];
+  createdAt: string;
+  updateAt: string;
+}
+
+export interface Docs<T> {
+  docs?: T[];
   totalDocs?: number;
   limit?: number;
   totalPages?: number;

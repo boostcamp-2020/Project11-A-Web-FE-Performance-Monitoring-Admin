@@ -10,7 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import { Pagination } from '@material-ui/lab';
 
-import { ProjectDocs } from '@state/type';
+import { Project, Docs } from '@state/type';
 
 import SimpleCard from './components/simplecard';
 import AppbarShift from '../layout/appbarshift';
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-  projects: ProjectDocs;
+  projects: Docs<Project>;
 }
 
 const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
@@ -70,7 +70,7 @@ const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
           </Container>
           <div className={classes.tooltipSpacer}>
             <Tooltip title="Add" aria-label="add">
-              <Fab color="primary" className={classes.fab} href="/newproject">
+              <Fab color="secondary" className={classes.fab} href="/newproject">
                 <AddIcon />
               </Fab>
             </Tooltip>

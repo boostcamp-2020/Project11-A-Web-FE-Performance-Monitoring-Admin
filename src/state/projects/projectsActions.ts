@@ -1,4 +1,4 @@
-import { Project, ProjectDocs } from '@state/type';
+import { Project, Docs } from '@state/type';
 
 export const GET_PROJECTS_REQUEST = 'GET_PROJECTS_REQUEST';
 export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
@@ -9,7 +9,7 @@ export interface GetProjectsAction {
     | typeof GET_PROJECTS_REQUEST
     | typeof GET_PROJECTS_SUCCESS
     | typeof GET_PROJECTS_FAIL;
-  projects?: ProjectDocs;
+  projects?: Docs<Project>;
   errorMsg?: string;
 }
 
@@ -20,7 +20,7 @@ export const getProjectsRequest = (): GetProjectsAction => {
 };
 
 export const getProjectsSuccess = (
-  projects: ProjectDocs,
+  projects: Docs<Project>,
 ): GetProjectsAction => {
   return {
     type: GET_PROJECTS_SUCCESS,
