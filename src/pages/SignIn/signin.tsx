@@ -11,7 +11,6 @@ import Container from '@material-ui/core/Container';
 import React, { useState } from 'react';
 import login from '@api/auth/login';
 
-const logo = require('@public/santry.png');
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -54,7 +53,7 @@ export default function SignIn(): JSX.Element {
   };
   return (
     <Container component="main" maxWidth="xs">
-      <img src={logo} height="200px" className={classes.logo} alt="SAntry" />
+      <img src={"public/santry.png"} height="200px" className={classes.logo} alt="SAntry" />
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">

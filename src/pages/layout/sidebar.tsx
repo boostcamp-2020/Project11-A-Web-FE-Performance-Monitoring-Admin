@@ -20,7 +20,7 @@ export default function mainListItems(): JSX.Element {
   return (
     <div>
       <Link to="/project" className={classes.link}>
-        <ListItem button component="a" href="/project">
+        <ListItem button>
           <ListItemIcon>
             <FolderOpenIcon />
           </ListItemIcon>
