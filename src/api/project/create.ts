@@ -1,4 +1,5 @@
 import { authAxios } from '@utils/axios';
+import { projecData } from '@state/type';
 
 const create = async (data: projecData): Promise<void> => {
   const result = await authAxios.post('/project', {
@@ -8,13 +9,4 @@ const create = async (data: projecData): Promise<void> => {
     window.location.href = '/project';
   }
 };
-interface projecData {
-  platform: string;
-  projectName: string;
-  emails: string[];
-  admins: string[];
-  members: string[];
-}
-// type together
-
 export default create;

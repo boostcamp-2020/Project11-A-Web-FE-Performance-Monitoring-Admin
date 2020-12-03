@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import searchMember from '@api/project/searchMember';
+import { user } from '@state/type';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,12 +25,6 @@ interface prop {
   projectMembers: string[];
   setMembers: React.Dispatch<React.SetStateAction<string[]>>;
 }
-interface user {
-  _id: string;
-  nickname: string;
-  email: string;
-}
-// searchMember.tsx interface 와 합쳐야함
 
 const ProjectMember = (props : prop) : JSX.Element =>{
   const classes = useStyles();

@@ -1,4 +1,5 @@
 import { authAxios } from '@utils/axios';
+import { user } from '@state/type';
 
 const searchMember = async (searchQuery: string): Promise<user[]> => {
   const result = await authAxios.get(`/user/${searchQuery}`);
@@ -7,11 +8,4 @@ const searchMember = async (searchQuery: string): Promise<user[]> => {
   }
   return [];
 };
-
-interface user {
-  _id: string;
-  nickname: string;
-  email: string;
-}
-// projectMember.tsx interface 와 합쳐야함
 export default searchMember;
