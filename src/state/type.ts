@@ -24,7 +24,7 @@ export interface Issue {
   comments?: string[];
   events?: string[];
   createdAt: string;
-  updateAt: string;
+  updatedAt: string;
 }
 
 export interface Docs<T> {
