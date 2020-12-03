@@ -7,10 +7,14 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import FolderSpecialIcon from '@material-ui/icons/FolderSpecial';
+import create from '@api/project/create';
 import PlatformSelecter from './components/platformSelecter';
 import ProjectNameInput from './components/projectNameInput';
 import ProjecAlert from './components/projectAlert';
 import AppbarShift from '../layout/appbarshift';
+import ProjectMember from './components/projectMember';
+import ProjectAdmin from './components/projectAdmin';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,13 +52,30 @@ interface prop {
   seletedPlatform:string;
   projectName:string;
   alertSetting:string;
+  alertMails:string[];
+  projectMembers:string[];
+  projectAdmins:string[];
   setPlatform:React.Dispatch<React.SetStateAction<string>>;
   setProjectName:React.Dispatch<React.SetStateAction<string>>;
   setAlert:React.Dispatch<React.SetStateAction<string>>;
+  setMails:React.Dispatch<React.SetStateAction<string[]>>;
+  setMembers:React.Dispatch<React.SetStateAction<string[]>>;
+  setAdmins:React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const NewProjectForm = (props : prop) : JSX.Element => {
   const classes = useStyles();
+
+  const handleCreateButton = () => {
+    const data = {
+      platform:props.seletedPlatform,
+      projectName:props.projectName,
+      emails:props.alertMails,
+      admins:props.projectAdmins,
+      members:props.projectMembers,
+    }
+    create(data);
+  }
 
   return (
     <div className={classes.root}>
@@ -64,7 +85,7 @@ const NewProjectForm = (props : prop) : JSX.Element => {
         <div className={classes.appBarSpacer} />
         <Grid 
           container 
-          spacing={3}
+          spacing={5}
           direction="column"
           justify="flex-start"
           alignItems="stretch"
@@ -104,6 +125,24 @@ const NewProjectForm = (props : prop) : JSX.Element => {
           <Grid item xs>
             <Paper className={classes.paper}>
               <Typography className={classes.contentTitle}>
+                담당자 선택하기
+              </Typography>
+              <Divider variant="middle" />
+              <ProjectAdmin {...props} />
+            </Paper>
+          </Grid>
+          <Grid item xs>
+            <Paper className={classes.paper}>
+              <Typography className={classes.contentTitle}>
+                멤버 선택하기
+              </Typography>
+              <Divider variant="middle" />
+              <ProjectMember {...props} />
+            </Paper>
+          </Grid>
+          <Grid item xs>
+            <Paper className={classes.paper}>
+              <Typography className={classes.contentTitle}>
                 알람설정 하기
               </Typography>
               <Divider variant="middle" />
@@ -116,6 +155,8 @@ const NewProjectForm = (props : prop) : JSX.Element => {
               color="secondary"
               className={classes.button}
               startIcon={<FolderSpecialIcon />}
+              onClick={handleCreateButton}
+              disabled={(props.seletedPlatform==='아직 선택하지 않았습니다.')||(props.projectName.length < 4)}
             >
               프로젝트 만들기
             </Button>

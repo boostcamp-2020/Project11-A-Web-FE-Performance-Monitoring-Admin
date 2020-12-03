@@ -17,7 +17,7 @@ interface prop {
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function ProjectNameInput(props : prop) : JSX.Element{
+const ProjectNameInput = (props : prop) : JSX.Element => {
   const classes = useStyles();
   const [errorText,setErrorText] = useState('');
 
@@ -39,3 +39,4 @@ export default function ProjectNameInput(props : prop) : JSX.Element{
     </div>
   )
 }
+export default ProjectNameInput
