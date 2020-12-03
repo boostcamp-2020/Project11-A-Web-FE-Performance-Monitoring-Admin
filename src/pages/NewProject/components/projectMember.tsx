@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import searchMember from '@api/project/searchMember';
-import { user } from '@state/type';
+import { User } from '@state/type';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,7 +30,7 @@ const ProjectMember = (props : prop) : JSX.Element =>{
   const classes = useStyles();
   const [searchQuery,setQuery] = useState('');
   const [errorText,setErrorText] = useState('');
-  const [searchResult,setSearchResult] = useState<user[]>([]);
+  const [searchResult,setSearchResult] = useState<User[]>([]);
   const [viewMembers,setViewMembers] = useState<string[]>([]);
 
   const handleDeleteMemberClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)  => {

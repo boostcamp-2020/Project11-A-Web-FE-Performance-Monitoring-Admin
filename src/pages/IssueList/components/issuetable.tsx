@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { Docs, Issue } from '@state/type';
+import convertDate from '@utils/convertDate';
 
 const useStyles = makeStyles({
   table: {
@@ -20,17 +22,11 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(eventId: number,errorName: string, errorMessage: string, errorLocation: string, events: number, users: number) {
-  const eventURL = `/issuedetail/${ String(eventId)}`;
-  return { eventId , eventURL, errorName, errorMessage, errorLocation, events, users };
+interface Props {
+  issues: Docs<Issue>;
 }
 
-const rows = [
-  createData(1,'TypeError', '장황한 에러메세지', '(../index/santry.ts)',20, 3),
-  createData(3,'RangeError', '밥먹고 빵빵 뱃속이 빵빵', '(../index/bread.ts)',30, 1),
-];
-
-export default function IssueTable() :JSX.Element{
+const IssueTable: FC<Props> = ({ issues }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -41,23 +37,24 @@ export default function IssueTable() :JSX.Element{
             <TableCell>#</TableCell>
             <TableCell>ErrorName</TableCell>
             <TableCell align="center">EVENTS</TableCell>
-            <TableCell align="center">USERS</TableCell>
             <TableCell align="center">ASSIGNEE</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.eventId}>
-              <TableCell>{row.eventId}</TableCell>
+          {issues.docs?.map((issue, idx) => (
+            <TableRow key={issue._id}>
+              <TableCell>{idx}</TableCell>
               <TableCell component="th" scope="row">
                 <Typography>
-                  <Link to={row.eventURL}>{row.errorName}</Link>
-                  {row.errorLocation}
+                  <Link to={`/issuedetail/${issue._id}`}>
+                    {issue.errorName}
+                  </Link>
                 </Typography>
-                <Typography>{row.errorMessage}</Typography>
+                <Typography>
+                  {issue.errorMessage} {convertDate(issue.createdAt)}
+                </Typography>
               </TableCell>
-              <TableCell align="center">{row.events}</TableCell>
-              <TableCell align="center">{row.users}</TableCell>
+              <TableCell align="center">{issue.events?.length}</TableCell>
               <TableCell align="center">
                 <AccountBoxIcon />
               </TableCell>
@@ -67,4 +64,6 @@ export default function IssueTable() :JSX.Element{
       </Table>
     </TableContainer>
   );
-}
+};
+
+export default IssueTable;

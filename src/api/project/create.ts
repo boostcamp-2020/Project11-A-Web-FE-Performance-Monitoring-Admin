@@ -1,7 +1,7 @@
 import { authAxios } from '@utils/axios';
-import { projecData } from '@state/type';
+import { ProjectData } from '@state/type';
 
-const create = async (data: projecData): Promise<void> => {
+const create = async (data: ProjectData): Promise<void> => {
   const result = await authAxios.post('/project', {
     ...data,
   });
