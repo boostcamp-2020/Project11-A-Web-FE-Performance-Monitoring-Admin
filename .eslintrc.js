@@ -16,6 +16,7 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'import/extensions': 0,
     'import/no-unresolved': 0,
+    'react/require-default-props': 0,
   },
   settings: {
     'import/resolver': {
@@ -32,6 +33,7 @@ module.exports = {
           ['@state', './src/state'],
           ['@themes', './src/themes'],
           ['@utils', './src/utils'],
+          ['@public', './public'],
         ],
       },
     },

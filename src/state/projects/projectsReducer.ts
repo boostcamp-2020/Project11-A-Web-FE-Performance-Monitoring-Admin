@@ -1,4 +1,4 @@
-import { ProjectDocs } from '@state/type';
+import { Project, Docs } from '@state/type';
 import {
   GET_PROJECTS_REQUEST,
   GET_PROJECTS_SUCCESS,
@@ -8,7 +8,7 @@ import {
 
 interface ProjectsState {
   loading: boolean;
-  projects?: ProjectDocs;
+  projects?: Docs<Project>;
   errorMsg?: string;
 }
 

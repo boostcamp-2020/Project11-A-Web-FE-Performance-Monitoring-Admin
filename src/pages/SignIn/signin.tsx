@@ -11,9 +11,14 @@ import Container from '@material-ui/core/Container';
 import React, { useState } from 'react';
 import login from '@api/auth/login';
 
+const logo = require('@public/santry.png');
+
 const useStyles = makeStyles((theme) => ({
+  logo: {
+    marginTop: theme.spacing(3),
+  },
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -40,6 +45,7 @@ export default function SignIn(): JSX.Element {
   const handleClick = () => {
     try {
       login(email, password);
+      window.location.href = '/project';
     } catch (error) {
       alert('로그인을 실패하였습니다 !');
       setEmail('');
@@ -48,6 +54,7 @@ export default function SignIn(): JSX.Element {
   };
   return (
     <Container component="main" maxWidth="xs">
+      <img src={logo} height="200px" className={classes.logo} alt="SAntry" />
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
