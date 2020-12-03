@@ -10,8 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import React, { useState } from 'react';
 import login from '@api/auth/login';
-
-const logo = require('@public/santry.png');
+import logo from '@public/santry.png';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
