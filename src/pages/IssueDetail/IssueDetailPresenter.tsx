@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import { CssBaseline, Grid, Container } from '@material-ui/core';
+import { Issue } from '@state/type';
 import AppbarShift from '../layout/appbarshift';
 import IssueDetailTabs from './components/issuedetailtap';
-import IssueDetailHeader from './components/issuedetailheader';
+import IssueDetailHeader from './components/IssueDetailHeader';
+
+interface Props {
+  issue: Issue;
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function IssueDetail(): JSX.Element {
+const IssueDetail: FC<Props> = ({ issue }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -31,15 +34,13 @@ export default function IssueDetail(): JSX.Element {
       <AppbarShift />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2}>
-            <IssueDetailHeader />
-            <Grid item xs={12}>
-              <IssueDetailTabs />
-            </Grid>
-          </Grid>
+        <Container maxWidth="xl" className={classes.container}>
+          <IssueDetailHeader issue={issue} />
+          <IssueDetailTabs />
         </Container>
       </main>
     </div>
   );
-}
+};
+
+export default IssueDetail;
