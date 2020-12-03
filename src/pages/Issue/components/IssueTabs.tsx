@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
@@ -6,15 +6,19 @@ import Tab from '@material-ui/core/Tab';
 
 const useStyles = makeStyles({
   root: {
+    marginTop: '0.5rem',
     flexGrow: 1,
   },
 });
 
-export default function CenteredTabs():JSX.Element {
+const IssueTabs: FC = (): JSX.Element => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (
+    event: React.ChangeEvent<unknown>,
+    newValue: number,
+  ) => {
     setValue(newValue);
   };
 
@@ -33,4 +37,5 @@ export default function CenteredTabs():JSX.Element {
       </Tabs>
     </Paper>
   );
-}
+};
+export default IssueTabs;

@@ -2,9 +2,9 @@ import React, { useEffect, useState, FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import getIssue from '@api/issue/getIssue';
 import { Issue } from '@state/type';
-import IssueDetailPresenter from './IssueDetailPresenter';
+import IssuePresenter from './IssuePresenter';
 
-const IssueDetailContainer: FC = () => {
+const IssueContainer: FC = () => {
   const location = useLocation();
   const issueId = location.pathname.split('/').slice(-1)[0];
 
@@ -17,7 +17,7 @@ const IssueDetailContainer: FC = () => {
     })();
   }, []);
 
-  return <IssueDetailPresenter issue={issue} />;
+  return <IssuePresenter issue={issue} />;
 };
 
-export default IssueDetailContainer;
+export default IssueContainer;

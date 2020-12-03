@@ -47,7 +47,7 @@ const ErrorMessage = styled.span`
   margin-bottom: 0.4rem;
 `;
 
-const IssueDetailHeader: FC<Props> = ({ issue }: Props): JSX.Element => {
+const IssueHeader: FC<Props> = ({ issue }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -107,4 +107,4 @@ const IssueDetailHeader: FC<Props> = ({ issue }: Props): JSX.Element => {
   );
 };
 
-export default IssueDetailHeader;
+export default IssueHeader;
