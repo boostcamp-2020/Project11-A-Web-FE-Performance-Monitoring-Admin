@@ -36,7 +36,7 @@ const Issue: FC<Props> = ({ issue }: Props) => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="xl" className={classes.container}>
           <IssueHeader issue={issue} />
-          <IssueTabs />
+          <IssueTabs issue={issue} />
         </Container>
       </main>
     </div>
