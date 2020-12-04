@@ -52,7 +52,7 @@ const IssueHeader: FC<Props> = ({ issue }: Props): JSX.Element => {
 
   return (
     <Grid container spacing={2} justify="space-between">
-      <Grid item xs={6}>
+      <Grid item xs={7}>
         <Paper className={classes.paper}>
           {!Object.keys(issue).length ? (
             <CircularProgress color="secondary" />
@@ -71,7 +71,7 @@ const IssueHeader: FC<Props> = ({ issue }: Props): JSX.Element => {
           )}
         </Paper>
       </Grid>
-      <Grid item xs={6} alignItems="center">
+      <Grid item xs={5} alignItems="center">
         <Paper className={classes.paper}>
           <Table size="small">
             <TableHead>

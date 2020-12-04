@@ -1,17 +1,20 @@
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import { Typography } from '@material-ui/core';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+} from '@material-ui/core';
+import { AccountBox, AccessTime } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { Docs, Issue } from '@state/type';
 import convertDate from '@utils/convertDate';
+import timeDiff from '@utils/timeDiff';
 
 const useStyles = makeStyles({
   table: {
@@ -19,6 +22,10 @@ const useStyles = makeStyles({
   },
   errorPath: {
     color: 'gray',
+  },
+  link: {
+    textDecoration: 'none',
+    fontWeight: 700,
   },
 });
 
@@ -34,7 +41,7 @@ const IssueTable: FC<Props> = ({ issues }: Props): JSX.Element => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>#</TableCell>
+            <TableCell align="center">#</TableCell>
             <TableCell>ErrorName</TableCell>
             <TableCell align="center">EVENTS</TableCell>
             <TableCell align="center">ASSIGNEE</TableCell>
@@ -43,20 +50,30 @@ const IssueTable: FC<Props> = ({ issues }: Props): JSX.Element => {
         <TableBody>
           {issues.docs?.map((issue, idx) => (
             <TableRow key={issue._id}>
-              <TableCell>{idx}</TableCell>
+              <TableCell align="center">{idx}</TableCell>
               <TableCell component="th" scope="row">
                 <Typography>
-                  <Link to={`/issuedetail/${issue._id}`}>
+                  <Link
+                    to={`/issuedetail/${issue._id}`}
+                    className={classes.link}
+                  >
                     {issue.errorName}
                   </Link>
                 </Typography>
-                <Typography>
-                  {issue.errorMessage} {convertDate(issue.createdAt)}
+
+                <Typography>{issue.errorMessage}</Typography>
+                <Typography
+                  color="textSecondary"
+                  variant="body2"
+                  style={{ display: 'flex' }}
+                >
+                  <AccessTime style={{ fontSize: '1rem', marginRight: 5 }} />{' '}
+                  {timeDiff(new Date(), new Date(issue.createdAt))}
                 </Typography>
               </TableCell>
               <TableCell align="center">{issue.events?.length}</TableCell>
               <TableCell align="center">
-                <AccountBoxIcon />
+                <AccountBox />
               </TableCell>
             </TableRow>
           ))}
