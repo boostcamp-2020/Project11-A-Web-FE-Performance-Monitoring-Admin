@@ -17,8 +17,8 @@ const useStyles = makeStyles({
     textDecoration: 'none',
   },
   root: {
-    minWidth: 260,
-    maxWidth: 260,
+    minWidth: 245,
+    maxWidth: 245,
     minHeight: 230,
     maxHeight: 230,
     borderRadius: 12,
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14,
+    fontSize: 12,
   },
   pos: {
     marginBottom: 12,
@@ -70,7 +70,7 @@ const SimpleCard: FC<Props> = ({
           >
             #{projectNumber} {project.platform}
           </Typography>
-          <Typography variant="h5" component="h1">
+          <Typography variant="subtitle1" component="h2">
             {project.projectName}
           </Typography>
           <Typography variant="body2" component="p">
@@ -79,7 +79,7 @@ const SimpleCard: FC<Props> = ({
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">프로젝트 보기</Button>
+          <Button size="small">프로젝트 설정</Button>
         </CardActions>
       </Card>
     </Link>

@@ -34,9 +34,56 @@ export interface Issue {
   errorMessage: string;
   isResolved: boolean;
   comments?: string[];
-  events?: string[];
+  events?: EventId[];
   createdAt: string;
-  updateAt: string;
+  updatedAt: string;
+}
+
+export interface Event {
+  _id: string;
+  issueId?: string;
+  release?: string;
+  environment?: string;
+  timeStamp: string;
+  createdBy: {
+    ipAdress?: string;
+    email?: string;
+  };
+  os?: {
+    version: string;
+    name: string;
+  };
+  browser?: {
+    version: string;
+    name: string;
+  };
+  sdk: {
+    version: string;
+    name: string;
+  };
+  url?: string;
+  type?: string; // error.name
+  value?: string; // error.message
+  stacktrace?: StackTrace[]; // error.stack
+  context?: string[][];
+  version?: string;
+  platform?: string;
+  serverName?: string;
+  transaction?: string;
+  userIp?: string;
+  message?: string;
+  level?: string;
+}
+
+interface EventId {
+  _id: string;
+}
+
+interface StackTrace {
+  filename?: string;
+  function?: string;
+  lineno?: number;
+  colno?: number;
 }
 
 export interface Docs<T> {

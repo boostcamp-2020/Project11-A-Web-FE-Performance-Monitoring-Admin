@@ -7,7 +7,7 @@ import NewProjectContainer from '@pages/NewProject/newProjectContainer';
 import ProjectListContainer from '@pages/ProjectList/projectListContainer';
 import IssueListContainer from '@/pages/IssueList/IssueListContainer';
 import Setting from '@pages/ProjectSetting/setting';
-import IssueDetail from '@pages/IssueDetail/issuedetail';
+import IssueContainer from '@/pages/Issue/IssueContainer';
 
 export default function Router(): JSX.Element {
   return (
@@ -19,7 +19,7 @@ export default function Router(): JSX.Element {
         <Route exact path="/project" component={ProjectListContainer} />
         <Route exact path="/issue" component={IssueListContainer} />
         <Route exact path="/setting" component={Setting} />
-        <Route exact path="/issuedetail/:id" component={IssueDetail} />
+        <Route exact path="/issuedetail/:id" component={IssueContainer} />
       </Switch>
     </BrowserRouter>
   );

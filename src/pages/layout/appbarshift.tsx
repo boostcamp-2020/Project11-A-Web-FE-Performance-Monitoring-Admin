@@ -10,12 +10,12 @@ import Badge from '@material-ui/core/Badge';
 import Typography from '@material-ui/core/Typography';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 
+import SecondLogo from '@common/SecondLogo';
 import MainListItems from './sidebar';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: theme.palette.text.primary,
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -44,6 +45,17 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontFamily: 'DM Serif Display',
+    fontWeight: 700,
+    fontSize: 35,
+  },
+  flexDisplay: {
+    display: 'flex',
+  },
+  mainHeader: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-between',
   },
   paper: {
     padding: theme.spacing(2),
@@ -52,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   drawerPaper: {
+    backgroundColor: '#f7f5f4',
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -81,6 +94,9 @@ const useStyles = makeStyles((theme) => ({
   },
   fixedHeight: {
     height: 240,
+  },
+  sideBar: {
+    backgroundColor: theme.palette.info.light,
   },
 }));
 
@@ -112,20 +128,25 @@ export default function AppBarShift(): JSX.Element {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            SAntry
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <div className={classes.mainHeader}>
+            <div className={classes.flexDisplay}>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                className={classes.title}
+              >
+                Santry
+              </Typography>
+              <SecondLogo />
+            </div>
+            <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -140,7 +161,6 @@ export default function AppBarShift(): JSX.Element {
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Divider />
         <List>
           <MainListItems />
         </List>

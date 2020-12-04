@@ -9,6 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import { Pagination } from '@material-ui/lab';
+import { LibraryBooksTwoTone } from '@material-ui/icons';
 
 import { Project, Docs } from '@state/type';
 
@@ -19,8 +20,22 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0px 32px',
+  },
+  title: {
+    fontSize: 28,
+    display: 'flex',
+    alignItems: 'center',
+    width: 140,
+    justifyContent: 'space-between',
+  },
   section: {
     display: 'flex',
+    flexDirection: 'column',
   },
   appBarSpacer: theme.mixins.toolbar,
   tooltipSpacer: {
@@ -33,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   container: {
-    paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+    marginLeft: 0,
   },
   fab: {
     margin: theme.spacing(2),
@@ -59,6 +74,20 @@ const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <section className={classes.section}>
+          <header className={classes.header}>
+            <h2 className={classes.title}>Projects</h2>
+            <div className={classes.tooltipSpacer}>
+              <Tooltip title="Add" aria-label="add">
+                <Fab
+                  color="secondary"
+                  className={classes.fab}
+                  href="/newproject"
+                >
+                  <AddIcon />
+                </Fab>
+              </Tooltip>
+            </div>
+          </header>
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={2}>
               {projects.docs?.map((project, idx) => (
@@ -68,13 +97,6 @@ const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
               ))}
             </Grid>
           </Container>
-          <div className={classes.tooltipSpacer}>
-            <Tooltip title="Add" aria-label="add">
-              <Fab color="secondary" className={classes.fab} href="/newproject">
-                <AddIcon />
-              </Fab>
-            </Tooltip>
-          </div>
         </section>
         <Pagination
           className={classes.pagenation}
