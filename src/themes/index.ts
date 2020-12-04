@@ -3,7 +3,7 @@ import './index.css';
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: 'IBMPlexSansKR-Regular',
+    fontFamily: `'Nanum Gothic','IBMPlexSansKR-Regular','DM Serif Display', serif`,
     h1: {
       fontFamily: 'IBMPlexSansKR-Bold',
     },
@@ -14,9 +14,21 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#1A1A1D',
+      light: '#F5F5F5',
+      dark: '#616161',
     },
     secondary: {
-      main: '#C3073F',
+      main: '#D32F2F',
+      light: '#FFCDD2',
+      dark: '#FFCDD2',
+    },
+    info: {
+      main: '#795548',
+      light: '#D7CCC8',
+      dark: '#5D4037',
+    },
+    text: {
+      primary: '#21140f',
     },
   },
 });
