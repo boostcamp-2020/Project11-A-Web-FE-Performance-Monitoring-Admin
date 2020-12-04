@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: theme.palette.text.primary,
+    backgroundColor: theme.palette.primary.main,
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   drawerPaper: {
-    backgroundColor: '#f7f5f4',
+    backgroundColor: theme.palette.primary.light,
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,

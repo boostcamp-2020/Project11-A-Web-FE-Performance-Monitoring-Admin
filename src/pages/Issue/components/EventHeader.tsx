@@ -21,7 +21,7 @@ const TitleContainer = styled.div`
 const useStyles = makeStyles((theme) => ({
   eventId: {
     color: '#fff',
-    backgroundColor: theme.palette.info.dark,
+    backgroundColor: theme.palette.primary.dark,
     borderRadius: 6,
     marginLeft: 10,
     padding: '1px 6px',
