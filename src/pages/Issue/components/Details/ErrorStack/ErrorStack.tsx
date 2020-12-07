@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StackTrace } from '@state/type';
-import EventDetailHeader from './EventDetailHeader';
+import EventDetailHeader from '../EventDetailHeader';
 import StackHeader from './StackHeader';
 import StackContext from './StackContext';
 
@@ -11,7 +11,7 @@ interface Props {
 
 const ErrorStack: FC<Props> = ({ stacktrace, errorContexts }: Props) => (
   <div>
-    <EventDetailHeader title="EXCEPTION" />
+    <EventDetailHeader title="ERROR STACK" />
     {stacktrace.map((stack, idx) => (
       <StackHeader stacktrace={stack} key={idx} idx={idx}>
         {errorContexts[idx].length ? (
