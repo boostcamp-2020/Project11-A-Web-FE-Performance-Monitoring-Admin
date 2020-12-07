@@ -6,10 +6,10 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Badge,
   Drawer,
   List,
 } from '@material-ui/core';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 import { Notifications, Menu, ChevronLeft } from '@material-ui/icons';
 import SecondLogo from '@common/SecondLogo';
 import MainListItems from './sidebar';
@@ -108,6 +108,11 @@ export default function AppBarShift(): JSX.Element {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const LogoutHandler = () => {
+    localStorage.removeItem('nickname');
+    localStorage.removeItem('token');
+    window.location.reload();
+  };
   return (
     <div>
       <AppBar
@@ -140,10 +145,8 @@ export default function AppBarShift(): JSX.Element {
               </Typography>
               <SecondLogo />
             </div>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <Notifications />
-              </Badge>
+            <IconButton color="inherit" onClick={LogoutHandler}>
+              <LockOpenIcon />
             </IconButton>
           </div>
         </Toolbar>
