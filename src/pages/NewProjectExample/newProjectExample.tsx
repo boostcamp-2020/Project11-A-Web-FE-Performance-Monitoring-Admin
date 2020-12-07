@@ -9,7 +9,7 @@ import { makeStyles,
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import AppbarShift from '../layout/appbarshift';
-import ManualBar from './componets/manualBar';
+import ManualBar from './componets/ManualBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
