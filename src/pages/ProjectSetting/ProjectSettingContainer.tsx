@@ -3,7 +3,7 @@ import { useSelector, DefaultRootState } from 'react-redux';
 import getSingleProject from '@api/project/getSingleProject';
 import AlertDialog from '@common/AlertDialog';
 
-import ProjectSetting from './ProjectSetting';
+import ProjectSetting from './projectSetting';
 
 interface State extends DefaultRootState {
   curProjectReducer: {

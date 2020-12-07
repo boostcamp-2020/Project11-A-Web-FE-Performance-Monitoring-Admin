@@ -1,5 +1,5 @@
 import React from 'react';
-import NewProjectExample from './NewProjectExample';
+import NewProjectExample from './newProjectExample';
 
 const NewProjectExampleContainer = () : JSX.Element => {
 

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container } from '@material-ui/core';
 import { Docs, Issue } from '@state/type';
 import AppbarShift from '../layout/appbarshift';
+import FixedInformation from './components/fixedInformation';
 
 interface Props {
   project: any;
@@ -31,9 +32,8 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
   const [members, setMembers] = useState(project.members);
   const [admins, setAdmins] = useState(project.admins);
   const projectId = project._id;
-  const owner = project.owner.nickname;
-  const platform = project.platform;
-  const sdkToken = project.sdkToken;
+  const owner = project.owner===undefined?"Loading":project.owner.nickname; // project.owner.nickname;
+  const {platform,sdkToken} = project;
 
   return (
     <div className={classes.root}>
@@ -43,6 +43,7 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={2}>
+            <FixedInformation {...{projectId,owner,platform,sdkToken}} />
           </Grid>
         </Container>
       </main>

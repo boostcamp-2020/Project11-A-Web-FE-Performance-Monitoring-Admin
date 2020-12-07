@@ -6,9 +6,9 @@ import SingUp from '@pages/SignUp/signup';
 import NewProjectContainer from '@pages/NewProject/newProjectContainer';
 import ProjectListContainer from '@pages/ProjectList/projectListContainer';
 import IssueListContainer from '@/pages/IssueList/IssueListContainer';
-import Setting from '@/pages/ProjectSetting/ProjectSettingContainer';
+import Setting from '@/pages/ProjectSetting/projectSettingContainer';
 import IssueContainer from '@/pages/Issue/IssueContainer';
-import NewProjectExampleContainer from '@/pages/NewProjectExample/NewProjectExampleContainer'
+import NewProjectExampleContainer from '@/pages/NewProjectExample/newProjectExampleContainer'
 
 export default function Router(): JSX.Element {
   return (
