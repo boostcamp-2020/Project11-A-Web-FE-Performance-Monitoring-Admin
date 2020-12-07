@@ -17,14 +17,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     margin: theme.spacing(1),
   },
-  contentText: {
-    margin: theme.spacing(1),
-  },
 }));
 
 interface prop {
   contentTitle: string;
-  contentText: string;
+  contentText: JSX.Element;
 }
 const ManualBar = (props: prop) : JSX.Element => {
   const classes = useStyles();
@@ -36,9 +33,7 @@ const ManualBar = (props: prop) : JSX.Element => {
             {props.contentTitle}
           </Typography>
           <Divider variant="middle" />
-          <Typography className={classes.contentText}>
-            {props.contentText}
-          </Typography>
+          {props.contentText}
         </Paper>
       </Grid>
     </div>
