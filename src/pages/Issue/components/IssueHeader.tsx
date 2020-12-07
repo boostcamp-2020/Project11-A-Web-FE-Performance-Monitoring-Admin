@@ -71,7 +71,7 @@ const IssueHeader: FC<Props> = ({ issue }: Props): JSX.Element => {
           )}
         </Paper>
       </Grid>
-      <Grid item xs={5} alignItems="center">
+      <Grid item xs={5}>
         <Paper className={classes.paper}>
           <Table size="small">
             <TableHead>
