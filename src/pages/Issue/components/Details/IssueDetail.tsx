@@ -2,9 +2,9 @@ import React, { FC, Dispatch } from 'react';
 import { Event } from '@state/type';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import SummarizedTags from './SummarizedTags';
+import SummarizedTags from './Tags/SummarizedTags';
 import EventHeader from './EventHeader';
-import ErrorStack from './ErrorStack';
+import ErrorStack from './ErrorStack/ErrorStack';
 
 interface Props {
   event: Event;
