@@ -25,7 +25,8 @@ const SummarizedTags: FC<Props> = ({ tags }: Props) => {
       <h2>TAGS</h2>
       <Tags>
         {Object.entries(tags).map(
-          (tag) => tag[1] && <Tag tagName={tag[0]} tagValue={tag[1]} />,
+          (tag) =>
+            tag[1] && <Tag tagName={tag[0]} tagValue={tag[1]} key={tag[0]} />,
         )}
       </Tags>
     </div>
