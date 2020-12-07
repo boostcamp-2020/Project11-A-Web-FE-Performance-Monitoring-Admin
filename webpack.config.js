@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -65,5 +66,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({ template: './public/index.html' }),
     new Dotenv(),
+    new BundleAnalyzerPlugin(),
   ],
 };
