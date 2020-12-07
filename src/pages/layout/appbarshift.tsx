@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -129,15 +130,16 @@ export default function AppBarShift(): JSX.Element {
           </IconButton>
           <div className={classes.mainHeader}>
             <div className={classes.flexDisplay}>
-              <Typography
-                component="h1"
-                variant="h6"
-                color="inherit"
-                noWrap
-                className={classes.title}
-              >
-                Santry
-              </Typography>
+              <Link to="/project" style={{ textDecoration: 'none', color: "inherit" }}>
+                <Typography
+                  component="h1"
+                  variant="h6"
+                  noWrap
+                  className={classes.title}
+                >
+                  Santry
+                </Typography>
+              </Link>
               <SecondLogo />
             </div>
             <IconButton color="inherit">
