@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container } from '@material-ui/core';
 import { Docs, Issue } from '@state/type';
@@ -26,6 +26,15 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectSetting = ({ project }: Props): JSX.Element => {
   const classes = useStyles();
+  const [projectName, setProjectName] = useState(project.projectName);
+  const [alertEmails, setAlertEmails] = useState(project.emails);
+  const [members, setMembers] = useState(project.members);
+  const [admins, setAdmins] = useState(project.admins);
+  const projectId = project._id;
+  const owner = project.owner.nickname;
+  const platform = project.platform;
+  const sdkToken = project.sdkToken;
+
   return (
     <div className={classes.root}>
       <CssBaseline />
