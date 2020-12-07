@@ -4,6 +4,7 @@ import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SummarizedTags from './SummarizedTags';
 import EventHeader from './EventHeader';
+import ErrorStack from './ErrorStack';
 
 interface Props {
   event: Event;
@@ -58,6 +59,12 @@ const IssueDetail: FC<Props> = ({
         eventNum={eventNum}
       />
       {hasTags && <SummarizedTags tags={eventTags} />}
+      {event.stacktrace && event.errorContexts && (
+        <ErrorStack
+          stacktrace={event.stacktrace}
+          errorContexts={event.errorContexts}
+        />
+      )}
     </Paper>
   );
 };
