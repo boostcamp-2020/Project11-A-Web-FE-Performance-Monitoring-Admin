@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import { CssBaseline, Grid, Container } from '@material-ui/core';
 import { Docs, Issue } from '@state/type';
 import AppbarShift from '../layout/appbarshift';
 import IssueTable from './components/issuetable';

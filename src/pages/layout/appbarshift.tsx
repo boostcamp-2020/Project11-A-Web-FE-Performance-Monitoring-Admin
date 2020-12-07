@@ -1,17 +1,16 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MenuIcon from '@material-ui/icons/Menu';
-import Badge from '@material-ui/core/Badge';
-import Typography from '@material-ui/core/Typography';
-import Drawer from '@material-ui/core/Drawer';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import List from '@material-ui/core/List';
-
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Badge,
+  Drawer,
+  List,
+} from '@material-ui/core';
+import { Notifications, Menu, ChevronLeft } from '@material-ui/icons';
 import SecondLogo from '@common/SecondLogo';
 import MainListItems from './sidebar';
 
@@ -126,7 +125,7 @@ export default function AppBarShift(): JSX.Element {
               open && classes.menuButtonHidden,
             )}
           >
-            <MenuIcon />
+            <Menu />
           </IconButton>
           <div className={classes.mainHeader}>
             <div className={classes.flexDisplay}>
@@ -143,7 +142,7 @@ export default function AppBarShift(): JSX.Element {
             </div>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
+                <Notifications />
               </Badge>
             </IconButton>
           </div>
@@ -158,7 +157,7 @@ export default function AppBarShift(): JSX.Element {
       >
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
+            <ChevronLeft />
           </IconButton>
         </div>
         <List>

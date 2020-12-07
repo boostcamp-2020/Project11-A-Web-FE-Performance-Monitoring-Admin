@@ -1,11 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import FolderOpenIcon from '@material-ui/icons/FolderOpen';
-import AllInboxIcon from '@material-ui/icons/AllInbox';
-import SettingsIcon from '@material-ui/icons/Settings';
+import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { FolderOpen, AllInbox, Settings } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +18,7 @@ export default function mainListItems(): JSX.Element {
       <Link to="/project" className={classes.link}>
         <ListItem button>
           <ListItemIcon>
-            <FolderOpenIcon />
+            <FolderOpen />
           </ListItemIcon>
           <ListItemText primary="Projects" />
         </ListItem>
@@ -30,7 +26,7 @@ export default function mainListItems(): JSX.Element {
       <Link to="/issue" className={classes.link}>
         <ListItem button>
           <ListItemIcon>
-            <AllInboxIcon />
+            <AllInbox />
           </ListItemIcon>
           <ListItemText primary="Issues" />
         </ListItem>
@@ -38,7 +34,7 @@ export default function mainListItems(): JSX.Element {
       <Link to="/setting" className={classes.link}>
         <ListItem button>
           <ListItemIcon>
-            <SettingsIcon />
+            <Settings />
           </ListItemIcon>
           <ListItemText primary="Setting" />
         </ListItem>

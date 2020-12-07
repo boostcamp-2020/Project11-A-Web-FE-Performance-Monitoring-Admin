@@ -1,20 +1,21 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import Button from '@material-ui/core/Button';
-import FolderSpecialIcon from '@material-ui/icons/FolderSpecial';
+import {
+  CssBaseline,
+  Grid,
+  Paper,
+  Typography,
+  Divider,
+  Button,
+} from '@material-ui/core';
+import { FolderSpecial } from '@material-ui/icons';
 import create from '@api/project/create';
 import PlatformSelecter from './components/platformSelecter';
 import ProjectNameInput from './components/projectNameInput';
-import ProjecAlert from './components/projectAlert';
+import ProjectAlert from './components/projectAlert';
 import AppbarShift from '../layout/appbarshift';
 import ProjectMember from './components/projectMember';
 import ProjectAdmin from './components/projectAdmin';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,33 +50,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface prop {
-  seletedPlatform:string;
-  projectName:string;
-  alertSetting:string;
-  alertMails:string[];
-  projectMembers:string[];
-  projectAdmins:string[];
-  setPlatform:React.Dispatch<React.SetStateAction<string>>;
-  setProjectName:React.Dispatch<React.SetStateAction<string>>;
-  setAlert:React.Dispatch<React.SetStateAction<string>>;
-  setMails:React.Dispatch<React.SetStateAction<string[]>>;
-  setMembers:React.Dispatch<React.SetStateAction<string[]>>;
-  setAdmins:React.Dispatch<React.SetStateAction<string[]>>;
+  seletedPlatform: string;
+  projectName: string;
+  alertSetting: string;
+  alertMails: string[];
+  projectMembers: string[];
+  projectAdmins: string[];
+  setPlatform: React.Dispatch<React.SetStateAction<string>>;
+  setProjectName: React.Dispatch<React.SetStateAction<string>>;
+  setAlert: React.Dispatch<React.SetStateAction<string>>;
+  setMails: React.Dispatch<React.SetStateAction<string[]>>;
+  setMembers: React.Dispatch<React.SetStateAction<string[]>>;
+  setAdmins: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const NewProjectForm = (props : prop) : JSX.Element => {
+const NewProjectForm = (props: prop): JSX.Element => {
   const classes = useStyles();
 
   const handleCreateButton = () => {
     const data = {
-      platform:props.seletedPlatform,
-      projectName:props.projectName,
-      emails:props.alertMails,
-      admins:props.projectAdmins,
-      members:props.projectMembers,
-    }
+      platform: props.seletedPlatform,
+      projectName: props.projectName,
+      emails: props.alertMails,
+      admins: props.projectAdmins,
+      members: props.projectMembers,
+    };
     create(data);
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -83,8 +84,8 @@ const NewProjectForm = (props : prop) : JSX.Element => {
       <AppbarShift />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Grid 
-          container 
+        <Grid
+          container
           spacing={5}
           direction="column"
           justify="flex-start"
@@ -97,8 +98,9 @@ const NewProjectForm = (props : prop) : JSX.Element => {
               </Typography>
               <Divider variant="middle" />
               <Typography className={classes.contentText}>
-                프로젝트는 여러분의 어플리케이션에서 에러 및 로그 정보들을 수집해서
-                여러분의 동료들과 함께 확인할 수 있게 제공하고 있습니다.
+                프로젝트는 여러분의 어플리케이션에서 에러 및 로그 정보들을
+                수집해서 여러분의 동료들과 함께 확인할 수 있게 제공하고
+                있습니다.
                 <br />
                 지금부터 여러분만의 프로젝트를 만들어보세요.
               </Typography>
@@ -146,7 +148,7 @@ const NewProjectForm = (props : prop) : JSX.Element => {
                 알람설정 하기
               </Typography>
               <Divider variant="middle" />
-              <ProjecAlert {...props} />
+              <ProjectAlert {...props} />
             </Paper>
           </Grid>
           <Grid item xs className={classes.buttonWrap}>
@@ -154,9 +156,12 @@ const NewProjectForm = (props : prop) : JSX.Element => {
               variant="contained"
               color="secondary"
               className={classes.button}
-              startIcon={<FolderSpecialIcon />}
+              startIcon={<FolderSpecial />}
               onClick={handleCreateButton}
-              disabled={(props.seletedPlatform==='아직 선택하지 않았습니다.')||(props.projectName.length < 4)}
+              disabled={
+                props.seletedPlatform === '아직 선택하지 않았습니다.' ||
+                props.projectName.length < 4
+              }
             >
               프로젝트 만들기
             </Button>
@@ -164,7 +169,6 @@ const NewProjectForm = (props : prop) : JSX.Element => {
         </Grid>
       </main>
     </div>
-    
   );
-}
+};
 export default NewProjectForm;

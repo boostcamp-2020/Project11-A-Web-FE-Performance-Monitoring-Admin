@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
-import { Grid } from '@material-ui/core';
 import Tag from './Tag';
 
 interface Tags {

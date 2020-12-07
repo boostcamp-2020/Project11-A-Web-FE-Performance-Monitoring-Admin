@@ -1,6 +1,5 @@
 import React, { FC, Dispatch } from 'react';
 import { ButtonGroup, Button } from '@material-ui/core';
-import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from '@emotion/styled';
 

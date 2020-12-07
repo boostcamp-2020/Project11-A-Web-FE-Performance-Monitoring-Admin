@@ -1,9 +1,6 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import { Typography, Button, Grid, TextField } from '@material-ui/core';
 import searchMember from '@api/project/searchMember';
 import { User } from '@state/type';
 
@@ -14,9 +11,9 @@ const useStyles = makeStyles((theme: Theme) =>
         margin: theme.spacing(1),
       },
     },
-    inputSet:{
-      height: "45px",
-      marginLeft: "5px",
+    inputSet: {
+      height: '45px',
+      marginLeft: '5px',
     },
   }),
 );
@@ -26,80 +23,91 @@ interface prop {
   setMembers: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const ProjectMember = (props : prop) : JSX.Element =>{
+const ProjectMember = (props: prop): JSX.Element => {
   const classes = useStyles();
-  const [searchQuery,setQuery] = useState('');
-  const [errorText,setErrorText] = useState('');
-  const [searchResult,setSearchResult] = useState<User[]>([]);
-  const [viewMembers,setViewMembers] = useState<string[]>([]);
+  const [searchQuery, setQuery] = useState('');
+  const [errorText, setErrorText] = useState('');
+  const [searchResult, setSearchResult] = useState<User[]>([]);
+  const [viewMembers, setViewMembers] = useState<string[]>([]);
 
-  const handleDeleteMemberClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>)  => {
+  const handleDeleteMemberClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     // event.currentTarget.remove();
-  }
-  const handleAddMemberClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  };
+  const handleAddMemberClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     event.currentTarget.remove();
     props.setMembers([...props.projectMembers, event.currentTarget.value]);
     setViewMembers([...viewMembers, String(event.currentTarget.textContent)]);
-  }
+  };
   const handleSearchButtonClick = async () => {
     const searchArray = await searchMember(searchQuery);
     setSearchResult(searchArray);
-  }
+  };
 
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography>
-            함께 프로젝트를 진행할 사람들을 선정해주세요.
-          </Typography>
+          <Typography>함께 프로젝트를 진행할 사람들을 선정해주세요.</Typography>
         </Grid>
         <Grid container item xs={12} spacing={0}>
-          {viewMembers.map((member) =>(
+          {viewMembers.map((member) => (
             <Grid key={member} item xs={2}>
-              <Button variant="outlined" value={member} onClick={handleDeleteMemberClick}>
+              <Button
+                variant="outlined"
+                value={member}
+                onClick={handleDeleteMemberClick}
+              >
                 <span>{member}</span>
               </Button>
             </Grid>
-            )
-          )}
+          ))}
         </Grid>
         <Grid item xs={12}>
           <br />
         </Grid>
         <Grid item xs={6}>
-          <TextField 
-            error={searchQuery.length < 3} 
+          <TextField
+            error={searchQuery.length < 3}
             helperText={errorText}
-            id="search-query" 
-            label="검색할 사용자 닉네임" 
-            defaultValue={searchQuery} 
+            id="search-query"
+            label="검색할 사용자 닉네임"
+            defaultValue={searchQuery}
             onChange={({ target: { value } }) => {
               setQuery(value);
-              setErrorText((searchQuery.length < 3)?'검색어가 너무 짧습니다.':'');
-            }} />
-          <Button 
-            className={classes.inputSet} 
-            variant="contained" 
-            color="primary" 
+              setErrorText(
+                searchQuery.length < 3 ? '검색어가 너무 짧습니다.' : '',
+              );
+            }}
+          />
+          <Button
+            className={classes.inputSet}
+            variant="contained"
+            color="primary"
             disabled={searchQuery.length < 3}
-            onClick={handleSearchButtonClick} 
+            onClick={handleSearchButtonClick}
           >
             찾기
           </Button>
         </Grid>
         <Grid container item xs={12} spacing={1}>
-          {searchResult.map((member) =>(
+          {searchResult.map((member) => (
             <Grid key={member._id} item xs={3}>
-              <Button variant="outlined" value={member._id} onClick={handleAddMemberClick}>
+              <Button
+                variant="outlined"
+                value={member._id}
+                onClick={handleAddMemberClick}
+              >
                 <span>{member.nickname}</span>
               </Button>
             </Grid>
-            )
-          )}
+          ))}
         </Grid>
       </Grid>
     </div>
-  )
-}
+  );
+};
 export default ProjectMember;

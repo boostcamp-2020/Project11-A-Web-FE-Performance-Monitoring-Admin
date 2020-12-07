@@ -2,14 +2,9 @@
 /* eslint-disable react/prop-types */
 import React, { FunctionComponent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Tooltip from '@material-ui/core/Tooltip';
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
+import { CssBaseline, Grid, Container, Tooltip, Fab } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
-import { LibraryBooksTwoTone } from '@material-ui/icons';
+import { Add } from '@material-ui/icons';
 
 import { Project, Docs } from '@state/type';
 
@@ -83,7 +78,7 @@ const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
                   className={classes.fab}
                   href="/newproject"
                 >
-                  <AddIcon />
+                  <Add />
                 </Fab>
               </Tooltip>
             </div>
