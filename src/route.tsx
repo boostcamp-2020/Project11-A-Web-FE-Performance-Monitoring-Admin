@@ -6,7 +6,7 @@ import SingUp from '@pages/SignUp/signup';
 import NewProjectContainer from '@pages/NewProject/newProjectContainer';
 import ProjectListContainer from '@pages/ProjectList/projectListContainer';
 import IssueListContainer from '@/pages/IssueList/IssueListContainer';
-import Setting from '@pages/ProjectSetting/setting';
+import Setting from '@/pages/ProjectSetting/Setting';
 import IssueContainer from '@/pages/Issue/IssueContainer';
 import NewProjectExampleContainer from '@/pages/NewProjectExample/NewProjectExampleContainer'
 
@@ -22,7 +22,6 @@ export default function Router(): JSX.Element {
         <Route exact path="/issue" component={IssueListContainer} />
         <Route exact path="/setting" component={Setting} />
         <Route exact path="/issuedetail/:id" component={IssueContainer} />
-        <Route exact path="/projectsetting/:id" component={Setting} />
       </Switch>
     </BrowserRouter>
   );
