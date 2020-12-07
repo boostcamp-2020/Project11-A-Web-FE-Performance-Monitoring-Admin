@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import React, { useState } from 'react';
 import login from '@api/auth/login';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -40,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  github: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
@@ -106,6 +110,7 @@ const pwAnimationPlay = () => {
     { duration: 10000, iterations: Infinity },
   );
 };
+
 const AnimationDefault = () => {
   document.getElementById('eye')?.animate(
     [
@@ -128,6 +133,7 @@ const AnimationDefault = () => {
     { duration: 5000, iterations: Infinity },
   );
 };
+
 export default function SignIn(): JSX.Element {
   const classes = useStyles();
 
@@ -144,6 +150,7 @@ export default function SignIn(): JSX.Element {
       setPassword('');
     }
   };
+
   return (
     <Container component="main" maxWidth="xs">
       <img
@@ -205,10 +212,21 @@ export default function SignIn(): JSX.Element {
           >
             Sign In
           </Button>
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            href={`${process.env.API_URL}/api/auth/github`}
+            color="primary"
+            className={classes.github}
+          >
+            <GitHubIcon />
+            &nbsp;Sign In With Github
+          </Button>
           <Grid container>
             <Grid item xs />
             <Grid item>
-              <Link href="/signup">Don't have an account? Sign Up</Link>
+              <Link href="/signup">Don&apos;t have an account? Sign Up</Link>
             </Grid>
           </Grid>
         </form>
