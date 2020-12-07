@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { makeStyles,
   Typography,
   CssBaseline,
   Grid,
+  Button,
  } from '@material-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
@@ -23,6 +25,14 @@ const useStyles = makeStyles((theme) => ({
   },
   contentText: {
     margin: theme.spacing(1),
+    padding: '5px 5px 20px 5px',
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  buttonWrap: {
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
 }));
 
@@ -86,7 +96,19 @@ const NewProjectExample = () : JSX.Element => {
           {scenarios.map((scenario) => (
             <ManualBar key={scenario.contentTitle} {...scenario} />
           ))}
+          <Grid item xs={12} className={classes.buttonWrap}>
+            <Link to="./project" style={{ textDecoration: 'none' }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
+                프로젝트 리스트로 돌아가기
+              </Button>           
+            </Link>
+          </Grid>
         </Grid>
+
       </main>
     </div>
   );
