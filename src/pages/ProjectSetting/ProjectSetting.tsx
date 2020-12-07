@@ -5,7 +5,7 @@ import { Docs, Issue } from '@state/type';
 import AppbarShift from '../layout/appbarshift';
 
 interface Props {
-  issues: Docs<Issue>;
+  project: any;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProjectSetting = ({ issues }: Props): JSX.Element => {
+const ProjectSetting = ({ project }: Props): JSX.Element => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
