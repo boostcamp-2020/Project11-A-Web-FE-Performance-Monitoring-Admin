@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 import Tag from './Tag';
+import EventDetailHeader from '../EventDetailHeader';
 
 interface Tags {
   environment?: string;
@@ -22,7 +23,7 @@ const Tags = styled.div`
 const SummarizedTags: FC<Props> = ({ tags }: Props) => {
   return (
     <div>
-      <h2>TAGS</h2>
+      <EventDetailHeader title="TAGS" />
       <Tags>
         {Object.entries(tags).map(
           (tag) =>
