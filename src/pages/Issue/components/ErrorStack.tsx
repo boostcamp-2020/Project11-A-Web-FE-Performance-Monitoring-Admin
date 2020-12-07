@@ -13,7 +13,7 @@ const ErrorStack: FC<Props> = ({ stacktrace, errorContexts }: Props) => (
   <div>
     <EventDetailHeader title="EXCEPTION" />
     {stacktrace.map((stack, idx) => (
-      <StackHeader stacktrace={stack} key={idx}>
+      <StackHeader stacktrace={stack} key={idx} idx={idx}>
         {errorContexts[idx].length ? (
           <StackContext
             contexts={errorContexts[idx]}
