@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles,
   Typography,
   Grid,
+  Paper,
+  Divider,
  } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,17 +23,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface prop {
-  headTitle: string;
+  contentTitle: string;
+  contentText: string;
 }
 const ManualBar = (props: prop) : JSX.Element => {
   const classes = useStyles();
   return ( 
     <div className={classes.root}>
       <Grid item xs={12}>
-        <Typography className={classes.contentTitle}>
-          {props.headTitle}
-          ??
-        </Typography>
+        <Paper>
+          <Typography className={classes.contentTitle}>
+            {props.contentTitle}
+          </Typography>
+          <Divider variant="middle" />
+          <Typography className={classes.contentText}>
+            {props.contentText}
+          </Typography>
+        </Paper>
       </Grid>
     </div>
   );

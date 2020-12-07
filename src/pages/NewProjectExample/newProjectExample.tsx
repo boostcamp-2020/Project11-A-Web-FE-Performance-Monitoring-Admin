@@ -20,7 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const scenario = [];
+const scenarios = [
+  { contentTitle:"프로젝트를 시작하세요 !", contentText:"프로젝트 123"},
+  { contentTitle:"설치하는 방법", contentText:"설치하는 방법"},
+  { contentTitle:"적용하는 예시", contentText:"설치하는 방법"},
+  { contentTitle:"완벽합니다 !", contentText:"설치하는 방법"},
+];
 
 const NewProjectExample = () : JSX.Element => {
   const classes = useStyles();
@@ -32,8 +37,9 @@ const NewProjectExample = () : JSX.Element => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Grid container spacing={3}>
-          <ManualBar headTitle={"hi"} />
-          <ManualBar headTitle={"bye"} />
+          {scenarios.map((scenario) => (
+            <ManualBar key={scenario.contentTitle} {...scenario} />
+          ))}
         </Grid>
       </main>
     </div>
