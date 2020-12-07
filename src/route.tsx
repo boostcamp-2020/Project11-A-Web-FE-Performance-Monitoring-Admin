@@ -8,6 +8,7 @@ import ProjectListContainer from '@pages/ProjectList/projectListContainer';
 import IssueListContainer from '@/pages/IssueList/IssueListContainer';
 import Setting from '@pages/ProjectSetting/setting';
 import IssueContainer from '@/pages/Issue/IssueContainer';
+import NewProjectExampleContainer from '@pages/NewProjectExample/newProjectExampleContainer'
 
 export default function Router(): JSX.Element {
   return (
@@ -16,6 +17,7 @@ export default function Router(): JSX.Element {
         <Route exact path="/" component={SignIn} />
         <Route exact path="/signup" component={SingUp} />
         <Route exact path="/newproject" component={NewProjectContainer} />
+        <Route exact path="/newprojectexample" component={NewProjectExampleContainer} />
         <Route exact path="/project" component={ProjectListContainer} />
         <Route exact path="/issue" component={IssueListContainer} />
         <Route exact path="/setting" component={Setting} />
