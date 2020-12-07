@@ -6,7 +6,7 @@ const create = async (data: ProjectData): Promise<void> => {
     ...data,
   });
   if (result.status === 201) {
-    window.location.href = '/project';
+    window.location.href = '/newprojectexample';
   }
 };
 export default create;
