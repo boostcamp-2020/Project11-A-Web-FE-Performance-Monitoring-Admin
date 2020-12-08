@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 import { Issue } from '@state/type';
 import IssueDetailContainer from './IssueDetailContainer';
+import IssueTagsContainer from './IssueTagsContainer';
 
 const useStyles = makeStyles({
   root: {
@@ -54,6 +55,9 @@ const IssueTabs: FC<Props> = ({ issue }: Props): JSX.Element => {
       </Tabs>
       <TabPanel value={value} index={0}>
         <IssueDetailContainer events={issue.events} />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <IssueTagsContainer issue={issue} />
       </TabPanel>
       {/* <TabPanel value={value} index={1} />
       <TabPanel value={value} index={2} />
