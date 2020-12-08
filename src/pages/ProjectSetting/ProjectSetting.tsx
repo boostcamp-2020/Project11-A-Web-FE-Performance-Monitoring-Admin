@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container } from '@material-ui/core';
 import { Docs, Issue } from '@state/type';
 import AppbarShift from '../layout/appbarshift';
-import FixedInformation from './components/fixedInformation';
+import FixedInformation from './components/FixedInformation';
+import ProjectNameInput from './components/ProjectNameInput';
 
 interface Props {
   project: any;
@@ -27,12 +28,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectSetting = ({ project }: Props): JSX.Element => {
   const classes = useStyles();
-  const [projectName, setProjectName] = useState(project.projectName);
-  const [alertEmails, setAlertEmails] = useState(project.emails);
+  const [projectName, setProjectName] = useState(project.projectName===undefined?"loding":project.projectName);
   const [members, setMembers] = useState(project.members);
   const [admins, setAdmins] = useState(project.admins);
   const projectId = project._id;
-  const owner = project.owner===undefined?"Loading":project.owner.nickname; // project.owner.nickname;
+  const owner = project.owner===undefined?"loding":project.owner.nickname; // project.owner.nickname;
   const {platform,sdkToken} = project;
 
   return (
@@ -42,8 +42,9 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2}>
+          <Grid container spacing={3}>
             <FixedInformation {...{projectId,owner,platform,sdkToken}} />
+            <ProjectNameInput {...{projectName, setProjectName}} />
           </Grid>
         </Container>
       </main>

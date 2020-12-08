@@ -30,36 +30,34 @@ interface prop {
 const FixedInformation = (props: prop) : JSX.Element => {
   const classes = useStyles();
   return ( 
-    <div className={classes.root}>
-      <Grid item xs={12}>
-        <Paper>
-          <Typography className={classes.contentTitle}>
-            프로젝트 정보
-          </Typography>
-          <Divider variant="middle" />
-          <table>
-            <tbody>
-              <tr>
-                <th>프로젝트 ID</th>
-                <td>{props.projectId}</td>
-              </tr>
-              <tr>
-                <th>프로젝트 생성자</th>
-                <td>{props.owner}</td>
-              </tr>
-              <tr>
-                <th>플랫폼</th>
-                <td>{props.platform}</td>
-              </tr>
-              <tr>
-                <th>DSN</th>
-                <td>{props.sdkToken}</td>
-              </tr>
-            </tbody>
-          </table>
-        </Paper>
-      </Grid>
-    </div>
+    <Grid item xs={12}>
+      <Paper>
+        <Typography className={classes.contentTitle}>
+          프로젝트 정보
+        </Typography>
+        <Divider variant="middle" />
+        <table>
+          <tbody>
+            <tr>
+              <th>프로젝트 ID</th>
+              <td>{props.projectId}</td>
+            </tr>
+            <tr>
+              <th>프로젝트 생성자</th>
+              <td>{props.owner}</td>
+            </tr>
+            <tr>
+              <th>플랫폼</th>
+              <td>{props.platform}</td>
+            </tr>
+            <tr>
+              <th>DSN</th>
+              <td>{props.sdkToken}</td>
+            </tr>
+          </tbody>
+        </table>
+      </Paper>
+    </Grid>
   );
 
 }
