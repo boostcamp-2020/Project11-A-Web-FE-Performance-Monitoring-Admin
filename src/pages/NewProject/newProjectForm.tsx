@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   CssBaseline,
@@ -10,13 +11,13 @@ import {
 } from '@material-ui/core';
 import { FolderSpecial } from '@material-ui/icons';
 import create from '@api/project/create';
+import { User } from '@/state/type';
 import PlatformSelecter from './components/platformSelecter';
 import ProjectNameInput from './components/projectNameInput';
 import ProjectAlert from './components/projectAlert';
 import AppbarShift from '../layout/appbarshift';
 import ProjectMember from './components/projectMember';
 import ProjectAdmin from './components/projectAdmin';
-import { Link, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,14 +56,14 @@ interface prop {
   projectName: string;
   alertSetting: string;
   alertMails: string[];
-  projectMembers: string[];
-  projectAdmins: string[];
+  projectMembers: User[];
+  projectAdmins: User[];
   setPlatform: React.Dispatch<React.SetStateAction<string>>;
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
   setAlert: React.Dispatch<React.SetStateAction<string>>;
   setMails: React.Dispatch<React.SetStateAction<string[]>>;
-  setMembers: React.Dispatch<React.SetStateAction<string[]>>;
-  setAdmins: React.Dispatch<React.SetStateAction<string[]>>;
+  setMembers: React.Dispatch<React.SetStateAction<User[]>>;
+  setAdmins: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
 const NewProjectForm = (props: prop): JSX.Element => {

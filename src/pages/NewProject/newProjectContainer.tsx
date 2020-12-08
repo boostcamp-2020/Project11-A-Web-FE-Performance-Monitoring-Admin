@@ -1,13 +1,15 @@
 import React , { useState } from 'react';
+import { User } from '@/state/type';
 import NewProjectForm from './newProjectForm';
+
 
 const NewProjectContainer = () : JSX.Element => {
   const [seletedPlatform, setPlatform] = useState('아직 선택하지 않았습니다.');
   const [projectName, setProjectName] = useState('New Project');
   const [alertSetting, setAlert] = useState('거부');
   const [alertMails, setMails] = useState<string[]>([]);
-  const [projectMembers, setMembers] = useState<string[]>([]);
-  const [projectAdmins, setAdmins] = useState<string[]>([]);
+  const [projectMembers, setMembers] = useState<User[]>([]);
+  const [projectAdmins, setAdmins] = useState<User[]>([]);
 
   const prop = {
     seletedPlatform,setPlatform,

@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface prop {
-  projectMembers: string[];
-  setMembers: React.Dispatch<React.SetStateAction<string[]>>;
+  projectMembers: User[];
+  setMembers: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
 const ProjectMember = (props: prop): JSX.Element => {
@@ -28,21 +28,16 @@ const ProjectMember = (props: prop): JSX.Element => {
   const [searchQuery, setQuery] = useState('');
   const [errorText, setErrorText] = useState('');
   const [searchResult, setSearchResult] = useState<User[]>([]);
-  const [viewMembers, setViewMembers] = useState<string[]>([]);
 
   const handleDeleteMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    setViewMembers(viewMembers.filter(member=>event.currentTarget.textContent!==member));
-    props.setMembers(props.projectMembers.filter(member=>event.currentTarget.value!==member));
-    event.currentTarget.remove();
+    props.setMembers(props.projectMembers.filter(member=>event.currentTarget.value!==member._id));
   };
   const handleAddMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    event.currentTarget.remove();
-    props.setMembers([...props.projectMembers, event.currentTarget.value]);
-    setViewMembers([...viewMembers, String(event.currentTarget.textContent)]);
+    props.setMembers([...props.projectMembers, { _id:String(event.currentTarget.value),nickname:String(event.currentTarget.textContent) }]);
   };
   const handleSearchButtonClick = async () => {
     const searchArray = await searchMember(searchQuery);
@@ -56,14 +51,14 @@ const ProjectMember = (props: prop): JSX.Element => {
           <Typography>함께 프로젝트를 진행할 사람들을 선정해주세요.</Typography>
         </Grid>
         <Grid container item xs={12} spacing={0}>
-          {viewMembers.map((member) => (
-            <Grid key={member} item xs={2}>
+          {props.projectMembers.map((member) => (
+            <Grid key={member._id} item xs={2}>
               <Button
                 variant="outlined"
-                value={member}
+                value={member._id}
                 onClick={handleDeleteMemberClick}
               >
-                <span>{member}</span>
+                <span>{member.nickname}</span>
               </Button>
             </Grid>
           ))}
