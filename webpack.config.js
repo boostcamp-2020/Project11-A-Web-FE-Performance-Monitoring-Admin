@@ -7,6 +7,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = process.env.NODE_ENV === 'development';
+console.log(isProduction);
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   devtool: isProduction ? 'hidden-source-map' : 'eval',
@@ -63,11 +64,34 @@ module.exports = {
       : isDevelopment && '[name].chunk.js',
     publicPath: '/',
   },
+  optimization: {
+    minimize: isProduction,
+    minimizer: [],
+    splitChunks: {
+      chunks: 'initial',
+    },
+  },
 
   plugins: [
     new webpack.ProvidePlugin({ React: 'react' }),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      minify: isProduction
+        ? {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true,
+          }
+        : {},
+    }),
     new Dotenv(),
     new BundleAnalyzerPlugin(),
   ],
