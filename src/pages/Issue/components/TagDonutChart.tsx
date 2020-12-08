@@ -1,6 +1,16 @@
 import React, { FC } from 'react';
 import BillboardChart from 'react-billboardjs';
+import styled from '@emotion/styled';
 import 'react-billboardjs/lib/billboard.css';
+
+const ChartTitle = styled.div`
+  font-size: 1.8em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+`;
 
 interface SearchResult {
   title: string;
@@ -15,17 +25,6 @@ const TagDonutChart: FC<Props> = ({ searchResult }: Props) => {
     content.tag,
     content.count,
   ]);
-  const title = {
-    text: `${searchResult.title}`,
-
-    padding: {
-      top: 10,
-      right: 10,
-      bottom: 10,
-      left: 10,
-    },
-    position: 'center',
-  };
   const data = {
     columns: columnData,
     type: 'donut',
@@ -40,7 +39,8 @@ const TagDonutChart: FC<Props> = ({ searchResult }: Props) => {
 
   return (
     <>
-      <BillboardChart title={title} data={data} />
+      <ChartTitle>{searchResult.title}</ChartTitle>
+      <BillboardChart data={data} />
     </>
   );
 };
