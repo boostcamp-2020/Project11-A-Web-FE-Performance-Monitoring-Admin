@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import BillboardChart from 'react-billboardjs';
 import styled from '@emotion/styled';
 import 'react-billboardjs/lib/billboard.css';
+import { SearchResult } from '@state/type';
 
 const ChartTitle = styled.div`
   font-size: 1.8em;
@@ -11,11 +12,6 @@ const ChartTitle = styled.div`
   justify-content: center;
   padding: 2%;
 `;
-
-interface SearchResult {
-  title: string;
-  contents: { tag: string; count: number }[];
-}
 
 interface Props {
   searchResult: SearchResult;

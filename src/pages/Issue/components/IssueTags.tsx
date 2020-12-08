@@ -2,6 +2,7 @@ import React, { FC, Dispatch, SetStateAction } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { SearchResult } from '@state/type';
 import TagBarChart from './TagBarChart';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,11 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-
-interface SearchResult {
-  title: string;
-  contents: { tag: string; count: number }[];
-}
 
 interface Props {
   searchResults: SearchResult[];

@@ -3,6 +3,7 @@ import BillboardChart from 'react-billboardjs';
 import Button from '@material-ui/core/Button';
 import styled from '@emotion/styled';
 import 'react-billboardjs/lib/billboard.css';
+import { SearchResult } from '@state/type';
 
 const GridHeader = styled.div`
   display: flex;
@@ -13,11 +14,6 @@ const GridHeader = styled.div`
   padding-bottom: 1%;
   font-size: 1.2em;
 `;
-
-interface SearchResult {
-  title: string;
-  contents: { tag: string; count: number }[];
-}
 
 interface Props {
   searchResult: SearchResult;

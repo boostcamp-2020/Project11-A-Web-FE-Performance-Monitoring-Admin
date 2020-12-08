@@ -1,14 +1,10 @@
 import React, { FC, useState } from 'react';
-import { Issue } from '@state/type';
+import { Issue, SearchResult } from '@state/type';
 import IssueTags from './IssueTags';
 import TagDonutChart from './TagDonutChart';
 
 interface Props {
   issue: Issue;
-}
-interface SearchResult {
-  title: string;
-  contents: { tag: string; count: number }[];
 }
 
 const IssueTagsContainer: FC<Props> = ({ issue }: Props) => {
