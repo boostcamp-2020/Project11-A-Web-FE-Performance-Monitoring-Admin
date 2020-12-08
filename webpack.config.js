@@ -64,7 +64,7 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({ React: 'react' }),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new HtmlWebpackPlugin({ template: './public/index.html', favicon: "./public/favicon.ico" }),
     new Dotenv(),
     new BundleAnalyzerPlugin(),
   ],
