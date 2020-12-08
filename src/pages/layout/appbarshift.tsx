@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     backgroundColor: theme.palette.primary.main,
+    position: 'fixed',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    position: 'fixed',
   },
   toolbar: {
     paddingRight: 24,
