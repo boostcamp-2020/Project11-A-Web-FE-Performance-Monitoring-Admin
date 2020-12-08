@@ -16,7 +16,7 @@ import ProjectAlert from './components/projectAlert';
 import AppbarShift from '../layout/appbarshift';
 import ProjectMember from './components/projectMember';
 import ProjectAdmin from './components/projectAdmin';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,7 +67,7 @@ interface prop {
 
 const NewProjectForm = (props: prop): JSX.Element => {
   const classes = useStyles();
-  let token;
+  const mine = useHistory();
   const handleCreateButton = async () => {
     const data = {
       platform: props.seletedPlatform,
@@ -76,7 +76,10 @@ const NewProjectForm = (props: prop): JSX.Element => {
       admins: props.projectAdmins,
       members: props.projectMembers,
     };
-    token = await create(data);
+    const token = await create(data);
+    console.log(token);
+
+    mine.push("/newprojectexample",{ token });
   };
 
   return (
@@ -153,13 +156,6 @@ const NewProjectForm = (props: prop): JSX.Element => {
             </Paper>
           </Grid>
           <Grid item xs className={classes.buttonWrap}>
-            <Link 
-              style={{ textDecoration: 'none' }} 
-              to={{
-                pathname: "/newprojectexample",
-                state: { token }
-                }}
-            >
               <Button
                 variant="contained"
                 color="secondary"
@@ -173,7 +169,6 @@ const NewProjectForm = (props: prop): JSX.Element => {
               >
                 프로젝트 만들기
               </Button>
-            </Link>
           </Grid>
         </Grid>
       </main>

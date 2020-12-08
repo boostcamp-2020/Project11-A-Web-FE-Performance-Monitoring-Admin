@@ -35,14 +35,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
 }));
-
-const NewProjectExample = () : JSX.Element => {
+interface prop {
+  token: string;
+}
+const NewProjectExample = (props: prop) : JSX.Element => {
   const classes = useStyles();
 
   const code = `          
   const { init, captureError } = require('@santry/browser');
 
-  const dsn = '[token]@[url]';
+  const dsn = '${props.token}';
 
   init(dsn);
 
