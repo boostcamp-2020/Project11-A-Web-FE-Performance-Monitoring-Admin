@@ -33,7 +33,9 @@ const ProjectMember = (props: prop): JSX.Element => {
   const handleDeleteMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    // event.currentTarget.remove();
+    setViewMembers(viewMembers.filter(member=>event.currentTarget.textContent!==member));
+    props.setMembers(props.projectMembers.filter(member=>event.currentTarget.value!==member));
+    event.currentTarget.remove();
   };
   const handleAddMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,

@@ -33,7 +33,10 @@ const ProjectAdmin = (props: prop): JSX.Element => {
   const handleDeleteMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    // event.currentTarget.remove();
+    setViewMembers(viewMembers.filter(member=>event.currentTarget.textContent!==member));
+    props.setAdmins(props.projectAdmins.filter(member=>event.currentTarget.value!==member));
+    console.log(props.projectAdmins);
+    event.currentTarget.remove();
   };
   const handleAddMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -41,6 +44,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
     event.currentTarget.remove();
     props.setAdmins([...props.projectAdmins, event.currentTarget.value]);
     setViewMembers([...viewMembers, String(event.currentTarget.textContent)]);
+    console.log(props.projectAdmins);
   };
   const handleSearchButtonClick = async () => {
     const searchArray = await searchMember(searchQuery);

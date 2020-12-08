@@ -77,7 +77,6 @@ const NewProjectForm = (props: prop): JSX.Element => {
       members: props.projectMembers,
     };
     const token = await create(data);
-    console.log(token);
 
     mine.push("/newprojectexample",{ token });
   };
@@ -156,19 +155,19 @@ const NewProjectForm = (props: prop): JSX.Element => {
             </Paper>
           </Grid>
           <Grid item xs className={classes.buttonWrap}>
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-                startIcon={<FolderSpecial />}
-                onClick={handleCreateButton}
-                disabled={
-                  props.seletedPlatform === '아직 선택하지 않았습니다.' ||
-                  props.projectName.length < 4
-                }
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              startIcon={<FolderSpecial />}
+              onClick={handleCreateButton}
+              disabled={
+                props.seletedPlatform === '아직 선택하지 않았습니다.' ||
+                props.projectName.length < 4
+              }
               >
-                프로젝트 만들기
-              </Button>
+              프로젝트 만들기
+            </Button>
           </Grid>
         </Grid>
       </main>
