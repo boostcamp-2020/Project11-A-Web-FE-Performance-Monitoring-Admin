@@ -1,7 +1,7 @@
 export interface User {
   _id: string;
   nickname: string;
-  email: string;
+  email?: string;
 }
 export interface ProjectData {
   platform: string;
