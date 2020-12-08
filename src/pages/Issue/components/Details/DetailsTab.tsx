@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const IssueDetail: FC<Props> = ({
+const DetailsTab: FC<Props> = ({
   event,
   eventIdx,
   setEventIdx,
@@ -60,7 +60,7 @@ const IssueDetail: FC<Props> = ({
         eventNum={eventNum}
       />
       {hasTags && <SummarizedTags tags={eventTags} />}
-      {event.stacktrace && event.errorContexts && (
+      {event.stacktrace && event.errorContexts && !event.message && (
         <ErrorStack
           stacktrace={event.stacktrace}
           errorContexts={event.errorContexts}
@@ -74,4 +74,4 @@ const IssueDetail: FC<Props> = ({
   );
 };
 
-export default IssueDetail;
+export default DetailsTab;

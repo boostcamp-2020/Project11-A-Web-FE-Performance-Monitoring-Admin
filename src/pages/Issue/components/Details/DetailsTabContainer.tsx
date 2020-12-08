@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FC } from 'react';
 import getEvent from '@api/event/getEvent';
 import { Event } from '@state/type';
-import IssueDetail from './IssueDetail';
+import DetailsTab from './DetailsTab';
 
 interface EventId {
   _id: string;
@@ -11,7 +11,7 @@ interface Props {
   events?: EventId[];
 }
 
-const IssueDetailContainer: FC<Props> = ({ events }: Props) => {
+const DetailsTabContainer: FC<Props> = ({ events }: Props) => {
   const [eventIdx, setEventIdx] = useState<number>(0);
   const [event, setEvent] = useState<Event>({} as Event);
 
@@ -28,7 +28,7 @@ const IssueDetailContainer: FC<Props> = ({ events }: Props) => {
   if (!events) return <div>이벤트가 없습니다</div>;
 
   return (
-    <IssueDetail
+    <DetailsTab
       event={event}
       eventIdx={eventIdx}
       setEventIdx={setEventIdx}
@@ -37,4 +37,4 @@ const IssueDetailContainer: FC<Props> = ({ events }: Props) => {
   );
 };
 
-export default IssueDetailContainer;
+export default DetailsTabContainer;
