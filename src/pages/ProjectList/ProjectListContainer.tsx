@@ -5,7 +5,7 @@ import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
 import fetchProjects from '@state/projects/index';
 
 import Loading from '@common/Loading';
-import ProjectList from './projectlist';
+import ProjectList from './ProjectList';
 
 interface State extends DefaultRootState {
   projectsReducer: {
