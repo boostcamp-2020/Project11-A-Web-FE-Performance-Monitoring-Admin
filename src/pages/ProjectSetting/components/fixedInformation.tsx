@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     padding: '5px',
   },
+  contentBody: {
+    padding: '10px',
+  },
 }));
 
 interface prop {
@@ -36,7 +39,7 @@ const FixedInformation = (props: prop) : JSX.Element => {
           프로젝트 정보
         </Typography>
         <Divider variant="middle" />
-        <table>
+        <table className={classes.contentBody}>
           <tbody>
             <tr>
               <th>프로젝트 ID</th>

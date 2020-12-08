@@ -15,6 +15,17 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '45px',
       marginLeft: '5px',
     },
+    contentTitle: {
+      fontSize: '22px',
+      fontWeight: 'bold',
+      margin: theme.spacing(1),
+      padding: '5px',
+    },
+    contentBody: {
+      marginLeft: '20px',
+      marginBottom: '20px',
+
+    },
   }),
 );
 
@@ -52,7 +63,7 @@ const ProjectMember = (props: prop): JSX.Element => {
       <Paper>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography>함께 프로젝트를 진행할 사람들을 선정해주세요.</Typography>
+            <Typography className={classes.contentTitle}>함께 프로젝트를 진행할 사람들을 선정해주세요.</Typography>
           </Grid>
           <Grid container item xs={12} spacing={0}>
             {viewMembers.map((member) => (
@@ -67,11 +78,11 @@ const ProjectMember = (props: prop): JSX.Element => {
               </Grid>
             ))}
           </Grid>
-          <Divider variant="middle" />
           <Grid item xs={12}>
+            <Divider variant="middle" />
             <br />
           </Grid>
-          <Grid item xs={6}>
+          <Grid className={classes.contentBody} item xs={6}>
             <TextField
               error={searchQuery.length < 3}
               helperText={errorText}

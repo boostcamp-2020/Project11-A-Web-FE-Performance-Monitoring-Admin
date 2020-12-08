@@ -9,6 +9,16 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
       flexGrow: 1,
     },
+    contentTitle: {
+      fontSize: '22px',
+      fontWeight: 'bold',
+      margin: theme.spacing(1),
+      padding: '5px',
+    },
+    contentBody: {
+      marginLeft: '20px',
+      marginBottom: '20px',
+    },
   }),
 );
 interface prop {
@@ -23,11 +33,13 @@ const ProjectNameInput = (props: prop): JSX.Element => {
   return (
     <Grid item xs={12}>
       <Paper>
-        <Typography>
+        <Typography className={classes.contentTitle}>
           프로젝트 이름
         </Typography>
         <Divider variant="middle" />
+        <br />
         <TextField
+          className={classes.contentBody}
           error={props.projectName.length < 4}
           helperText={errorText}
           id="standard-basic"
