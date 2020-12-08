@@ -37,7 +37,10 @@ const ProjectMember = (props: prop): JSX.Element => {
   const handleAddMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    props.setMembers([...props.projectMembers, { _id:String(event.currentTarget.value),nickname:String(event.currentTarget.textContent) }]);
+    props.setMembers([...props.projectMembers, { 
+      _id:String(event.currentTarget.value),
+      nickname:String(event.currentTarget.textContent) 
+    }]);
   };
   const handleSearchButtonClick = async () => {
     const searchArray = await searchMember(searchQuery);

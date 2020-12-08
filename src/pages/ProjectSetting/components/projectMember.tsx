@@ -43,17 +43,15 @@ const ProjectMember = (props: prop): JSX.Element => {
   const handleDeleteMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    // event.currentTarget.remove();
+    props.setMembers(props.projectMembers.filter(member=>event.currentTarget.value!==member._id));
   };
   const handleAddMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    const newMember:User = {
+    props.setMembers([...props.projectMembers,{
       _id:event.currentTarget.value,
       nickname:String(event.currentTarget.textContent),
-    }
-    event.currentTarget.remove();
-    props.setMembers([...props.projectMembers,newMember]);
+    }]);
   };
   const handleSearchButtonClick = async () => {
     const searchArray = await searchMember(searchQuery);
