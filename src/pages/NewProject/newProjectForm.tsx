@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   CssBaseline,
@@ -16,6 +16,7 @@ import ProjectAlert from './components/projectAlert';
 import AppbarShift from '../layout/appbarshift';
 import ProjectMember from './components/projectMember';
 import ProjectAdmin from './components/projectAdmin';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,8 +67,8 @@ interface prop {
 
 const NewProjectForm = (props: prop): JSX.Element => {
   const classes = useStyles();
-
-  const handleCreateButton = () => {
+  let token;
+  const handleCreateButton = async () => {
     const data = {
       platform: props.seletedPlatform,
       projectName: props.projectName,
@@ -75,7 +76,7 @@ const NewProjectForm = (props: prop): JSX.Element => {
       admins: props.projectAdmins,
       members: props.projectMembers,
     };
-    create(data);
+    token = await create(data);
   };
 
   return (
@@ -152,19 +153,27 @@ const NewProjectForm = (props: prop): JSX.Element => {
             </Paper>
           </Grid>
           <Grid item xs className={classes.buttonWrap}>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-              startIcon={<FolderSpecial />}
-              onClick={handleCreateButton}
-              disabled={
-                props.seletedPlatform === '아직 선택하지 않았습니다.' ||
-                props.projectName.length < 4
-              }
+            <Link 
+              style={{ textDecoration: 'none' }} 
+              to={{
+                pathname: "/newprojectexample",
+                state: { token }
+                }}
             >
-              프로젝트 만들기
-            </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+                startIcon={<FolderSpecial />}
+                onClick={handleCreateButton}
+                disabled={
+                  props.seletedPlatform === '아직 선택하지 않았습니다.' ||
+                  props.projectName.length < 4
+                }
+              >
+                프로젝트 만들기
+              </Button>
+            </Link>
           </Grid>
         </Grid>
       </main>

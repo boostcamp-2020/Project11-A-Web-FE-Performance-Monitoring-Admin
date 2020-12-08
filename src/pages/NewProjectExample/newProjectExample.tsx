@@ -59,25 +59,30 @@ const NewProjectExample = () : JSX.Element => {
     { contentTitle:"프로젝트를 시작하세요 !", 
     contentText:
   <Typography className={classes.contentText}>
-    여러분의 프로젝트가 시작되었습니다. <br/>
+    여러분의 프로젝트가 시작되었습니다. 
+    <br />
     밑의 설명을 잘 읽고 따라해주시기 바랍니다.
   </Typography>},
     { contentTitle:"설치하는 방법", 
     contentText:
-  <Typography className={classes.contentText}>
+  <div className={classes.contentText}>
     <SyntaxHighlighter language="powershell" style={dark}>
       $ npm i @santry/browser
     </SyntaxHighlighter>
-    다음과 같이 입력하여 설치할 수 있습니다.
-  </Typography>},
+    <Typography className={classes.contentText}>
+      다음과 같이 입력하여 설치할 수 있습니다.
+    </Typography>
+  </div>},
     { contentTitle:"적용하는 예시", 
     contentText:
-  <Typography className={classes.contentText}>
+  <div className={classes.contentText}>
     <SyntaxHighlighter language="javascript" style={dark}>
       {code}
     </SyntaxHighlighter>
-    다음과 같이 Santry 따라하면 됩니다 !
-  </Typography>},
+    <Typography>
+      다음과 같이 Santry 따라하면 됩니다 !
+    </Typography>
+  </div>},
     { contentTitle:"완벽합니다 !",
     contentText:
   <Typography className={classes.contentText}>

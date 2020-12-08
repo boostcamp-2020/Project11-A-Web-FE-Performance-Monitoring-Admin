@@ -1,8 +1,12 @@
 import React from 'react';
 import NewProjectExample from './NewProjectExample';
 
-const NewProjectExampleContainer = () : JSX.Element => {
 
+interface prop {
+  token: string;
+}
+const NewProjectExampleContainer = (props: prop) : JSX.Element => {
+  
   return (
     <NewProjectExample />
   );
