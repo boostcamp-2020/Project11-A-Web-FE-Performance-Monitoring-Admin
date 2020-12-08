@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, Dispatch, SetStateAction } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import TagChart from './TagChart';
+import TagBarChart from './TagBarChart';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,9 +27,10 @@ interface SearchResult {
 
 interface Props {
   searchResults: SearchResult[];
+  setTagInfo: Dispatch<SetStateAction<SearchResult | undefined>>;
 }
 
-const IssueTags: FC<Props> = ({ searchResults }: Props) => {
+const IssueTags: FC<Props> = ({ searchResults, setTagInfo }: Props) => {
   const classes = useStyles();
 
   return (
@@ -39,7 +40,10 @@ const IssueTags: FC<Props> = ({ searchResults }: Props) => {
           return (
             <Grid item xs={6}>
               <Paper className={classes.paper}>
-                <TagChart searchResult={searchResult} />
+                <TagBarChart
+                  searchResult={searchResult}
+                  setTagInfo={setTagInfo}
+                />
               </Paper>
             </Grid>
           );

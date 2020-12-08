@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Dispatch, SetStateAction } from 'react';
 import BillboardChart from 'react-billboardjs';
 import Button from '@material-ui/core/Button';
 import styled from '@emotion/styled';
@@ -14,13 +14,16 @@ const GridHeader = styled.div`
   font-size: 1.2em;
 `;
 
-interface Props {
-  searchResult: {
-    title: string;
-    contents: { tag: string; count: number }[];
-  };
+interface SearchResult {
+  title: string;
+  contents: { tag: string; count: number }[];
 }
-const TagChart: FC<Props> = ({ searchResult }: Props) => {
+
+interface Props {
+  searchResult: SearchResult;
+  setTagInfo: Dispatch<SetStateAction<SearchResult | undefined>>;
+}
+const TagBarChart: FC<Props> = ({ searchResult, setTagInfo }: Props) => {
   const columnData = searchResult.contents.map((content) => content.count);
   const categories = searchResult.contents.map((content) => content.tag);
   const data = {
@@ -51,7 +54,13 @@ const TagChart: FC<Props> = ({ searchResult }: Props) => {
     <>
       <GridHeader>
         <div className="title">{searchResult.title}</div>
-        <Button variant="outlined" size="small">
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={() => {
+            setTagInfo(searchResult);
+          }}
+        >
           More Details
         </Button>
       </GridHeader>
@@ -60,4 +69,4 @@ const TagChart: FC<Props> = ({ searchResult }: Props) => {
   );
 };
 
-export default TagChart;
+export default TagBarChart;

@@ -1,14 +1,20 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Issue } from '@state/type';
 import IssueTags from './IssueTags';
+import TagDonutChart from './TagDonutChart';
 
 interface Props {
   issue: Issue;
+}
+interface SearchResult {
+  title: string;
+  contents: { tag: string; count: number }[];
 }
 
 const IssueTagsContainer: FC<Props> = ({ issue }: Props) => {
   if (!issue.events) return <div>이벤트가 없습니다</div>;
 
+  const [tagInfo, setTagInfo] = useState<SearchResult | undefined>();
   const searchResults = [
     {
       title: 'environment',
@@ -28,7 +34,11 @@ const IssueTagsContainer: FC<Props> = ({ issue }: Props) => {
     },
   ];
 
-  return <IssueTags searchResults={searchResults} />;
+  return tagInfo ? (
+    <TagDonutChart searchResult={tagInfo} />
+  ) : (
+    <IssueTags searchResults={searchResults} setTagInfo={setTagInfo} />
+  );
 };
 
 export default IssueTagsContainer;
