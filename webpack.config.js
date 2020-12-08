@@ -5,11 +5,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const prod = process.env.NODE_ENV === 'production';
-
+const isProduction = process.env.NODE_ENV === 'production';
+const isDevelopment = process.env.NODE_ENV === 'development';
 module.exports = {
-  mode: prod ? 'production' : 'development',
-  devtool: prod ? 'hidden-source-map' : 'eval',
+  mode: isProduction ? 'production' : 'development',
+  devtool: isProduction ? 'hidden-source-map' : 'eval',
 
   entry: './src/index',
 
@@ -57,7 +57,12 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: isProduction
+      ? '[name].[contenthash:8].js'
+      : isDevelopment && 'bundle.js',
+    chunkFilename: isProduction
+      ? 'static/js/[name].[contenthash:8].chunk.js'
+      : isDevelopment && 'static/js/[name].chunk.js',
     publicPath: '/',
   },
 
