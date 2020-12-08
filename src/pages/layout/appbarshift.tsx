@@ -9,8 +9,7 @@ import {
   Drawer,
   List,
 } from '@material-ui/core';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import { Notifications, Menu, ChevronLeft } from '@material-ui/icons';
+import { Menu, ChevronLeft, LockOpen } from '@material-ui/icons';
 import SecondLogo from '@common/SecondLogo';
 import MainListItems from './sidebar';
 
@@ -146,7 +145,7 @@ export default function AppBarShift(): JSX.Element {
               <SecondLogo />
             </div>
             <IconButton color="inherit" onClick={LogoutHandler}>
-              <LockOpenIcon />
+              <LockOpen />
             </IconButton>
           </div>
         </Toolbar>

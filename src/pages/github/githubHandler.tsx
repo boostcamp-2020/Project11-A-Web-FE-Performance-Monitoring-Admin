@@ -3,6 +3,7 @@ import { RouteComponentProps, Redirect } from 'react-router-dom';
 import { useAsync } from 'react-async';
 
 import githubAxios from '@api/auth/github';
+import Loading from '@common/Loading';
 
 const GithubHandler: React.FC<RouteComponentProps> = (props) => {
   // eslint-disable-next-line react/prop-types
@@ -11,7 +12,7 @@ const GithubHandler: React.FC<RouteComponentProps> = (props) => {
     promiseFn: githubAxios,
     code,
   });
-  if (isLoading) return <div>로딩중..</div>;
+  if (isLoading) return <Loading />;
   if (error) {
     return <Redirect to={{ pathname: '/' }} />;
   }
