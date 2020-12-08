@@ -21,8 +21,6 @@ interface Props {
   };
 }
 const TagChart: FC<Props> = ({ searchResult }: Props) => {
-  console.log(searchResult);
-  console.log(searchResult.title);
   const columnData = searchResult.contents.map((content) => content.count);
   const categories = searchResult.contents.map((content) => content.tag);
   const data = {
