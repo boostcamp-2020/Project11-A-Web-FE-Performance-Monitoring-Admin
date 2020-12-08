@@ -12,18 +12,19 @@ interface Props {
 const ErrorStack: FC<Props> = ({ stacktrace, errorContexts }: Props) => (
   <div>
     <EventDetailHeader title="ERROR STACK" />
-    {stacktrace.map((stack, idx) => (
-      <StackHeader stacktrace={stack} key={idx} idx={idx}>
-        {errorContexts[idx].length ? (
-          <StackContext
-            contexts={errorContexts[idx]}
-            lineno={stack.lineno ? stack.lineno : 0}
-          />
-        ) : (
-          <></>
-        )}
-      </StackHeader>
-    ))}
+    {stacktrace.length !== 0 &&
+      stacktrace.map((stack, idx) => (
+        <StackHeader stacktrace={stack} key={idx} idx={idx}>
+          {errorContexts.length !== 0 && errorContexts[idx].length ? (
+            <StackContext
+              contexts={errorContexts[idx]}
+              lineno={stack.lineno ? stack.lineno : 0}
+            />
+          ) : (
+            <></>
+          )}
+        </StackHeader>
+      ))}
   </div>
 );
 
