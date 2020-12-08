@@ -5,6 +5,7 @@ import { Docs, Issue } from '@state/type';
 import AppbarShift from '../layout/appbarshift';
 import FixedInformation from './components/FixedInformation';
 import ProjectNameInput from './components/ProjectNameInput';
+import ProjectAdmin from './components/projectAdmin';
 
 interface Props {
   project: any;
@@ -45,6 +46,7 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
           <Grid container spacing={3}>
             <FixedInformation {...{projectId,owner,platform,sdkToken}} />
             <ProjectNameInput {...{projectName, setProjectName}} />
+            <ProjectAdmin {...{admins, setAdmins}} />
           </Grid>
         </Container>
       </main>
