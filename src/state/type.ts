@@ -64,8 +64,8 @@ export interface Event {
   url?: string;
   type?: string; // error.name
   value?: string; // error.message
-  stacktrace?: StackTrace[]; // error.stack
-  context?: string[][];
+  stacktrace?: StackTrace[];
+  errorContexts?: string[][];
   version?: string;
   platform?: string;
   serverName?: string;
@@ -73,13 +73,14 @@ export interface Event {
   userIp?: string;
   message?: string;
   level?: string;
+  contexts?: Record<string, unknown>;
 }
 
 interface EventId {
   _id: string;
 }
 
-interface StackTrace {
+export interface StackTrace {
   filename?: string;
   function?: string;
   lineno?: number;
