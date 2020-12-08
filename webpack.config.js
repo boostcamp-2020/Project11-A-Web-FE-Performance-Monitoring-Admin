@@ -57,12 +57,10 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: isProduction
-      ? '[name].[contenthash:8].js'
-      : isDevelopment && 'bundle.js',
+    filename: isProduction ? '[name].[hash].js' : isDevelopment && 'bundle.js',
     chunkFilename: isProduction
-      ? 'static/js/[name].[contenthash:8].chunk.js'
-      : isDevelopment && 'static/js/[name].chunk.js',
+      ? '[name].[hash].chunk.js'
+      : isDevelopment && '[name].chunk.js',
     publicPath: '/',
   },
 
