@@ -67,7 +67,7 @@ const ProjectMember = (props: prop): JSX.Element => {
           <Grid item xs={12}>
             <Typography className={classes.contentTitle}>함께 프로젝트를 진행할 사람들을 선정해주세요.</Typography>
           </Grid>
-          <Grid container item xs={12} spacing={0}>
+          <Grid className={classes.contentBody} container item xs={12} spacing={0}>
             {props.projectMembers.map((member) => (
               <Grid key={member._id} item xs={2}>
                 <Button
@@ -108,7 +108,7 @@ const ProjectMember = (props: prop): JSX.Element => {
               찾기
             </Button>
           </Grid>
-          <Grid container item xs={12} spacing={1}>
+          <Grid className={classes.contentBody} container item xs={12} spacing={1}>
             {searchResult.map((member) => (
               <Grid key={"m"+member._id} item xs={3}>
                 <Button
