@@ -33,6 +33,8 @@ const ProjectSettingContainer: FC = () => {
     })();
   }, []);
 
+  if(JSON.stringify(project) === '{}') return <></>;
+
   return <ProjectSetting project={project} />;
 };
 

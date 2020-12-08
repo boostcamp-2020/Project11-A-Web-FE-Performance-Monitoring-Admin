@@ -5,8 +5,8 @@ import { Docs, Issue } from '@state/type';
 import AppbarShift from '../layout/appbarshift';
 import FixedInformation from './components/FixedInformation';
 import ProjectNameInput from './components/ProjectNameInput';
-import ProjectAdmin from './components/projectAdmin';
-import ProjectMember from './components/projectMember';
+import ProjectAdmin from './components/ProjectAdmin';
+import ProjectMember from './components/ProjectMember';
 
 interface Props {
   project: any;
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectSetting = ({ project }: Props): JSX.Element => {
   const classes = useStyles();
-  const [projectName, setProjectName] = useState(project.projectName===undefined?"loding":project.projectName);
+  const [projectName, setProjectName] = useState(project.projectName);
   const [projectMembers, setMembers] = useState(project.members);
   const [projectAdmins, setAdmins] = useState(project.admins);
   const projectId = project._id;

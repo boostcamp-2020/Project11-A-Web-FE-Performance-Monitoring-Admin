@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Typography, TextField, Grid, Paper } from '@material-ui/core';
+import { Typography, TextField, Grid, Paper, Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,6 +26,7 @@ const ProjectNameInput = (props: prop): JSX.Element => {
         <Typography>
           프로젝트 이름
         </Typography>
+        <Divider variant="middle" />
         <TextField
           error={props.projectName.length < 4}
           helperText={errorText}
