@@ -19,16 +19,16 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface prop {
-  projectAdmins: string[];
-  setAdmins: React.Dispatch<React.SetStateAction<string[]>>;
+  projectMembers: string[];
+  setMembers: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const ProjectAdmin = (props: prop): JSX.Element => {
+const ProjectMember = (props: prop): JSX.Element => {
   const classes = useStyles();
   const [searchQuery, setQuery] = useState('');
   const [errorText, setErrorText] = useState('');
   const [searchResult, setSearchResult] = useState<User[]>([]);
-  const [viewMembers, setViewMembers] = useState<string[]>(props.projectAdmins);
+  const [viewMembers, setViewMembers] = useState<string[]>([]);
 
   const handleDeleteMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -39,7 +39,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.currentTarget.remove();
-    props.setAdmins([...props.projectAdmins, event.currentTarget.value]);
+    props.setMembers([...props.projectMembers, event.currentTarget.value]);
     setViewMembers([...viewMembers, String(event.currentTarget.textContent)]);
   };
   const handleSearchButtonClick = async () => {
@@ -51,7 +51,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
     <div className={classes.root}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography>프로젝트의 담당자들을 선택해주세요.</Typography>
+          <Typography>함께 프로젝트를 진행할 사람들을 선정해주세요.</Typography>
         </Grid>
         <Grid container item xs={12} spacing={0}>
           {viewMembers.map((member) => (
@@ -110,4 +110,4 @@ const ProjectAdmin = (props: prop): JSX.Element => {
     </div>
   );
 };
-export default ProjectAdmin;
+export default ProjectMember;

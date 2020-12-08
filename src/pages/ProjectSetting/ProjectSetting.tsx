@@ -6,6 +6,7 @@ import AppbarShift from '../layout/appbarshift';
 import FixedInformation from './components/FixedInformation';
 import ProjectNameInput from './components/ProjectNameInput';
 import ProjectAdmin from './components/projectAdmin';
+import ProjectMember from './components/projectMember';
 
 interface Props {
   project: any;
@@ -30,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
 const ProjectSetting = ({ project }: Props): JSX.Element => {
   const classes = useStyles();
   const [projectName, setProjectName] = useState(project.projectName===undefined?"loding":project.projectName);
-  const [members, setMembers] = useState(project.members);
-  const [admins, setAdmins] = useState(project.admins);
+  const [projectMembers, setMembers] = useState(project.members);
+  const [projectAdmins, setAdmins] = useState(project.admins);
   const projectId = project._id;
   const owner = project.owner===undefined?"loding":project.owner.nickname; // project.owner.nickname;
   const {platform,sdkToken} = project;
@@ -46,7 +47,8 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
           <Grid container spacing={3}>
             <FixedInformation {...{projectId,owner,platform,sdkToken}} />
             <ProjectNameInput {...{projectName, setProjectName}} />
-            <ProjectAdmin {...{admins, setAdmins}} />
+            <ProjectAdmin {...{projectAdmins, setAdmins}} />
+            <ProjectMember {...{projectMembers, setMembers}} />
           </Grid>
         </Container>
       </main>
