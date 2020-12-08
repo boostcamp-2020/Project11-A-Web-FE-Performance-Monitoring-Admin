@@ -13,7 +13,6 @@ import {
 import { AccountBox, AccessTime } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { Docs, Issue } from '@state/type';
-import convertDate from '@utils/convertDate';
 import timeDiff from '@utils/timeDiff';
 
 const useStyles = makeStyles({
@@ -57,7 +56,7 @@ const IssueTable: FC<Props> = ({ issues }: Props): JSX.Element => {
                     to={`/issuedetail/${issue._id}`}
                     className={classes.link}
                   >
-                    {issue.errorName}
+                    {issue.eventName}
                   </Link>
                 </Typography>
 
