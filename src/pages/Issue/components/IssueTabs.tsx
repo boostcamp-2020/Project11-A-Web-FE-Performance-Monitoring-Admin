@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
-import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 import { Issue } from '@state/type';
-import IssueDetailContainer from './IssueDetailContainer';
+import IssueDetailContainer from './Details/IssueDetailContainer';
 
 const useStyles = makeStyles({
   root: {

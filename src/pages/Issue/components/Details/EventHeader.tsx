@@ -6,10 +6,12 @@ import styled from '@emotion/styled';
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 const Header = styled.h2`
   display: inline-block;
+  margin: 8px 0px;
 `;
 
 const TitleContainer = styled.div`
