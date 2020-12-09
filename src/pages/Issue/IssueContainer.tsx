@@ -16,7 +16,6 @@ const IssueContainer: FC = () => {
       if (currentIssue) setIssue(currentIssue);
     })();
   }, []);
-
   return <IssuePresenter issue={issue} />;
 };
 
