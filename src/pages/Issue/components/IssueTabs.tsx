@@ -8,7 +8,6 @@ import DetailsTabContainer from './Details/DetailsTabContainer';
 import EventsTabContainer from './Events/EventsTabContainer';
 import IssueTagsContainer from './IssueTagsContainer';
 
-
 const useStyles = makeStyles({
   root: {
     marginTop: '0.5rem',
@@ -58,11 +57,11 @@ const IssueTabs: FC<Props> = ({ issue }: Props): JSX.Element => {
         <DetailsTabContainer events={issue.events} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <IssueTagsContainer issue={issue} />
+        <IssueTagsContainer issueId={issue._id} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <EventsTabContainer issueId={issue._id} />
-      </TabPanel>   
+      </TabPanel>
     </Paper>
   );
 };
