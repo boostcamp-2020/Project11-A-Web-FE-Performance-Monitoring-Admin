@@ -24,9 +24,6 @@ const TagDonutChart: FC<Props> = ({ searchResult }: Props) => {
   const data = {
     columns: columnData,
     type: 'donut',
-    onclick(d) {
-      console.log(d);
-    },
     labels: {
       colors: 'white',
       centered: true,
