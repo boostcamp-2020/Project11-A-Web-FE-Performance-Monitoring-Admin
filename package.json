@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --progress --open --hot",
     "storybook": "start-storybook -p 6006 -c .storybook",
-    "build": "NODE_ENV=production webpack --mode production --env=build",
+    "build": "NODE_ENV=production webpack --env=build",
     "test": "react-scripts test"
   },
   "repository": {
@@ -25,11 +25,8 @@
     "emotion-reset": "^2.0.7",
     "emotion-theming": "^10.0.27",
     "react": "^16.13.1",
-
-    "react-billboardjs": "^1.5.5",
-
     "react-async": "^10.0.1",
-
+    "react-billboardjs": "^1.5.5",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.13.0",
     "react-redux": "^7.2.2",
