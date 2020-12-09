@@ -6,7 +6,7 @@ import { Issue } from '@state/type';
 
 import DetailsTabContainer from './Details/DetailsTabContainer';
 import EventsTabContainer from './Events/EventsTabContainer';
-import IssueTagsContainer from './IssueTagsContainer';
+import IssueTagsContainer from './Tags/IssueTagsContainer';
 
 const useStyles = makeStyles({
   root: {
