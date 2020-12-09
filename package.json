@@ -21,12 +21,15 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.21.0",
-    "billboard.js": "^2.1.4",
     "clsx": "^1.1.1",
     "emotion-reset": "^2.0.7",
     "emotion-theming": "^10.0.27",
     "react": "^16.13.1",
+
+    "react-billboardjs": "^1.5.5",
+
     "react-async": "^10.0.1",
+
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.13.0",
     "react-redux": "^7.2.2",
