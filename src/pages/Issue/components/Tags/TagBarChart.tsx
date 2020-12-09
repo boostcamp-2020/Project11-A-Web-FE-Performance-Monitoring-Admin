@@ -43,7 +43,7 @@ const TagBarChart: FC<Props> = ({
 
   const bar = {
     width: {
-      max: 30,
+      max: 45,
     },
   };
   const axis = {
