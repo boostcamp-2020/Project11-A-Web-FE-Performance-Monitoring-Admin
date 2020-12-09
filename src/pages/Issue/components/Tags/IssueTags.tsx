@@ -1,7 +1,6 @@
 import React, { FC, Dispatch, SetStateAction } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { Paper, Grid } from '@material-ui/core';
 import { SearchResult } from '@state/type';
 import TagBarChart from './TagBarChart';
 
