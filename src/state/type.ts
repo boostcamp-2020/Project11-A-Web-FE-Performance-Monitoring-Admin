@@ -116,3 +116,8 @@ export interface Docs<T> {
   prevPage?: number;
   nextPage?: number;
 }
+
+export interface SearchResult {
+  title: string;
+  contents: { tag: string; count: number }[];
+}

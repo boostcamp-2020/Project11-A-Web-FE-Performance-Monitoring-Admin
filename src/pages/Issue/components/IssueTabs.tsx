@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 import { Issue } from '@state/type';
+
 import DetailsTabContainer from './Details/DetailsTabContainer';
 import EventsTabContainer from './Events/EventsTabContainer';
+import IssueTagsContainer from './IssueTagsContainer';
+
 
 const useStyles = makeStyles({
   root: {
@@ -54,9 +57,12 @@ const IssueTabs: FC<Props> = ({ issue }: Props): JSX.Element => {
       <TabPanel value={value} index={0}>
         <DetailsTabContainer events={issue.events} />
       </TabPanel>
+      <TabPanel value={value} index={1}>
+        <IssueTagsContainer issue={issue} />
+      </TabPanel>
       <TabPanel value={value} index={2}>
         <EventsTabContainer issueId={issue._id} />
-      </TabPanel>
+      </TabPanel>   
     </Paper>
   );
 };
