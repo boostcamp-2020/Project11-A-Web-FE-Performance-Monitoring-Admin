@@ -76,13 +76,17 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    chunkFilename: '[name].bundle.js',
     publicPath: '/',
   },
 
   plugins: [
     new webpack.ProvidePlugin({ React: 'react' }),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ template: './public/index.html', favicon: "./public/favicon.ico" }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
+    }),
     new Dotenv(),
     new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(),

@@ -3,20 +3,40 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PrivateRouter from '@pages/PrivateRouter/PrivateRouter';
 import Loading from '@common/Loading';
 
-const SignIn = lazy(() => import('@pages/SignIn/signin'));
-const SignUp = lazy(() => import('@pages/SignUp/signup'));
-const Github = lazy(() => import('@pages/github/githubHandler'));
+const SignIn = lazy(
+  () => import(/* webpackChunkName: "SiginIn" */ '@pages/SignIn/signin'),
+);
+const SignUp = lazy(
+  () => import(/* webpackChunkName: "SiginUp" */ '@pages/SignUp/signup'),
+);
+const Github = lazy(
+  () => import(/* webpackChunkName: "Github" */ '@pages/github/githubHandler'),
+);
 const NewProjectContainer = lazy(
-  () => import('@pages/NewProject/newProjectContainer'),
+  () =>
+    import(
+      /* webpackChunkName: "NewProject" */ '@pages/NewProject/newProjectContainer'
+    ),
 );
 const ProjectListContainer = lazy(
-  () => import('@pages/ProjectList/ProjectListContainer'),
+  () =>
+    import(
+      /* webpackChunkName: "ProjectList" */ '@pages/ProjectList/ProjectListContainer'
+    ),
 );
 const IssueListContainer = lazy(
-  () => import('@pages/IssueList/IssueListContainer'),
+  () =>
+    import(
+      /* webpackChunkName: "IssueList" */ '@pages/IssueList/IssueListContainer'
+    ),
 );
-const IssueContainer = lazy(() => import('@pages/Issue/IssueContainer'));
-const Setting = lazy(() => import('@pages/ProjectSetting/setting'));
+const IssueContainer = lazy(
+  () => import(/* webpackChunkName: "Issue" */ '@pages/Issue/IssueContainer'),
+);
+const Setting = lazy(
+  () =>
+    import(/* webpackChunkName: "Setting" */ '@pages/ProjectSetting/setting'),
+);
 
 export default function Router(): JSX.Element {
   return (
