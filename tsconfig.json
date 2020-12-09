@@ -7,7 +7,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "module": "es6",
+    "module": "es2020",
     "isolatedModules": true,
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
