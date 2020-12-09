@@ -5,6 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import { SearchResult } from '@state/type';
 import TagBarChart from './TagBarChart';
 
+const chartColors = ['#d35d6e', '#efb08c', '#f8d49d', '#5aa469'];
+let chartColorIdx = 0;
+const chartColorNum = chartColors.length;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -39,6 +42,7 @@ const IssueTags: FC<Props> = ({ searchResults, setTagInfo }: Props) => {
                 <TagBarChart
                   searchResult={searchResult}
                   setTagInfo={setTagInfo}
+                  chartColor={chartColors[chartColorIdx++ % chartColorNum]}
                 />
               </Paper>
             </Grid>
