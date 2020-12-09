@@ -6,6 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -84,5 +85,6 @@ module.exports = {
     new HtmlWebpackPlugin({ template: './public/index.html' }),
     new Dotenv(),
     new BundleAnalyzerPlugin(),
+    new CleanWebpackPlugin(),
   ],
 };
