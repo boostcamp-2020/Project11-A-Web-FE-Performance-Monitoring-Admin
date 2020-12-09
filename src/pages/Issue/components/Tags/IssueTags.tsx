@@ -36,7 +36,7 @@ const IssueTags: FC<Props> = ({ searchResults, setTagInfo }: Props) => {
       <Grid container spacing={3}>
         {searchResults.map((searchResult: SearchResult) => {
           return (
-            <Grid item xs={6}>
+            <Grid item xs={6} key={JSON.stringify(searchResult)}>
               <Paper className={classes.paper}>
                 <TagBarChart
                   searchResult={searchResult}
