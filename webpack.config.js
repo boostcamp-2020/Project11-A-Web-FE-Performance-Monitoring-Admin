@@ -2,6 +2,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -53,6 +55,21 @@ module.exports = {
     port: 3000,
     hot: true,
     publicPath: '/',
+  },
+
+  optimization: {
+    minimizer: prod
+      ? [
+          new OptimizeCSSAssetsPlugin(),
+          new TerserPlugin({
+            terserOptions: {
+              compress: {
+                drop_console: true, // 콘솔 로그 제거
+              },
+            },
+          }),
+        ]
+      : [],
   },
 
   output: {
