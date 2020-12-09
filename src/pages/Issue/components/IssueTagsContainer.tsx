@@ -1,34 +1,25 @@
-import React, { FC, useState } from 'react';
-import { Issue, SearchResult } from '@state/type';
+import React, { FC, useState, useEffect } from 'react';
+import { SearchResult } from '@state/type';
+import getIssueTags from '@api/issue/getIssueTags';
+import makeSearchResults from '@utils/makeSearchResults';
 import IssueTags from './IssueTags';
 import TagDonutChart from './TagDonutChart';
 
 interface Props {
-  issue: Issue;
+  issueId: string;
 }
 
-const IssueTagsContainer: FC<Props> = ({ issue }: Props) => {
-  if (!issue.events) return <div>이벤트가 없습니다</div>;
-
+const IssueTagsContainer: FC<Props> = ({ issueId }: Props) => {
   const [tagInfo, setTagInfo] = useState<SearchResult | undefined>();
-  const searchResults = [
-    {
-      title: 'environment',
-      contents: [
-        { tag: 'hyezzang', count: 2 },
-        { tag: 'production', count: 7 },
-      ],
-    },
-    {
-      title: 'level',
-      contents: [
-        { tag: 'info', count: 7 },
-        { tag: 'warning', count: 2 },
-        { tag: 'error', count: 11 },
-        { tag: 'fatal', count: 21 },
-      ],
-    },
-  ];
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  useEffect(() => {
+    (async () => {
+      const result = await getIssueTags(issueId);
+      if (result) {
+        setSearchResults(makeSearchResults(result));
+      }
+    })();
+  }, [issueId]);
 
   return tagInfo ? (
     <TagDonutChart searchResult={tagInfo} />
