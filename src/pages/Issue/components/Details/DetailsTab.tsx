@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SummarizedTags from './Tags/SummarizedTags';
 import EventHeader from './EventHeader';
 import ErrorStack from './ErrorStack/ErrorStack';
+import Info from './Info/Info';
 
 interface Props {
   event: Event;
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const IssueDetail: FC<Props> = ({
+const DetailsTab: FC<Props> = ({
   event,
   eventIdx,
   setEventIdx,
@@ -59,14 +60,18 @@ const IssueDetail: FC<Props> = ({
         eventNum={eventNum}
       />
       {hasTags && <SummarizedTags tags={eventTags} />}
-      {event.stacktrace && event.errorContexts && (
+      {event.stacktrace && event.errorContexts && !event.message && (
         <ErrorStack
           stacktrace={event.stacktrace}
           errorContexts={event.errorContexts}
         />
       )}
+      {event.createdBy && <Info title="USER" datas={event.createdBy} />}
+      {event.browser && <Info title="BROWSER" datas={event.browser} />}
+      {event.os && <Info title="OPERATING SYSTEM" datas={event.os} />}
+      {event.sdk && <Info title="SDK" datas={event.sdk} />}
     </Paper>
   );
 };
 
-export default IssueDetail;
+export default DetailsTab;

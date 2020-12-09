@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   listItem: {
     padding: 5,
+    fontSize: 12,
   },
   displayInherit: {
     display: 'inherit',

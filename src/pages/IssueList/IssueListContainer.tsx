@@ -28,7 +28,7 @@ const IssueListContainer: FC = () => {
       />
     );
   }
-  const [issues, setIssues] = useState<Docs<Issue>>({});
+  const [issues, setIssues] = useState<Docs<Issue>>({ docs: [] });
 
   useEffect(() => {
     (async () => {

@@ -30,8 +30,9 @@ export interface ProjectState {
 export interface Issue {
   _id: string;
   projectId: string;
-  errorName: string;
+  eventName: string;
   errorMessage: string;
+  issueType: string;
   isResolved: boolean;
   comments?: string[];
   events?: EventId[];
@@ -47,7 +48,6 @@ export interface Event {
   timeStamp: string;
   createdBy: {
     ipAdress?: string;
-    email?: string;
   };
   os?: {
     version: string;
@@ -80,6 +80,23 @@ interface EventId {
   _id: string;
 }
 
+export interface SearchEvent {
+  page: number;
+  limit: number;
+  release?: string;
+  environment?: string;
+  sdk?: string;
+  os?: string;
+  browser?: string;
+  url?: string;
+  message?: string;
+  version?: string;
+  serverName?: string;
+  transaction?: string;
+  userIp?: string;
+  level?: string;
+}
+
 export interface StackTrace {
   filename?: string;
   function?: string;
@@ -88,7 +105,7 @@ export interface StackTrace {
 }
 
 export interface Docs<T> {
-  docs?: T[];
+  docs: T[];
   totalDocs?: number;
   limit?: number;
   totalPages?: number;
