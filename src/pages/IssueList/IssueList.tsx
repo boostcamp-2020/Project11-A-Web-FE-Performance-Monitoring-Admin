@@ -2,8 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container } from '@material-ui/core';
 import { Docs, Issue } from '@state/type';
-import AppbarShift from '../layout/appbarshift';
-import IssueTable from './components/issuetable';
+import AppbarShift from '../layout/AppbarShift';
+import IssueTable from './components/IssueTable';
 
 interface Props {
   issues: Docs<Issue>;
