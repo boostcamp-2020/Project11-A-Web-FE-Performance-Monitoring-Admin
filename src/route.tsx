@@ -36,7 +36,7 @@ const IssueContainer = lazy(
 );
 const Setting = lazy(
   () =>
-    import(/* webpackChunkName: "Setting" */ '@pages/ProjectSetting/setting'),
+    import(/* webpackChunkName: "Setting" */ '@pages/ProjectSetting/ProjectSettingContainer'),
 );
 
 export default function Router(): JSX.Element {

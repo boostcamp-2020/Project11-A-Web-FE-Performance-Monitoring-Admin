@@ -21,7 +21,6 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "axios": "^0.21.0",
-
     "clsx": "^1.1.1",
     "emotion-reset": "^2.0.7",
     "emotion-theming": "^10.0.27",
@@ -36,7 +35,6 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0"
-
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",

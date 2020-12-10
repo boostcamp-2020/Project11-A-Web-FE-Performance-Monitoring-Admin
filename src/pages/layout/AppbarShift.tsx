@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { Menu, ChevronLeft, LockOpen } from '@material-ui/icons';
 import SecondLogo from '@common/SecondLogo';
-import MainListItems from './sidebar';
+import MainListItems from './Sidebar';
 
 const drawerWidth = 200;
 

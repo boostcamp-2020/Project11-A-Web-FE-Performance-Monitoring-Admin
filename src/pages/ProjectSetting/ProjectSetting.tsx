@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container, Button } from '@material-ui/core';
 import modifyProject from '@/api/project/modifyProject';
 import { User } from '@/state/type';
-import AppbarShift from '../layout/appbarshift';
+import AppbarShift from '../layout/AppbarShift';
 import FixedInformation from './components/FixedInformation';
 import ProjectNameInput from './components/ProjectNameInput';
 import ProjectAdmin from './components/ProjectAdmin';

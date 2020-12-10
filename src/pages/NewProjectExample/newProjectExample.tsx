@@ -8,7 +8,7 @@ import { makeStyles,
  } from '@material-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import AppbarShift from '../layout/appbarshift';
+import AppbarShift from '../layout/AppbarShift';
 import ManualBar from './componets/ManualBar';
 
 const useStyles = makeStyles((theme) => ({
