@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container, Button } from '@material-ui/core';
-import modifiProject from '@api/project/modifiProject';
+import modifyProject from '@/api/project/modifyProject';
 import { User } from '@/state/type';
 import AppbarShift from '../layout/appbarshift';
 import FixedInformation from './components/FixedInformation';
@@ -47,7 +47,7 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
   const {platform,sdkToken} = project;
 
   const handlePatcheButton = () => {
-    modifiProject(projectId,projectName,projectAdmins,projectMembers);
+    modifyProject(projectId,projectName,projectAdmins,projectMembers);
   }
 
   return (

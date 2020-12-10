@@ -68,7 +68,7 @@ interface prop {
 
 const NewProjectForm = (props: prop): JSX.Element => {
   const classes = useStyles();
-  const mine = useHistory();
+  const location = useHistory();
   const handleCreateButton = async () => {
     const data = {
       platform: props.seletedPlatform,
@@ -79,7 +79,7 @@ const NewProjectForm = (props: prop): JSX.Element => {
     };
     const token = await create(data);
 
-    mine.push("/newprojectexample",{ token });
+    location.push("/newprojectexample",{ token });
   };
 
   return (

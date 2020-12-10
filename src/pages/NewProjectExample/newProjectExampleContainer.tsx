@@ -6,8 +6,8 @@ interface LocationState {
   token:string;
 }
 const NewProjectExampleContainer = () : JSX.Element => {
-  const mine = useLocation<LocationState>();
-  const { token } = mine.state;
+  const location = useLocation<LocationState>();
+  const { token } = location.state;
   return (
     <NewProjectExample {...{token}} />
   );
