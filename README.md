@@ -48,9 +48,9 @@
 ## Highlights
 
 - [프로젝트 개요](#프로젝트-개요)
+- [멤버](#Members)
 - [Install](#Install)
 - [Usage](#Get-Started)
-- [멤버](#Members)
 - [개발환경](#개발환경)
 
 ## 프로젝트 개요
@@ -207,37 +207,3 @@ const testError = () => {
     - React & Redux
     - Babel, Tsc, Webpack 직접 설정
     - Recharts를 통한 차트 구성
-
-<!--
-
-```jsx
-// 기본적인 에러 Catch 부터
-  try {
-    throw new Error('testing Error');
-  } catch (error) {
-    captureError(error);
-  }
-  
-// 로그의 기능으로 사용하는 메세지를 저장할 수도 있고,
-  captureMessage("hello I'm Hera");
-  
-// UncaughtException , UnhandledRejection 도 잡을 수 있도록 세팅해 두었습니다.
-  onUnhandledRejection();
-  onUncaughtException();
-
-// 나만의 다른 정보도 수집해 보세요.
-  setContext("Login");
-
-// express 에 제공하는 errorHandler middleware
-  app.use(errorHandler());
-
-```
-
-- 프로젝트 단위로 관리를 할 수 있습니다.<br>
-![](https://i.imgur.com/76x1vlR.jpg)
-
-- 같은 에러들을 하나의 이슈로 묶어서 관리할 수 있습니다.
-
-- 이슈 관리에서는 하나의 오류 정보부터, Tag의 통계, 이슈에 대해 커뮤니케이션을 할 수 있는 comment 기능등을 지원합니다.
- 
--->
