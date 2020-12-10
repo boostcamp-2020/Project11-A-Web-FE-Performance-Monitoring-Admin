@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SignIn from '@pages/SignIn/signin';
 import SignUp from '@pages/SignUp/signup';
 import NewProjectContainer from '@pages/NewProject/newProjectContainer';
-import ProjectListContainer from '@pages/ProjectList/projectListContainer';
+import ProjectListContainer from '@pages/ProjectList/ProjectListContainer';
 import IssueListContainer from '@/pages/IssueList/IssueListContainer';
 import Setting from '@pages/ProjectSetting/setting';
 import IssueContainer from '@pages/Issue/IssueContainer';

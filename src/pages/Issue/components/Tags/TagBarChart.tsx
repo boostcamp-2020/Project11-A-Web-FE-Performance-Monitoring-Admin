@@ -18,22 +18,32 @@ const GridHeader = styled.div`
 interface Props {
   searchResult: SearchResult;
   setTagInfo: Dispatch<SetStateAction<SearchResult | undefined>>;
+  chartColor: string;
 }
-const TagBarChart: FC<Props> = ({ searchResult, setTagInfo }: Props) => {
+const TagBarChart: FC<Props> = ({
+  searchResult,
+  setTagInfo,
+  chartColor,
+}: Props) => {
   const columnData = searchResult.contents.map((content) => content.count);
   const categories = searchResult.contents.map((content) => content.tag);
   const data = {
     columns: [[searchResult.title, ...columnData]],
     type: 'bar',
-    onclick(d) {
-      console.log(this.categories()[d.index]);
+
+    color() {
+      return chartColor;
     },
-    colors: {
-      environment: '#D32F2F',
-    },
+
     labels: {
       colors: 'white',
       centered: true,
+    },
+  };
+
+  const bar = {
+    width: {
+      max: 45,
     },
   };
   const axis = {
@@ -60,7 +70,7 @@ const TagBarChart: FC<Props> = ({ searchResult, setTagInfo }: Props) => {
           More Details
         </Button>
       </GridHeader>
-      <BillboardChart data={data} axis={axis} />
+      <BillboardChart data={data} axis={axis} bar={bar} />
     </>
   );
 };
