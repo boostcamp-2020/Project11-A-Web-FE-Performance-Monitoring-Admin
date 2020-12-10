@@ -11,6 +11,7 @@ import ProjectMember from './components/ProjectMember';
 
 interface Props {
   project: any;
+  user: User;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProjectSetting = ({ project }: Props): JSX.Element => {
+const ProjectSetting = ({ project, user }: Props): JSX.Element => {
   const classes = useStyles();
   const [projectName, setProjectName] = useState(project.projectName);
   const [projectMembers, setMembers] = useState<User[]>(project.members);
@@ -70,6 +71,13 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
                 disabled={projectName.length < 4}
               >
                 프로젝트 수정하기
+              </Button>
+              <Button
+                disabled={projectMembers.some(
+                  (member) => member._id === user._id,
+                )}
+              >
+                프로젝트 삭제하기
               </Button>
             </Grid>
           </Grid>
