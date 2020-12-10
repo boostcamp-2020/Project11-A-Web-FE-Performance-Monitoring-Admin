@@ -11,13 +11,13 @@ import {
 } from '@material-ui/core';
 import { FolderSpecial } from '@material-ui/icons';
 import create from '@api/project/create';
-import { User } from '@/state/type';
-import PlatformSelecter from './components/platformSelecter';
-import ProjectNameInput from './components/projectNameInput';
-import ProjectAlert from './components/projectAlert';
+import { User } from '@store/type';
+import PlatformSelecter from './components/PlatformSelector';
+import ProjectNameInput from './components/ProjectNameInput';
+import ProjectAlert from './components/ProjectAlert';
 import AppbarShift from '../layout/appbarshift';
-import ProjectMember from './components/projectMember';
-import ProjectAdmin from './components/projectAdmin';
+import ProjectMember from './components/ProjectMember';
+import ProjectAdmin from './components/ProjectAdmin';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,7 +79,7 @@ const NewProjectForm = (props: prop): JSX.Element => {
     };
     const token = await create(data);
 
-    mine.push("/newprojectexample",{ token });
+    mine.push('/newprojectexample', { token });
   };
 
   return (
@@ -166,7 +166,7 @@ const NewProjectForm = (props: prop): JSX.Element => {
                 props.seletedPlatform === '아직 선택하지 않았습니다.' ||
                 props.projectName.length < 4
               }
-              >
+            >
               프로젝트 만들기
             </Button>
           </Grid>
