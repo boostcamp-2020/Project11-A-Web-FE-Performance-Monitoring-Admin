@@ -9,7 +9,7 @@ import ProjectNameInput from './components/ProjectNameInput';
 import ProjectAdmin from './components/ProjectAdmin';
 import ProjectMember from './components/ProjectMember';
 
-
+const MIN_PROJECT_NAME_LANGTH = 4;
 interface Props {
   project: any;
 }
@@ -43,7 +43,7 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
   const [projectMembers, setMembers] = useState<User[]>(project.members);
   const [projectAdmins, setAdmins] = useState<User[]>(project.admins);
   const projectId = project._id;
-  const owner = project.owner===undefined?"loding":project.owner.nickname; // project.owner.nickname;
+  const owner = project.owner===undefined?"loading":project.owner.nickname; // project.owner.nickname;
   const {platform,sdkToken} = project;
 
   const handlePatcheButton = () => {
@@ -69,7 +69,7 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
                 className={classes.button}
                 onClick={handlePatcheButton}
                 disabled={
-                  projectName.length < 4
+                  projectName.length < MIN_PROJECT_NAME_LANGTH
                 }
               >
                 프로젝트 수정하기

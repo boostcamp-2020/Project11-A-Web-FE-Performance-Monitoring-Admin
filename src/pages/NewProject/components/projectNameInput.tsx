@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Typography, TextField } from '@material-ui/core';
 
+const MIN_PROJECT_NAME_LANGTH = 4;
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -26,7 +28,7 @@ const ProjectNameInput = (props: prop): JSX.Element => {
         프로젝트의 이름을 입력해주세요. ( 4글자 이상입력해주시기 바랍니다. )
       </Typography>
       <TextField
-        error={props.projectName.length < 4}
+        error={props.projectName.length < MIN_PROJECT_NAME_LANGTH}
         helperText={errorText}
         id="standard-basic"
         label="프로젝트 이름"
@@ -34,7 +36,7 @@ const ProjectNameInput = (props: prop): JSX.Element => {
         onChange={({ target: { value } }) => {
           props.setProjectName(value);
           setErrorText(
-            props.projectName.length < 4 ? '이름이 너무 짧습니다.' : '',
+            props.projectName.length < MIN_PROJECT_NAME_LANGTH ? '이름이 너무 짧습니다.' : '',
           );
         }}
       />
