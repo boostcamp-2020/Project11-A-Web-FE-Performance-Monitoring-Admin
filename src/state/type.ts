@@ -1,14 +1,14 @@
 export interface User {
   _id: string;
   nickname: string;
-  email: string;
+  email?: string;
 }
 export interface ProjectData {
   platform: string;
   projectName: string;
   emails: string[];
-  admins: string[];
-  members: string[];
+  admins: User[];
+  members: User[];
 }
 export interface Project {
   _id: string;

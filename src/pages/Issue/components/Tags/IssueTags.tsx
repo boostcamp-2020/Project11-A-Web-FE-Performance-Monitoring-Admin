@@ -1,10 +1,12 @@
 import React, { FC, Dispatch, SetStateAction } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { Paper, Grid } from '@material-ui/core';
 import { SearchResult } from '@state/type';
 import TagBarChart from './TagBarChart';
 
+const chartColors = ['#d35d6e', '#efb08c', '#f8d49d', '#5aa469'];
+let chartColorIdx = 0;
+const chartColorNum = chartColors.length;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -39,6 +41,7 @@ const IssueTags: FC<Props> = ({ searchResults, setTagInfo }: Props) => {
                 <TagBarChart
                   searchResult={searchResult}
                   setTagInfo={setTagInfo}
+                  chartColor={chartColors[chartColorIdx++ % chartColorNum]}
                 />
               </Paper>
             </Grid>

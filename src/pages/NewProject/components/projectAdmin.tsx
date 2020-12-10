@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface prop {
-  projectAdmins: string[];
-  setAdmins: React.Dispatch<React.SetStateAction<string[]>>;
+  projectAdmins: User[];
+  setAdmins: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
 const ProjectAdmin = (props: prop): JSX.Element => {
@@ -28,19 +28,20 @@ const ProjectAdmin = (props: prop): JSX.Element => {
   const [searchQuery, setQuery] = useState('');
   const [errorText, setErrorText] = useState('');
   const [searchResult, setSearchResult] = useState<User[]>([]);
-  const [viewMembers, setViewMembers] = useState<string[]>([]);
 
   const handleDeleteMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    // event.currentTarget.remove();
+    props.setAdmins(props.projectAdmins.filter(member=>event.currentTarget.value!==member._id));
+
   };
   const handleAddMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    event.currentTarget.remove();
-    props.setAdmins([...props.projectAdmins, event.currentTarget.value]);
-    setViewMembers([...viewMembers, String(event.currentTarget.textContent)]);
+    props.setAdmins([...props.projectAdmins, { 
+      _id:String(event.currentTarget.value),
+      nickname:String(event.currentTarget.textContent) 
+    }]);
   };
   const handleSearchButtonClick = async () => {
     const searchArray = await searchMember(searchQuery);
@@ -54,14 +55,14 @@ const ProjectAdmin = (props: prop): JSX.Element => {
           <Typography>프로젝트의 담당자들을 선택해주세요.</Typography>
         </Grid>
         <Grid container item xs={12} spacing={0}>
-          {viewMembers.map((member) => (
-            <Grid key={member} item xs={2}>
+          {props.projectAdmins.map((member) => (
+            <Grid key={member._id} item xs={2}>
               <Button
                 variant="outlined"
-                value={member}
+                value={member._id}
                 onClick={handleDeleteMemberClick}
               >
-                <span>{member}</span>
+                <span>{member.nickname}</span>
               </Button>
             </Grid>
           ))}

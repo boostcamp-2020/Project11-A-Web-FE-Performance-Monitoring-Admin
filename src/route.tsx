@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import PrivateRouter from '@pages/PrivateRouter/PrivateRouter';
 import Loading from '@common/Loading';
 
