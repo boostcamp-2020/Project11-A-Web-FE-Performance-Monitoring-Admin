@@ -40,6 +40,8 @@ export interface Issue {
   updatedAt: string;
 }
 
+type Context = Record<string, string>;
+
 export interface Event {
   _id: string;
   issueId?: string;
@@ -73,7 +75,7 @@ export interface Event {
   userIp?: string;
   message?: string;
   level?: string;
-  contexts?: Record<string, unknown>;
+  contexts?: Record<string, Context>;
 }
 
 interface EventId {
@@ -81,8 +83,8 @@ interface EventId {
 }
 
 export interface SearchEvent {
-  page: number;
-  limit: number;
+  page?: number;
+  limit?: number;
   release?: string;
   environment?: string;
   sdk?: string;
@@ -90,6 +92,20 @@ export interface SearchEvent {
   browser?: string;
   url?: string;
   message?: string;
+  version?: string;
+  serverName?: string;
+  transaction?: string;
+  userIp?: string;
+  level?: string;
+}
+
+export interface Tags {
+  release?: string;
+  environment?: string;
+  sdk?: string;
+  os?: string;
+  browser?: string;
+  url?: string;
   version?: string;
   serverName?: string;
   transaction?: string;

@@ -1,5 +1,5 @@
 import React, { FC, Dispatch } from 'react';
-import { Event } from '@store/type';
+import { Event, Tags } from '@store/type';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SummarizedTags from './Tags/SummarizedTags';
@@ -34,16 +34,26 @@ const DetailsTab: FC<Props> = ({
     userIp,
     level,
     serverName,
+    url,
+    version,
+    sdk,
+    browser,
+    os,
   } = event;
 
-  const eventTags = {
+  const eventTags: Tags = {
     environment,
     release,
     transaction,
     userIp,
     level,
     serverName,
+    url,
+    version,
   };
+  eventTags.sdk = sdk && Object.values(sdk).join(' ');
+  eventTags.browser = browser && Object.values(browser).join(' ');
+  eventTags.os = os && Object.values(os).join(' ');
 
   const hasTags = Object.values(eventTags).reduce(
     (prev, cur) => prev || cur !== undefined,
@@ -66,10 +76,10 @@ const DetailsTab: FC<Props> = ({
           errorContexts={event.errorContexts}
         />
       )}
-      {event.createdBy && <Info title="USER" datas={event.createdBy} />}
-      {event.browser && <Info title="BROWSER" datas={event.browser} />}
-      {event.os && <Info title="OPERATING SYSTEM" datas={event.os} />}
-      {event.sdk && <Info title="SDK" datas={event.sdk} />}
+      {event.contexts &&
+        Object.entries(event.contexts).map((context) => (
+          <Info key={event._id} title={context[0]} datas={context[1]} />
+        ))}
     </Paper>
   );
 };
