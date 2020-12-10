@@ -16,7 +16,7 @@ const Github = lazy(
 const NewProjectContainer = lazy(
   () =>
     import(
-      /* webpackChunkName: "NewProject" */ '@pages/NewProject/newProjectContainer'
+      /* webpackChunkName: "NewProject" */ '@pages/NewProject/NewProjectContainer'
     ),
 );
 const ProjectListContainer = lazy(
