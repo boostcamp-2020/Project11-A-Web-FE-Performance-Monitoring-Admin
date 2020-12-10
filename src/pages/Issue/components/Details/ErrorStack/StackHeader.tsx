@@ -1,4 +1,4 @@
-import { StackTrace } from '@/state/type';
+import { StackTrace } from '@store/type';
 import React, { FC, useState, useEffect } from 'react';
 import { IconButton } from '@material-ui/core';
 import { ExpandMore, ExpandLess } from '@material-ui/icons';

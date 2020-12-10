@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Paper } from '@material-ui/core';
 import getEventList from '@api/event/getEventList';
-import { Event, SearchEvent } from '@state/type';
+import { Event, SearchEvent } from '@store/type';
 import EventsTab from './EventsTab';
 
 interface Props {

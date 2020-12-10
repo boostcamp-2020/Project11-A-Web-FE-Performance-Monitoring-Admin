@@ -12,7 +12,7 @@ const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: prod ? 'production' : 'development',
-  devtool: prod ? 'hidden-source-map' : 'eval',
+  devtool: prod ? false : 'eval',
 
   entry: './src/index',
 
@@ -24,7 +24,7 @@ module.exports = {
       '@common': path.resolve(__dirname, 'src/common'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@pages': path.resolve(__dirname, 'src/pages'),
-      '@state': path.resolve(__dirname, 'src/state'),
+      '@store': path.resolve(__dirname, 'src/store'),
       '@themes': path.resolve(__dirname, 'src/themes'),
       '@utils': path.resolve(__dirname, 'src/utils'),
     },

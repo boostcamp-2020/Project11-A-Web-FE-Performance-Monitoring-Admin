@@ -8,7 +8,7 @@ import React, {
 import { Paper, InputBase, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Search } from '@material-ui/icons';
-import { SearchEvent } from '@state/type';
+import { SearchEvent } from '@store/type';
 
 const useStyles = makeStyles((theme) => ({
   searchBar: {

@@ -1,5 +1,5 @@
 import { authAxios } from '@utils/axios';
-import { ProjectData } from '@state/type';
+import { ProjectData } from '@store/type';
 
 const create = async (data: ProjectData): Promise<string> => {
   const result = await authAxios.post('/project', {

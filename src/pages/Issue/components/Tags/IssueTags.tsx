@@ -1,7 +1,7 @@
 import React, { FC, Dispatch, SetStateAction } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Paper, Grid } from '@material-ui/core';
-import { SearchResult } from '@state/type';
+import { SearchResult } from '@store/type';
 import TagBarChart from './TagBarChart';
 
 const chartColors = ['#d35d6e', '#efb08c', '#f8d49d', '#5aa469'];

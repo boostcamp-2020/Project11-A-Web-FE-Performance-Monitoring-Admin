@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Container } from '@material-ui/core';
-import { Issue } from '@state/type';
+import { Issue } from '@store/type';
 import AppbarShift from '../layout/appbarshift';
 import IssueTabs from './components/IssueTabs';
 import IssueHeader from './components/IssueHeader';

@@ -1,4 +1,4 @@
-import { Project, Docs } from '@state/type';
+import { Project, Docs } from '@store/type';
 import {
   GET_PROJECTS_REQUEST,
   GET_PROJECTS_SUCCESS,

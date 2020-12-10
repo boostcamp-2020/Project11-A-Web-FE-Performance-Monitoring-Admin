@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Typography, Button, Grid, TextField } from '@material-ui/core';
 import searchMember from '@api/project/searchMember';
-import { User } from '@state/type';
+import { User } from '@store/type';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

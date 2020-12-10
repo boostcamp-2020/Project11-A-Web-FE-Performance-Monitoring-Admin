@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FC } from 'react';
 import getEvent from '@api/event/getEvent';
-import { Event } from '@state/type';
+import { Event } from '@store/type';
 import DetailsTab from './DetailsTab';
 
 interface EventId {
