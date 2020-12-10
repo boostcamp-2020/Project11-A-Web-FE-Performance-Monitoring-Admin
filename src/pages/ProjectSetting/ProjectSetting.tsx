@@ -11,7 +11,8 @@ import ProjectMember from './components/ProjectMember';
 
 interface Props {
   project: any;
-  user: User;
+  user: any;
+  handleDeleteButton: (projectId: string) => void;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +38,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProjectSetting = ({ project, user }: Props): JSX.Element => {
+const ProjectSetting = ({
+  project,
+  user,
+  handleDeleteButton,
+}: Props): JSX.Element => {
   const classes = useStyles();
   const [projectName, setProjectName] = useState(project.projectName);
   const [projectMembers, setMembers] = useState<User[]>(project.members);
@@ -73,9 +78,8 @@ const ProjectSetting = ({ project, user }: Props): JSX.Element => {
                 프로젝트 수정하기
               </Button>
               <Button
-                disabled={projectMembers.some(
-                  (member) => member._id === user._id,
-                )}
+                disabled={project.owner._id !== user.id}
+                onClick={() => handleDeleteButton(projectId)}
               >
                 프로젝트 삭제하기
               </Button>
