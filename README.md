@@ -45,22 +45,13 @@
 - [SDK Repository](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK)
 - [통합 위키](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/wiki)
 
-## Members
-
-|<img src="https://github.com/kangsukmin.png" width=100 >|<img src="https://github.com/gitdog01.png" width=100 >|<img src="https://github.com/Eunbin-Kim.png" width=100 >|<img src="https://github.com/maong0927.png" width=100 >|
-:---:|:---:|:---:|:---:
-|[J005 강석민](https://github.com/kangsukmin)|[J049 김원호](https://github.com/gitdog01)|[J050 김은빈](https://github.com/Eunbin-Kim)|[J071 문혜라](https://github.com/maong0927)|
-
 ## Highlights
 
 - [프로젝트 개요](#프로젝트-개요)
 - [Install](#Install)
 - [Usage](#Get-Started)
-- [멤버](#멤버)
+- [멤버](#Members)
 - [개발환경](#개발환경)
-
-
-
 
 ## 프로젝트 개요
 
@@ -75,6 +66,13 @@
 
 - **Santry** 는 오류를 수집하는 SDK를 NPM을 통해서 배포하여, 발생하는 오류들을 모아서 서버에 저장하고, 그에 대한 상황과 통계를 알려주는 Admin 페이지를 제공합니다. 
 - 여러분에 Application에서 발생하는 오류들을 찾는 데 도움을 드려 더욱 행복한 개발환경에서 개발하셨으면 좋겠습니다.
+
+## Members
+
+|<img src="https://github.com/kangsukmin.png" width=100 >|<img src="https://github.com/gitdog01.png" width=100 >|<img src="https://github.com/Eunbin-Kim.png" width=100 >|<img src="https://github.com/maong0927.png" width=100 >|
+:---:|:---:|:---:|:---:
+|[J005 강석민](https://github.com/kangsukmin)|[J049 김원호](https://github.com/gitdog01)|[J050 김은빈](https://github.com/Eunbin-Kim)|[J071 문혜라](https://github.com/maong0927)|
+
 
 ## Install
 
@@ -151,8 +149,6 @@ app.listen(3000);
     
 ```
 
----
-
 ### Set Level
 
 **If you want to set level in message or error. Try using setLevel Function!**
@@ -170,8 +166,6 @@ const testError = () => {
   }
 };
 ```
-
----
 
 ### Set Context
 
@@ -214,3 +208,36 @@ const testError = () => {
     - Babel, Tsc, Webpack 직접 설정
     - Recharts를 통한 차트 구성
 
+<!--
+
+```jsx
+// 기본적인 에러 Catch 부터
+  try {
+    throw new Error('testing Error');
+  } catch (error) {
+    captureError(error);
+  }
+  
+// 로그의 기능으로 사용하는 메세지를 저장할 수도 있고,
+  captureMessage("hello I'm Hera");
+  
+// UncaughtException , UnhandledRejection 도 잡을 수 있도록 세팅해 두었습니다.
+  onUnhandledRejection();
+  onUncaughtException();
+
+// 나만의 다른 정보도 수집해 보세요.
+  setContext("Login");
+
+// express 에 제공하는 errorHandler middleware
+  app.use(errorHandler());
+
+```
+
+- 프로젝트 단위로 관리를 할 수 있습니다.<br>
+![](https://i.imgur.com/76x1vlR.jpg)
+
+- 같은 에러들을 하나의 이슈로 묶어서 관리할 수 있습니다.
+
+- 이슈 관리에서는 하나의 오류 정보부터, Tag의 통계, 이슈에 대해 커뮤니케이션을 할 수 있는 comment 기능등을 지원합니다.
+ 
+-->
