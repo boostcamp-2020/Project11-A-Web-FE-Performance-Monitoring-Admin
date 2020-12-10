@@ -19,6 +19,14 @@ const NewProjectContainer = lazy(
       /* webpackChunkName: "NewProject" */ '@pages/NewProject/NewProjectContainer'
     ),
 );
+
+const NewProjectExampleContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "NewProjectExample" */ '@pages/NewProjectExample/NewProjectExampleContainer'
+    ),
+);
+
 const ProjectListContainer = lazy(
   () =>
     import(
@@ -44,20 +52,24 @@ const ProjectSettingContainer = lazy(
 export default function Router(): JSX.Element {
   return (
     <BrowserRouter>
-      <Switch>
-        <Suspense fallback={Loading}>
+      <Suspense fallback={Loading}>
+        <Switch>
           <Route exact path="/" component={SignIn} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/github" component={Github} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/github" component={Github} />
           <PrivateRouter>
-            <Route exact path="/newproject" component={NewProjectContainer} />
-            <Route exact path="/project" component={ProjectListContainer} />
-            <Route exact path="/issue" component={IssueListContainer} />
-            <Route exact path="/issuedetail/:id" component={IssueContainer} />
-            <Route exact path="/setting" component={ProjectSettingContainer} />
+            <Route path="/newproject" component={NewProjectContainer} />
+            <Route
+              path="/newproject/example"
+              component={NewProjectExampleContainer}
+            />
+            <Route path="/project" component={ProjectListContainer} />
+            <Route path="/issue" component={IssueListContainer} />
+            <Route path="/issuedetail/:id" component={IssueContainer} />
+            <Route path="/setting" component={ProjectSettingContainer} />
           </PrivateRouter>
-        </Suspense>
-      </Switch>
+        </Switch>
+      </Suspense>
     </BrowserRouter>
   );
 }
