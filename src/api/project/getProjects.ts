@@ -1,5 +1,5 @@
 import { authAxios } from '@utils/axios';
-import { Project, Docs } from '@state/type';
+import { Project, Docs } from '@store/type';
 
 const getProjects = async (
   page?: number,

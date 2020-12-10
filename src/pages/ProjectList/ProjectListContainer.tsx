@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { FC, useEffect } from 'react';
-import { Project, Docs } from '@state/type';
+import { Project, Docs } from '@store/type';
 import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
-import fetchProjects from '@state/projects/index';
+import fetchProjects from '@store/projects/index';
 
 import Loading from '@common/Loading';
 import ProjectList from './ProjectList';

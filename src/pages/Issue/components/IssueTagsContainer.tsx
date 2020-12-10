@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Issue, SearchResult } from '@state/type';
+import { Issue, SearchResult } from '@store/type';
 import IssueTags from './IssueTags';
 import TagDonutChart from './TagDonutChart';
 

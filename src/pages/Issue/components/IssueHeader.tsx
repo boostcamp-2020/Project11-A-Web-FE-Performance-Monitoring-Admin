@@ -12,7 +12,7 @@ import {
 import { AccountBox } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from '@emotion/styled';
-import { Issue } from '@state/type';
+import { Issue } from '@store/type';
 import convertDate from '@utils/convertDate';
 
 interface Props {

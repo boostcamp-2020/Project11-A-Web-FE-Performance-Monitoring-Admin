@@ -1,5 +1,5 @@
 import React, { FC, Dispatch } from 'react';
-import { Event } from '@state/type';
+import { Event } from '@store/type';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SummarizedTags from './Tags/SummarizedTags';

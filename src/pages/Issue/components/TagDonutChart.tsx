@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import BillboardChart from 'react-billboardjs';
 import styled from '@emotion/styled';
 import 'react-billboardjs/lib/billboard.css';
-import { SearchResult } from '@state/type';
+import { SearchResult } from '@store/type';
 
 const ChartTitle = styled.div`
   font-size: 1.8em;
@@ -24,7 +24,7 @@ const TagDonutChart: FC<Props> = ({ searchResult }: Props) => {
   const data = {
     columns: columnData,
     type: 'donut',
-    onclick(d) {
+    onclick(d: any) {
       console.log(d);
     },
     labels: {

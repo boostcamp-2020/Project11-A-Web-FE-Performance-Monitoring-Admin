@@ -9,8 +9,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Project } from '@state/type';
-import { setCurrentProject } from '@state/curProject/curProjectActions';
+import { Project } from '@store/type';
+import { setCurrentProject } from '@store/curProject/curProjectActions';
 
 const useStyles = makeStyles({
   link: {

@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { AccountBox, AccessTime } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import { Docs, Issue } from '@state/type';
+import { Docs, Issue } from '@store/type';
 import timeDiff from '@utils/timeDiff';
 
 const useStyles = makeStyles({
