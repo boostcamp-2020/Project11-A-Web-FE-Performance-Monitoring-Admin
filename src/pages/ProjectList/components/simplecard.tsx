@@ -60,29 +60,32 @@ const SimpleCard: FC<Props> = ({
   };
 
   return (
-    <Link to="/issue" className={classes.link}>
-      <Card className={classes.root} onClick={handleClick(project._id)}>
-        <CardContent>
-          <Typography
-            className={classes.title}
-            color="textSecondary"
-            gutterBottom
-          >
-            #{projectNumber} {project.platform}
-          </Typography>
-          <Typography variant="subtitle1" component="h2">
-            {project.projectName}
-          </Typography>
-          <Typography variant="body2" component="p">
-            project created:{' '}
-            {new Date(project.createdAt).toISOString().substring(0, 10)}
-          </Typography>
-        </CardContent>
-        <CardActions>
+    <Card className={classes.root} onClick={handleClick(project._id)}>
+      <CardContent>
+        <Typography
+          className={classes.title}
+          color="textSecondary"
+          gutterBottom
+        >
+          #{projectNumber} {project.platform}
+        </Typography>
+        <Typography variant="subtitle1" component="h2">
+          {project.projectName}
+        </Typography>
+        <Typography variant="body2" component="p">
+          project created:{' '}
+          {new Date(project.createdAt).toISOString().substring(0, 10)}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Link to="/issue" className={classes.link}>
+          <Button size="small">이슈 보기</Button>
+        </Link>
+        <Link to="/setting" className={classes.link}>
           <Button size="small">프로젝트 설정</Button>
-        </CardActions>
-      </Card>
-    </Link>
+        </Link>
+      </CardActions>
+    </Card>
   );
 };
 

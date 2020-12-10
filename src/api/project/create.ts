@@ -1,12 +1,13 @@
 import { authAxios } from '@utils/axios';
 import { ProjectData } from '@state/type';
 
-const create = async (data: ProjectData): Promise<void> => {
+const create = async (data: ProjectData): Promise<string> => {
   const result = await authAxios.post('/project', {
     ...data,
   });
   if (result.status === 201) {
-    window.location.href = '/project';
+    return result.data.token;
   }
+  return result.data.message;
 };
 export default create;

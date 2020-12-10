@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   CssBaseline,
@@ -10,6 +11,7 @@ import {
 } from '@material-ui/core';
 import { FolderSpecial } from '@material-ui/icons';
 import create from '@api/project/create';
+import { User } from '@/state/type';
 import PlatformSelecter from './components/platformSelecter';
 import ProjectNameInput from './components/projectNameInput';
 import ProjectAlert from './components/projectAlert';
@@ -54,20 +56,20 @@ interface prop {
   projectName: string;
   alertSetting: string;
   alertMails: string[];
-  projectMembers: string[];
-  projectAdmins: string[];
+  projectMembers: User[];
+  projectAdmins: User[];
   setPlatform: React.Dispatch<React.SetStateAction<string>>;
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
   setAlert: React.Dispatch<React.SetStateAction<string>>;
   setMails: React.Dispatch<React.SetStateAction<string[]>>;
-  setMembers: React.Dispatch<React.SetStateAction<string[]>>;
-  setAdmins: React.Dispatch<React.SetStateAction<string[]>>;
+  setMembers: React.Dispatch<React.SetStateAction<User[]>>;
+  setAdmins: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
 const NewProjectForm = (props: prop): JSX.Element => {
   const classes = useStyles();
-
-  const handleCreateButton = () => {
+  const mine = useHistory();
+  const handleCreateButton = async () => {
     const data = {
       platform: props.seletedPlatform,
       projectName: props.projectName,
@@ -75,7 +77,9 @@ const NewProjectForm = (props: prop): JSX.Element => {
       admins: props.projectAdmins,
       members: props.projectMembers,
     };
-    create(data);
+    const token = await create(data);
+
+    mine.push("/newprojectexample",{ token });
   };
 
   return (
@@ -162,7 +166,7 @@ const NewProjectForm = (props: prop): JSX.Element => {
                 props.seletedPlatform === '아직 선택하지 않았습니다.' ||
                 props.projectName.length < 4
               }
-            >
+              >
               프로젝트 만들기
             </Button>
           </Grid>
