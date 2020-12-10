@@ -9,6 +9,11 @@ interface State extends DefaultRootState {
   curProjectReducer: {
     projectId: string;
   };
+  userReducer: {
+    email: string;
+    nickname: string;
+    _id: string;
+  };
 }
 
 const ALERT_TITLE = '선택된 프로젝트가 없습니다';
@@ -16,6 +21,7 @@ const ALERT_CONTENT = '프로젝트를 선택한 후 이슈를 확인해주세�
 
 const ProjectSettingContainer: FC = () => {
   const { projectId } = useSelector((state: State) => state.curProjectReducer);
+  const user = useSelector((state: State) => state.userReducer);
   if (!projectId) {
     return (
       <AlertDialog
@@ -33,9 +39,9 @@ const ProjectSettingContainer: FC = () => {
     })();
   }, []);
 
-  if(JSON.stringify(project) === '{}') return <></>;
+  if (JSON.stringify(project) === '{}') return <></>;
 
-  return <ProjectSetting project={project} />;
+  return <ProjectSetting project={project} user={user} />;
 };
 
 export default ProjectSettingContainer;
