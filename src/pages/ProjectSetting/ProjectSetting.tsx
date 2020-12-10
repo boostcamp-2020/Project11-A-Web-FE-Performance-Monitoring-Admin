@@ -9,7 +9,6 @@ import ProjectNameInput from './components/ProjectNameInput';
 import ProjectAdmin from './components/ProjectAdmin';
 import ProjectMember from './components/ProjectMember';
 
-
 interface Props {
   project: any;
 }
@@ -43,12 +42,12 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
   const [projectMembers, setMembers] = useState<User[]>(project.members);
   const [projectAdmins, setAdmins] = useState<User[]>(project.admins);
   const projectId = project._id;
-  const owner = project.owner===undefined?"loding":project.owner.nickname; // project.owner.nickname;
-  const {platform,sdkToken} = project;
+  const owner = project.owner === undefined ? 'loding' : project.owner.nickname; // project.owner.nickname;
+  const { platform, sdkToken } = project;
 
   const handlePatcheButton = () => {
-    modifiProject(projectId,projectName,projectAdmins,projectMembers);
-  }
+    modifiProject(projectId, projectName, projectAdmins, projectMembers);
+  };
 
   return (
     <div className={classes.root}>
@@ -58,19 +57,17 @@ const ProjectSetting = ({ project }: Props): JSX.Element => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <FixedInformation {...{projectId,owner,platform,sdkToken}} />
-            <ProjectNameInput {...{projectName, setProjectName}} />
-            <ProjectAdmin {...{projectAdmins, setAdmins}} />
-            <ProjectMember {...{projectMembers, setMembers}} />
+            <FixedInformation {...{ projectId, owner, platform, sdkToken }} />
+            <ProjectNameInput {...{ projectName, setProjectName }} />
+            <ProjectAdmin {...{ projectAdmins, setAdmins }} />
+            <ProjectMember {...{ projectMembers, setMembers }} />
             <Grid item xs className={classes.buttonWrap}>
               <Button
                 variant="contained"
                 color="secondary"
                 className={classes.button}
                 onClick={handlePatcheButton}
-                disabled={
-                  projectName.length < 4
-                }
+                disabled={projectName.length < 4}
               >
                 프로젝트 수정하기
               </Button>
