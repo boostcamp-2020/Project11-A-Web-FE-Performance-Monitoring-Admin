@@ -50,15 +50,20 @@
 &nbsp;**Santry** 는 오류를 수집하는 SDK를 NPM을 통해서 배포하여, 발생하는 오류들을 모아서 서버에 저장하고, 그에 대한 상황과 통계를 알려주는 Admin 페이지를 제공합니다. 
 &nbsp;여러분에 Application에서 발생하는 오류들을 찾는 데 도움을 드려 더욱 행복한 개발환경에서 개발하셨으면 좋겠습니다.
  
-
-&nbsp;[함께 시작해볼까요 ?](https://www.npmjs.com/package/@santry/browser)
+## 함께 시작해볼까요?
+- [브라우저 버전](https://www.npmjs.com/package/@santry/browser)
 ```
 $ npm install @santry/browser
 ```
+- [노드 버전](https://www.npmjs.com/package/@santry/browser) 
+```
+$ npm install @santry/node
+```
+
 ## 제공하는 기능
 
 - 다양한 종류의 ErrorCatch을 위한 도구 제공
-```javascript=
+```jsx
 // 기본적인 에러 Catch 부터
   try {
     throw new Error('testing Error');
