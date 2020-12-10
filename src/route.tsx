@@ -5,10 +5,10 @@ import PrivateRouter from '@pages/PrivateRouter/PrivateRouter';
 import Loading from '@common/Loading';
 
 const SignIn = lazy(
-  () => import(/* webpackChunkName: "SiginIn" */ '@pages/SignIn/signin'),
+  () => import(/* webpackChunkName: "SiginIn" */ '@pages/SignIn/SignIn'),
 );
 const SignUp = lazy(
-  () => import(/* webpackChunkName: "SiginUp" */ '@pages/SignUp/signup'),
+  () => import(/* webpackChunkName: "SiginUp" */ '@pages/SignUp/SignUp'),
 );
 const Github = lazy(
   () => import(/* webpackChunkName: "Github" */ '@pages/github/githubHandler'),
@@ -34,9 +34,11 @@ const IssueListContainer = lazy(
 const IssueContainer = lazy(
   () => import(/* webpackChunkName: "Issue" */ '@pages/Issue/IssueContainer'),
 );
-const Setting = lazy(
+const ProjectSettingContainer = lazy(
   () =>
-    import(/* webpackChunkName: "Setting" */ '@pages/ProjectSetting/setting'),
+    import(
+      /* webpackChunkName: "Setting" */ '@pages/ProjectSetting/ProjectSettingContainer'
+    ),
 );
 
 export default function Router(): JSX.Element {
@@ -52,7 +54,7 @@ export default function Router(): JSX.Element {
             <Route exact path="/project" component={ProjectListContainer} />
             <Route exact path="/issue" component={IssueListContainer} />
             <Route exact path="/issuedetail/:id" component={IssueContainer} />
-            <Route exact path="/setting" component={Setting} />
+            <Route exact path="/setting" component={ProjectSettingContainer} />
           </PrivateRouter>
         </Suspense>
       </Switch>

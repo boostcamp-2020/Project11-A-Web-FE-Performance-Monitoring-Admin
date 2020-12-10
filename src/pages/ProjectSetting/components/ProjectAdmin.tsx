@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Typography, Button, Grid, TextField, Paper, Divider } from '@material-ui/core';
+import {
+  Typography,
+  Button,
+  Grid,
+  TextField,
+  Paper,
+  Divider,
+} from '@material-ui/core';
 import searchMember from '@api/project/searchMember';
-import { User } from '@state/type';
+import { User } from '@store/type';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,7 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
     contentBody: {
       marginLeft: '20px',
       marginBottom: '20px',
-
     },
   }),
 );
@@ -42,15 +48,22 @@ const ProjectAdmin = (props: prop): JSX.Element => {
   const handleDeleteMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    props.setAdmins(props.projectAdmins.filter(member=>event.currentTarget.value!==member._id));
+    props.setAdmins(
+      props.projectAdmins.filter(
+        (member) => event.currentTarget.value !== member._id,
+      ),
+    );
   };
   const handleAddMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    props.setAdmins([...props.projectAdmins, {
-      _id:event.currentTarget.value,
-      nickname:String(event.currentTarget.textContent),
-    }]);
+    props.setAdmins([
+      ...props.projectAdmins,
+      {
+        _id: event.currentTarget.value,
+        nickname: String(event.currentTarget.textContent),
+      },
+    ]);
   };
   const handleSearchButtonClick = async () => {
     const searchArray = await searchMember(searchQuery);
@@ -62,9 +75,17 @@ const ProjectAdmin = (props: prop): JSX.Element => {
       <Paper>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography className={classes.contentTitle}>프로젝트의 담당자들을 선택해주세요.</Typography>
+            <Typography className={classes.contentTitle}>
+              프로젝트의 담당자들을 선택해주세요.
+            </Typography>
           </Grid>
-          <Grid className={classes.contentBody} container item xs={12} spacing={0}>
+          <Grid
+            className={classes.contentBody}
+            container
+            item
+            xs={12}
+            spacing={0}
+          >
             {props.projectAdmins.map((member) => (
               <Grid key={member._id} item xs={2}>
                 <Button
@@ -105,9 +126,15 @@ const ProjectAdmin = (props: prop): JSX.Element => {
               찾기
             </Button>
           </Grid>
-          <Grid className={classes.contentBody} container item xs={12} spacing={1}>
+          <Grid
+            className={classes.contentBody}
+            container
+            item
+            xs={12}
+            spacing={1}
+          >
             {searchResult.map((member) => (
-              <Grid key={"a"+member._id} item xs={3}>
+              <Grid key={`a${member._id}`} item xs={3}>
                 <Button
                   variant="outlined"
                   value={member._id}

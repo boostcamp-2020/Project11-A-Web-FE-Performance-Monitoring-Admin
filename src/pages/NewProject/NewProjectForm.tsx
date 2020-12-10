@@ -15,7 +15,7 @@ import { User } from '@store/type';
 import PlatformSelecter from './components/PlatformSelector';
 import ProjectNameInput from './components/ProjectNameInput';
 import ProjectAlert from './components/ProjectAlert';
-import AppbarShift from '../layout/appbarshift';
+import AppbarShift from '../layout/AppbarShift';
 import ProjectMember from './components/ProjectMember';
 import ProjectAdmin from './components/ProjectAdmin';
 

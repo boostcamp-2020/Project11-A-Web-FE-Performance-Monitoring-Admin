@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container } from '@material-ui/core';
 import { Docs, Issue } from '@store/type';
-import AppbarShift from '../layout/appbarshift';
+import AppbarShift from '../layout/AppbarShift';
 import IssueTable from './components/IssueTable';
 
 interface Props {

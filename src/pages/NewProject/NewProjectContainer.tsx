@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User } from '@/state/type';
+import { User } from '@store/type';
 import NewProjectForm from './NewProjectForm';
 
 const NewProjectContainer = (): JSX.Element => {

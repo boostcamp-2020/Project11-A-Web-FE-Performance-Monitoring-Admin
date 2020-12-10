@@ -1,5 +1,5 @@
 import { authAxios } from '@utils/axios';
-import { User } from '@/state/type';
+import { User } from '@store/type';
 
 const modifiProject = async (
   projectId: string,

@@ -9,7 +9,7 @@ import { Add } from '@material-ui/icons';
 import { Project, Docs } from '@store/type';
 
 import SimpleCard from './components/SimpleCard';
-import AppbarShift from '../layout/appbarshift';
+import AppbarShift from '../layout/AppbarShift';
 
 const useStyles = makeStyles((theme) => ({
   root: {
