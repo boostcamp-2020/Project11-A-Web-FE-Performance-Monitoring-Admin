@@ -6,6 +6,7 @@ import SummarizedTags from './Tags/SummarizedTags';
 import EventHeader from './EventHeader';
 import ErrorStack from './ErrorStack/ErrorStack';
 import Info from './Info/Info';
+import EventDetailHeader from './EventDetailHeader';
 
 interface Props {
   event: Event;
@@ -51,9 +52,9 @@ const DetailsTab: FC<Props> = ({
     url,
     version,
   };
-  eventTags.sdk = sdk && Object.values(sdk).join(' ');
-  eventTags.browser = browser && Object.values(browser).join(' ');
-  eventTags.os = os && Object.values(os).join(' ');
+  eventTags.sdk = sdk && Object.values(sdk).reverse().join(' ');
+  eventTags.browser = browser && Object.values(browser).reverse().join(' ');
+  eventTags.os = os && Object.values(os).reverse().join(' ');
 
   const hasTags = Object.values(eventTags).reduce(
     (prev, cur) => prev || cur !== undefined,
@@ -76,10 +77,18 @@ const DetailsTab: FC<Props> = ({
           errorContexts={event.errorContexts}
         />
       )}
-      {event.contexts &&
-        Object.entries(event.contexts).map((context) => (
-          <Info key={event._id} title={context[0]} datas={context[1]} />
-        ))}
+      {event.contexts && (
+        <>
+          <EventDetailHeader title="CONTEXTS" />
+          {Object.entries(event.contexts).map((context) => (
+            <Info
+              key={context[0] + context[1]}
+              title={context[0]}
+              datas={context[1]}
+            />
+          ))}
+        </>
+      )}
     </Paper>
   );
 };
