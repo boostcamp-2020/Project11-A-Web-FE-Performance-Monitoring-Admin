@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import login from '@api/auth/login';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { setUser } from '@store/user/userActions';
 
 const useStyles = makeStyles((theme) => ({
@@ -140,6 +141,7 @@ const AnimationDefault = () => {
 
 export default function SignIn(): JSX.Element {
   const classes = useStyles();
+  const history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -150,9 +152,9 @@ export default function SignIn(): JSX.Element {
     try {
       const user = await login(email, password);
       dispatch(setUser(user.email, user.nickname, user._id));
-      window.location.href = '/project';
+      history.push('/project');
     } catch (error) {
-      alert('로그인을 실패하였습니다 !');
+      alert(error.response.data.message || '로그인에 실패하였습니다!');
       setEmail('');
       setPassword('');
     }
