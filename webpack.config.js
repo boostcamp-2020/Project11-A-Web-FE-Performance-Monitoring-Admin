@@ -2,8 +2,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -55,17 +58,51 @@ module.exports = {
     publicPath: '/',
   },
 
+  optimization: {
+    minimizer: prod
+      ? [
+          new OptimizeCSSAssetsPlugin(),
+          new TerserPlugin({
+            terserOptions: {
+              compress: {
+                drop_console: true, // 콘솔 로그 제거
+              },
+            },
+          }),
+        ]
+      : [],
+  },
+
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    chunkFilename: '[name].bundle.js',
     publicPath: '/',
   },
 
   plugins: [
     new webpack.ProvidePlugin({ React: 'react' }),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ template: './public/index.html', favicon: "./public/favicon.ico" }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
+      minify: prod
+        ? {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true,
+          }
+        : {},
+    }),
     new Dotenv(),
     new BundleAnalyzerPlugin(),
+    new CleanWebpackPlugin(),
   ],
 };

@@ -25,8 +25,9 @@ interface Props {
 }
 
 const SearchBar: FC<Props> = ({ searchQuery, setSearchQuery }: Props) => {
+  const [KEY, VALUE] = [0, 1];
   const queryToInput = Object.entries(searchQuery).reduce(
-    (acc, cur) => `${acc},${cur[0]}:${cur[1]}`,
+    (acc, cur) => `${acc},${cur[KEY]}:${cur[VALUE]}`,
     '',
   );
   const [searchInput, setSearchInput] = useState<string>(queryToInput);

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 import { Issue } from '@state/type';
-
 import DetailsTabContainer from './Details/DetailsTabContainer';
 import EventsTabContainer from './Events/EventsTabContainer';
 import IssueTagsContainer from './Tags/IssueTagsContainer';
