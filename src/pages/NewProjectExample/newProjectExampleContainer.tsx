@@ -4,12 +4,13 @@ import NewProjectExample from './NewProjectExample';
 
 interface LocationState {
   token:string;
+  platform:string;
 }
 const NewProjectExampleContainer = () : JSX.Element => {
   const location = useLocation<LocationState>();
-  const { token } = location.state;
+  const { token,platform } = location.state;
   return (
-    <NewProjectExample {...{token}} />
+    <NewProjectExample {...{token,platform}} />
   );
 }
 export default NewProjectExampleContainer;

@@ -79,7 +79,7 @@ const NewProjectForm = (props: prop): JSX.Element => {
     };
     const token = await create(data);
 
-    location.push("/newprojectexample",{ token });
+    location.push("/newprojectexample",{ token,platform:props.seletedPlatform });
   };
 
   return (

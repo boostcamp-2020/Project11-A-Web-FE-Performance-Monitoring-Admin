@@ -37,11 +37,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 interface prop {
   token: string;
+  platform:string;
 }
 const NewProjectExample = (props: prop) : JSX.Element => {
   const classes = useStyles();
 
-  const code = `          
+  const code = props.platform!=='Express'?`          
   const { init, captureError } = require('@santry/browser');
 
   const dsn = '${props.token}';
@@ -56,7 +57,50 @@ const NewProjectExample = (props: prop) : JSX.Element => {
     }
   };
 
-  testError();`;
+  testError();`:
+  `
+  // All controllers should live here
+  const express = require('express');
+  const {
+    init,
+    errorHandler,
+    captureMessage,
+    setContext,
+    setLevel,
+  } = require('@santry/node');
+
+  const app = express();
+  const dsn = '${props.token}';
+
+  init(dsn, {
+    traceSampleRate: 1,
+    release: 'santry@0.0.1',
+    environment: 'production',
+  });
+
+  app.get('/', function rootHandler(req, res) {
+    res.end('Hello world!');
+  });
+
+  app.post('/debug-sentry', function mainHandler(req, res) {
+    setContext('myInfo', {
+      name: 'Hera',
+      age: 26,
+    });
+    setLevel('fatal');
+    captureMessage("helllo I'm Hera");
+    throw new Error('My second Sentry error get!');
+  });
+  // The error handler must be before any other error middleware and after all controllers
+  app.use(errorHandler());
+  // Optional fallthrough error handler
+  app.use(function onError(err, req, res, next) {
+    res.statusCode = 500;
+    res.end('good santry!');
+  });
+
+  app.listen(3000);
+  `;
   const scenarios = [
     { contentTitle:"프로젝트를 시작하세요 !", 
     contentText:
