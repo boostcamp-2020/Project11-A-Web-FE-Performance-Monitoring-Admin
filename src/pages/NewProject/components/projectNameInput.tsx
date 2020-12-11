@@ -28,7 +28,7 @@ const ProjectNameInput = (props: prop): JSX.Element => {
         프로젝트의 이름을 입력해주세요. ( 4글자 이상입력해주시기 바랍니다. )
       </Typography>
       <TextField
-        error={props.projectName.length < MIN_PROJECT_NAME_LANGTH}
+        error={props.projectName.length < MIN_PROJECT_NAME_LENGTH}
         helperText={errorText}
         id="standard-basic"
         label="프로젝트 이름"
@@ -36,7 +36,7 @@ const ProjectNameInput = (props: prop): JSX.Element => {
         onChange={({ target: { value } }) => {
           props.setProjectName(value);
           setErrorText(
-            props.projectName.length < MIN_PROJECT_NAME_LANGTH ? '이름이 너무 짧습니다.' : '',
+            props.projectName.length < MIN_PROJECT_NAME_LENGTH ? '이름이 너무 짧습니다.' : '',
           );
         }}
       />
