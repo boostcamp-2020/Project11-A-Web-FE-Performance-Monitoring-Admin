@@ -1,9 +1,11 @@
 import React, { FC, useState } from 'react';
-import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab } from '@material-ui/core';
-import { Issue } from '@state/type';
-import IssueDetailContainer from './IssueDetailContainer';
+import { Issue } from '@store/type';
+import DetailsTabContainer from './Details/DetailsTabContainer';
+import EventsTabContainer from './Events/EventsTabContainer';
+import IssueTagsContainer from './Tags/IssueTagsContainer';
 
 const useStyles = makeStyles({
   root: {
@@ -30,8 +32,6 @@ const IssueTabs: FC<Props> = ({ issue }: Props): JSX.Element => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
-  const match = useRouteMatch();
-
   const handleChange = (
     event: React.ChangeEvent<unknown>,
     newValue: number,
@@ -53,11 +53,14 @@ const IssueTabs: FC<Props> = ({ issue }: Props): JSX.Element => {
         <Tab label="Comments" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <IssueDetailContainer events={issue.events} />
+        <DetailsTabContainer events={issue.events} />
       </TabPanel>
-      {/* <TabPanel value={value} index={1} />
-      <TabPanel value={value} index={2} />
-      <TabPanel value={value} index={3} /> */}
+      <TabPanel value={value} index={1}>
+        <IssueTagsContainer issueId={issue._id} />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <EventsTabContainer issueId={issue._id} />
+      </TabPanel>
     </Paper>
   );
 };

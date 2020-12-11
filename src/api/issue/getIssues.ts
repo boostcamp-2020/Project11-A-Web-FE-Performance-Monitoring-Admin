@@ -1,5 +1,5 @@
 import { authAxios } from '@utils/axios';
-import { Issue, Docs } from '@state/type';
+import { Issue, Docs } from '@store/type';
 
 const getIssues = async (
   page: number,

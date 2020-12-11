@@ -1,26 +1,70 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import SignIn from '@pages/SignIn/signin';
-import SingUp from '@pages/SignUp/signup';
-import NewProjectContainer from '@pages/NewProject/newProjectContainer';
-import ProjectListContainer from '@pages/ProjectList/projectListContainer';
-import IssueListContainer from '@/pages/IssueList/IssueListContainer';
-import Setting from '@pages/ProjectSetting/setting';
-import IssueContainer from '@/pages/Issue/IssueContainer';
+import PrivateRouter from '@pages/PrivateRouter/PrivateRouter';
+import Loading from '@common/Loading';
+
+const SignIn = lazy(
+  () => import(/* webpackChunkName: "SiginIn" */ '@pages/SignIn/SignIn'),
+);
+const SignUp = lazy(
+  () => import(/* webpackChunkName: "SiginUp" */ '@pages/SignUp/SignUp'),
+);
+const Github = lazy(
+  () => import(/* webpackChunkName: "Github" */ '@pages/github/githubHandler'),
+);
+const NewProjectContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "NewProject" */ '@pages/NewProject/NewProjectContainer'
+    ),
+);
+const NewExampleProjectContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "NewProject" */ '@pages/NewProjectExample/NewProjectExampleContainer'
+    ),
+);
+const ProjectListContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "ProjectList" */ '@pages/ProjectList/ProjectListContainer'
+    ),
+);
+const IssueListContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "IssueList" */ '@pages/IssueList/IssueListContainer'
+    ),
+);
+const IssueContainer = lazy(
+  () => import(/* webpackChunkName: "Issue" */ '@pages/Issue/IssueContainer'),
+);
+const ProjectSettingContainer = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "Setting" */ '@pages/ProjectSetting/ProjectSettingContainer'
+    ),
+);
 
 export default function Router(): JSX.Element {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={SignIn} />
-        <Route exact path="/signup" component={SingUp} />
-        <Route exact path="/newproject" component={NewProjectContainer} />
-        <Route exact path="/project" component={ProjectListContainer} />
-        <Route exact path="/issue" component={IssueListContainer} />
-        <Route exact path="/setting" component={Setting} />
-        <Route exact path="/issuedetail/:id" component={IssueContainer} />
-      </Switch>
+      <Suspense fallback={Loading}>
+        <Switch>
+          <Route exact path="/" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/github" component={Github} />
+          <PrivateRouter>
+            <Route exact path="/newproject" component={NewProjectContainer} />
+            <Route exact path="/newprojectexample" component={NewExampleProjectContainer} />
+            <Route exact path="/project" component={ProjectListContainer} />
+            <Route exact path="/issue" component={IssueListContainer} />
+            <Route exact path="/issuedetail/:id" component={IssueContainer} />
+            <Route exact path="/setting" component={ProjectSettingContainer} />
+          </PrivateRouter>
+        </Switch>
+      </Suspense>
     </BrowserRouter>
   );
 }

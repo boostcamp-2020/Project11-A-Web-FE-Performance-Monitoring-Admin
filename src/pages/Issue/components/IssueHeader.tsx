@@ -12,7 +12,7 @@ import {
 import { AccountBox } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from '@emotion/styled';
-import { Issue } from '@state/type';
+import { Issue } from '@store/type';
 import convertDate from '@utils/convertDate';
 
 interface Props {
@@ -58,7 +58,7 @@ const IssueHeader: FC<Props> = ({ issue }: Props): JSX.Element => {
             <CircularProgress color="secondary" />
           ) : (
             <>
-              <ErrorName>{issue.errorName}</ErrorName>
+              <ErrorName>{issue.eventName}</ErrorName>
               <ErrorMessage>{issue.errorMessage}</ErrorMessage>
               <div>First Created at: {convertDate(issue.createdAt)}</div>
               <div>
@@ -71,7 +71,7 @@ const IssueHeader: FC<Props> = ({ issue }: Props): JSX.Element => {
           )}
         </Paper>
       </Grid>
-      <Grid item xs={5} alignItems="center">
+      <Grid item xs={5}>
         <Paper className={classes.paper}>
           <Table size="small">
             <TableHead>

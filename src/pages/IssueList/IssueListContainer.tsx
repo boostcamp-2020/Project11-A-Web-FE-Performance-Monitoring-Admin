@@ -3,7 +3,7 @@ import { useSelector, DefaultRootState } from 'react-redux';
 import getIssues from '@api/issue/getIssues';
 import AlertDialog from '@common/AlertDialog';
 
-import { Issue, Docs } from '@state/type';
+import { Issue, Docs } from '@store/type';
 import IssueList from './IssueList';
 
 interface State extends DefaultRootState {
@@ -28,7 +28,7 @@ const IssueListContainer: FC = () => {
       />
     );
   }
-  const [issues, setIssues] = useState<Docs<Issue>>({});
+  const [issues, setIssues] = useState<Docs<Issue>>({ docs: [] });
 
   useEffect(() => {
     (async () => {

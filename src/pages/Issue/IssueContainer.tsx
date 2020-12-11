@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import getIssue from '@api/issue/getIssue';
-import { Issue } from '@state/type';
+import { Issue } from '@store/type';
 import IssuePresenter from './IssuePresenter';
 
 const IssueContainer: FC = () => {
@@ -16,7 +16,6 @@ const IssueContainer: FC = () => {
       if (currentIssue) setIssue(currentIssue);
     })();
   }, []);
-
   return <IssuePresenter issue={issue} />;
 };
 
