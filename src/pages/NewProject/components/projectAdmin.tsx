@@ -4,7 +4,7 @@ import { Typography, Button, Grid, TextField } from '@material-ui/core';
 import searchMember from '@api/project/searchMember';
 import { User } from '@state/type';
 
-const MIN_SEARCH_TEXT_LANGTH = 3;
+const MIN_SEARCH_TEXT_LENGTH = 3;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
