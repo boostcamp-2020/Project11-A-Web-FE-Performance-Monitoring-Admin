@@ -73,7 +73,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
         </Grid>
         <Grid item xs={6}>
           <TextField
-            error={searchQuery.length < MIN_SEARCH_TEXT_LANGTH}
+            error={searchQuery.length < MIN_SEARCH_TEXT_LENGTH}
             helperText={errorText}
             id="search-query"
             label="검색할 사용자 닉네임"
@@ -81,7 +81,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
             onChange={({ target: { value } }) => {
               setQuery(value);
               setErrorText(
-                searchQuery.length < MIN_SEARCH_TEXT_LANGTH ? '검색어가 너무 짧습니다.' : '',
+                searchQuery.length < MIN_SEARCH_TEXT_LENGTH ? '검색어가 너무 짧습니다.' : '',
               );
             }}
           />
@@ -89,7 +89,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
             className={classes.inputSet}
             variant="contained"
             color="primary"
-            disabled={searchQuery.length < MIN_SEARCH_TEXT_LANGTH}
+            disabled={searchQuery.length < MIN_SEARCH_TEXT_LENGTH}
             onClick={handleSearchButtonClick}
           >
             찾기
