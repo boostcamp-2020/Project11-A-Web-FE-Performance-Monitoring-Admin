@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Typography, TextField } from '@material-ui/core';
 
-const MIN_PROJECT_NAME_LANGTH = 4;
+const MIN_PROJECT_NAME_LENGTH = 4;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

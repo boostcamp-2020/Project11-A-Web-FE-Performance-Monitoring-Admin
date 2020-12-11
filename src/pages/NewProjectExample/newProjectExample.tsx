@@ -45,7 +45,7 @@ const NewProjectExample = (props: prop) : JSX.Element => {
   const code = props.platform!=='Express'?`          
   const { init, captureError } = require('@santry/browser');
 
-  const dsn = '${props.token}';
+  const dsn = '${props.token}@118.67.129.120:3000/sdk/event';
 
   init(dsn);
 
@@ -70,7 +70,7 @@ const NewProjectExample = (props: prop) : JSX.Element => {
   } = require('@santry/node');
 
   const app = express();
-  const dsn = '${props.token}';
+  const dsn = '${props.token}@118.67.129.120:3000/sdk/event';
 
   init(dsn, {
     traceSampleRate: 1,
