@@ -19,6 +19,8 @@ import AppbarShift from '../layout/AppbarShift';
 import ProjectMember from './components/ProjectMember';
 import ProjectAdmin from './components/ProjectAdmin';
 
+const MIN_PROJECT_NAME_LENGTH = 4;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -68,7 +70,7 @@ interface prop {
 
 const NewProjectForm = (props: prop): JSX.Element => {
   const classes = useStyles();
-  const mine = useHistory();
+  const location = useHistory();
   const handleCreateButton = async () => {
     const data = {
       platform: props.seletedPlatform,
@@ -79,7 +81,7 @@ const NewProjectForm = (props: prop): JSX.Element => {
     };
     const token = await create(data);
 
-    mine.push('/newprojectexample', { token });
+    location.push("/newprojectexample",{ token,platform:props.seletedPlatform });
   };
 
   return (
@@ -164,7 +166,7 @@ const NewProjectForm = (props: prop): JSX.Element => {
               onClick={handleCreateButton}
               disabled={
                 props.seletedPlatform === '아직 선택하지 않았습니다.' ||
-                props.projectName.length < 4
+                props.projectName.length < MIN_PROJECT_NAME_LENGTH
               }
             >
               프로젝트 만들기
