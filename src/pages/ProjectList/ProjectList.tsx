@@ -6,10 +6,10 @@ import { CssBaseline, Grid, Container, Tooltip, Fab } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import { Add } from '@material-ui/icons';
 
-import { Project, Docs } from '@state/type';
+import { Project, Docs } from '@store/type';
 
-import SimpleCard from './components/simplecard';
-import AppbarShift from '../layout/appbarshift';
+import SimpleCard from './components/SimpleCard';
+import AppbarShift from '../layout/AppbarShift';
 
 const useStyles = makeStyles((theme) => ({
   root: {

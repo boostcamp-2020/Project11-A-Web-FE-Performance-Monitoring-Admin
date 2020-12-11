@@ -4,7 +4,7 @@ import EvendDetailHeader from '../EventDetailHeader';
 
 interface Props {
   title: string;
-  datas: Record<string, string | undefined>;
+  datas: Record<string, string>;
 }
 
 const MarginTop = styled.div`

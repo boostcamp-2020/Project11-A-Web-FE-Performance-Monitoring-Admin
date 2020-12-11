@@ -1,11 +1,12 @@
 import React, { FC, Dispatch } from 'react';
-import { Event } from '@state/type';
+import { Event, Tags } from '@store/type';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SummarizedTags from './Tags/SummarizedTags';
 import EventHeader from './EventHeader';
 import ErrorStack from './ErrorStack/ErrorStack';
 import Info from './Info/Info';
+import EventDetailHeader from './EventDetailHeader';
 
 interface Props {
   event: Event;
@@ -34,16 +35,26 @@ const DetailsTab: FC<Props> = ({
     userIp,
     level,
     serverName,
+    url,
+    version,
+    sdk,
+    browser,
+    os,
   } = event;
 
-  const eventTags = {
+  const eventTags: Tags = {
     environment,
     release,
     transaction,
     userIp,
     level,
     serverName,
+    url,
+    version,
   };
+  eventTags.sdk = sdk && Object.values(sdk).reverse().join(' ');
+  eventTags.browser = browser && Object.values(browser).reverse().join(' ');
+  eventTags.os = os && Object.values(os).reverse().join(' ');
 
   const hasTags = Object.values(eventTags).reduce(
     (prev, cur) => prev || cur !== undefined,
@@ -66,10 +77,18 @@ const DetailsTab: FC<Props> = ({
           errorContexts={event.errorContexts}
         />
       )}
-      {event.createdBy && <Info title="USER" datas={event.createdBy} />}
-      {event.browser && <Info title="BROWSER" datas={event.browser} />}
-      {event.os && <Info title="OPERATING SYSTEM" datas={event.os} />}
-      {event.sdk && <Info title="SDK" datas={event.sdk} />}
+      {event.contexts && (
+        <>
+          <EventDetailHeader title="CONTEXTS" />
+          {Object.entries(event.contexts).map((context) => (
+            <Info
+              key={context[0] + context[1]}
+              title={context[0]}
+              datas={context[1]}
+            />
+          ))}
+        </>
+      )}
     </Paper>
   );
 };

@@ -30,7 +30,7 @@ module.exports = {
           ['@common', './src/common'],
           ['@hooks', './src/hooks'],
           ['@pages', './src/pages'],
-          ['@state', './src/state'],
+          ['@store', './src/store'],
           ['@themes', './src/themes'],
           ['@utils', './src/utils'],
           ['@public', './public'],

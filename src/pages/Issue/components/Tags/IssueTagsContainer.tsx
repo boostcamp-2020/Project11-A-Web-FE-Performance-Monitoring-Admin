@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import { SearchResult } from '@state/type';
+import { SearchResult } from '@store/type';
 import getIssueTags from '@api/issue/getIssueTags';
 import makeSearchResults from '@utils/makeSearchResults';
 import IssueTags from './IssueTags';

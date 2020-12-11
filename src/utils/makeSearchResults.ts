@@ -1,4 +1,4 @@
-import { SearchResult } from '@state/type';
+import { SearchResult } from '@store/type';
 
 const makeSearchResults = (result: Record<string, any>): SearchResult[] => {
   const refinedResults: SearchResult[] = [];

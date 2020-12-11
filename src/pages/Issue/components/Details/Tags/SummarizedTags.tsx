@@ -18,6 +18,7 @@ interface Props {
 
 const Tags = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const SummarizedTags: FC<Props> = ({ tags }: Props) => {

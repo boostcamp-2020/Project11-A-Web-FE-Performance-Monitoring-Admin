@@ -10,7 +10,7 @@ import {
   Paper,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Event } from '@state/type';
+import { Event } from '@store/type';
 
 interface Props {
   events: Event[];
@@ -68,7 +68,7 @@ const EventsTable: FC<Props> = ({ events }: Props) => {
                 return (
                   <TableCell align="left" key={idx}>
                     {typeof value === 'object'
-                      ? Object.values(value).join()
+                      ? Object.values(value).reverse().join(' ')
                       : value}
                   </TableCell>
                 );

@@ -1,5 +1,5 @@
 import { authAxios } from '@utils/axios';
-import { Issue } from '@state/type';
+import { Issue } from '@store/type';
 
 const getIssue = async (issueId: string): Promise<Issue | undefined> => {
   const { data: issue } = await authAxios(`/issue/${issueId}`);

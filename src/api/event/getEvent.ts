@@ -1,5 +1,5 @@
 import { authAxios } from '@utils/axios';
-import { Event } from '@state/type';
+import { Event } from '@store/type';
 
 const getEvent = async (eventId: string): Promise<Event | undefined> => {
   const { data: event } = await authAxios.get(`/event/${eventId}`);

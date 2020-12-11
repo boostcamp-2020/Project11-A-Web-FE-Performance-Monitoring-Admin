@@ -1,5 +1,5 @@
 import { authAxios } from '@utils/axios';
-import { SearchEvent, Event, Docs } from '@state/type';
+import { SearchEvent, Event, Docs } from '@store/type';
 
 const getEventList = async (
   issueId: string,

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StackTrace } from '@state/type';
+import { StackTrace } from '@store/type';
 import EventDetailHeader from '../EventDetailHeader';
 import StackHeader from './StackHeader';
 import StackContext from './StackContext';
