@@ -11,6 +11,7 @@ import {
 import searchMember from '@api/project/searchMember';
 import { User } from '@store/type';
 
+const MIN_SEARCH_TEXT_LENGTH = 3;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -104,7 +105,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
           </Grid>
           <Grid className={classes.contentBody} item xs={6}>
             <TextField
-              error={searchQuery.length < 3}
+              error={searchQuery.length < MIN_SEARCH_TEXT_LENGTH}
               helperText={errorText}
               id="search-query"
               label="검색할 사용자 닉네임"
@@ -112,7 +113,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
               onChange={({ target: { value } }) => {
                 setQuery(value);
                 setErrorText(
-                  searchQuery.length < 3 ? '검색어가 너무 짧습니다.' : '',
+                  searchQuery.length < MIN_SEARCH_TEXT_LENGTH ? '검색어가 너무 짧습니다.' : '',
                 );
               }}
             />
@@ -120,7 +121,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
               className={classes.inputSet}
               variant="contained"
               color="primary"
-              disabled={searchQuery.length < 3}
+              disabled={searchQuery.length < MIN_SEARCH_TEXT_LENGTH}
               onClick={handleSearchButtonClick}
             >
               찾기

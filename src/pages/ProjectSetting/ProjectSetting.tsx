@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container, Button } from '@material-ui/core';
-import modifiProject from '@api/project/modifiProject';
 import { User } from '@store/type';
+import modifyProject from '@api/project/modifyProject';
 import AppbarShift from '../layout/AppbarShift';
 import FixedInformation from './components/FixedInformation';
 import ProjectNameInput from './components/ProjectNameInput';
 import ProjectAdmin from './components/ProjectAdmin';
 import ProjectMember from './components/ProjectMember';
 
+const MIN_PROJECT_NAME_LENGTH = 4;
 interface Props {
   project: any;
   user: any;
@@ -48,12 +49,12 @@ const ProjectSetting = ({
   const [projectMembers, setMembers] = useState<User[]>(project.members);
   const [projectAdmins, setAdmins] = useState<User[]>(project.admins);
   const projectId = project._id;
-  const owner = project.owner === undefined ? 'loding' : project.owner.nickname; // project.owner.nickname;
-  const { platform, sdkToken } = project;
+  const owner = project.owner===undefined?"loading":project.owner.nickname; // project.owner.nickname;
+  const {platform,sdkToken} = project;
 
   const handlePatcheButton = () => {
-    modifiProject(projectId, projectName, projectAdmins, projectMembers);
-  };
+    modifyProject(projectId,projectName,projectAdmins,projectMembers);
+  }
 
   return (
     <div className={classes.root}>
@@ -73,7 +74,9 @@ const ProjectSetting = ({
                 color="secondary"
                 className={classes.button}
                 onClick={handlePatcheButton}
-                disabled={projectName.length < 4}
+                disabled={
+                  projectName.length < MIN_PROJECT_NAME_LENGTH
+                }
               >
                 프로젝트 수정하기
               </Button>
