@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { ErrorContext } from '@/state/type';
+import { ErrorContext } from '@store/type';
 
 interface Props {
   contexts: ErrorContext;
