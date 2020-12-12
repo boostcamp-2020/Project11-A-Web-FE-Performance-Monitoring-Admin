@@ -6,7 +6,7 @@ import SignUp from '@pages/SignUp/signup';
 import NewProjectContainer from '@pages/NewProject/newProjectContainer';
 import ProjectListContainer from '@pages/ProjectList/ProjectListContainer';
 import IssueListContainer from '@/pages/IssueList/IssueListContainer';
-import Setting from '@pages/ProjectSetting/setting';
+import ProjectSettingContainer from '@pages/ProjectSetting/ProjectSettingContainer';
 import IssueContainer from '@pages/Issue/IssueContainer';
 import PrivateRouter from '@pages/PrivateRouter/PrivateRouter';
 
@@ -23,7 +23,7 @@ export default function Router(): JSX.Element {
           <Route exact path="/newproject" component={NewProjectContainer} />
           <Route exact path="/project" component={ProjectListContainer} />
           <Route exact path="/issue" component={IssueListContainer} />
-          <Route exact path="/setting" component={Setting} />
+          <Route exact path="/setting" component={ProjectSettingContainer} />
           <Route exact path="/issuedetail/:id" component={IssueContainer} />
         </PrivateRouter>
       </Switch>
