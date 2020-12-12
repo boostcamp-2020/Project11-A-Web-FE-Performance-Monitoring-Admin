@@ -7,6 +7,7 @@ import { Issue } from '@state/type';
 import DetailsTabContainer from './Details/DetailsTabContainer';
 import EventsTabContainer from './Events/EventsTabContainer';
 import IssueTagsContainer from './Tags/IssueTagsContainer';
+import CommentsTabContainer from './Comments/CommentsTabContainer';
 
 const useStyles = makeStyles({
   root: {
@@ -61,6 +62,9 @@ const IssueTabs: FC<Props> = ({ issue }: Props): JSX.Element => {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <EventsTabContainer issueId={issue._id} />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <CommentsTabContainer issueId={issue._id} />
       </TabPanel>
     </Paper>
   );
