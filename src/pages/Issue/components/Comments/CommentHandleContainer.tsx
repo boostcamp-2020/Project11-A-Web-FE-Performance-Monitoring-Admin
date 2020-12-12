@@ -46,7 +46,7 @@ const Buttons = styled.div`
 interface Props {
   issueId: string;
   isPost: boolean;
-  changeRenderFlip: any;
+  changeRenderFlip: { (): void };
   commentId?: string;
   setIsEditing?: Dispatch<SetStateAction<boolean>>;
 }
@@ -76,7 +76,7 @@ const CommentHandleContainer: FC<Props> = ({
     setValue(newValue);
   };
 
-  const textAreaBlur = (event: any): void => {
+  const textAreaBlur = (event: React.FocusEvent<HTMLInputElement>): void => {
     event.preventDefault();
     setText(event.target.value);
   };
