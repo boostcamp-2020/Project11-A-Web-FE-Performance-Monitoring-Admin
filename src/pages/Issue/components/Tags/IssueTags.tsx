@@ -9,16 +9,14 @@ let chartColorIdx = 0;
 const chartColorNum = chartColors.length;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      flexGrow: 1,
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+    },
+    tagTab: {
+      padding: 20,
+      backgroundColor: theme.palette.primary.light,
     },
   }),
 );
@@ -32,7 +30,7 @@ const IssueTags: FC<Props> = ({ searchResults, setTagInfo }: Props) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Paper className={classes.tagTab}>
       <Grid container spacing={3}>
         {searchResults.map((searchResult: SearchResult) => {
           return (
@@ -48,7 +46,7 @@ const IssueTags: FC<Props> = ({ searchResults, setTagInfo }: Props) => {
           );
         })}
       </Grid>
-    </div>
+    </Paper>
   );
 };
 
