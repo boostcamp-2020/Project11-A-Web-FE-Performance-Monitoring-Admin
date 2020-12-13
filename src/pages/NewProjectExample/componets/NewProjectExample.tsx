@@ -9,8 +9,8 @@ import {
 } from '@material-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import AppbarShift from '../layout/AppbarShift';
-import ManualBar from './componets/ManualBar';
+import AppbarShift from '../../layout/AppbarShift';
+import ManualBar from './ManualBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,12 +38,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 interface prop {
   token: string;
-  platform:string;
+  platform: string;
 }
 const NewProjectExample = (props: prop): JSX.Element => {
   const classes = useStyles();
 
-  const code = props.platform!=='Express'?`          
+  const code =
+    props.platform !== 'Express'
+      ? `          
   const { init, captureError } = require('@santry/browser');
 
   const dsn = '${props.token}@118.67.129.120:3000/sdk/event';
@@ -58,8 +60,8 @@ const NewProjectExample = (props: prop): JSX.Element => {
     }
   };
 
-  testError();`:
-  `
+  testError();`
+      : `
   // All controllers should live here
   const express = require('express');
   const {
