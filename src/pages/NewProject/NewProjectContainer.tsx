@@ -1,29 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
+import { useHistory } from 'react-router-dom';
 import { User } from '@store/type';
-import NewProjectForm from './NewProjectForm';
+import create from '@api/project/create';
+import NewProjectForm from './components/NewProject';
 
-const NewProjectContainer = (): JSX.Element => {
-  const [seletedPlatform, setPlatform] = useState('아직 선택하지 않았습니다.');
+const NewProjectContainer: FC = () => {
+  const [selectedPlatform, setPlatform] = useState('아직 선택하지 않았습니다.');
   const [projectName, setProjectName] = useState('New Project');
   const [alertSetting, setAlert] = useState('거부');
   const [alertMails, setMails] = useState<string[]>([]);
   const [projectMembers, setMembers] = useState<User[]>([]);
   const [projectAdmins, setAdmins] = useState<User[]>([]);
 
-  const prop = {
-    seletedPlatform,
-    setPlatform,
-    projectName,
-    setProjectName,
-    alertSetting,
-    setAlert,
-    alertMails,
-    setMails,
-    projectMembers,
-    setMembers,
-    projectAdmins,
-    setAdmins,
+  const history = useHistory();
+
+  const handleCreateButton = async () => {
+    const data = {
+      platform: selectedPlatform,
+      projectName,
+      emails: alertMails,
+      admins: projectAdmins,
+      members: projectMembers,
+    };
+    const token = await create(data);
+
+    history.push('/newprojectexample', {
+      token,
+      platform: selectedPlatform,
+    });
   };
-  return <NewProjectForm {...prop} />;
+
+  return (
+    <NewProjectForm
+      selectedPlatform={selectedPlatform}
+      setPlatform={setPlatform}
+      projectName={projectName}
+      setProjectName={setProjectName}
+      alertSetting={alertSetting}
+      setAlert={setAlert}
+      alertMails={alertMails}
+      setMails={setMails}
+      projectMembers={projectMembers}
+      setMembers={setMembers}
+      projectAdmins={projectAdmins}
+      setAdmins={setAdmins}
+      handleCreateButton={handleCreateButton}
+    />
+  );
 };
+
 export default NewProjectContainer;
