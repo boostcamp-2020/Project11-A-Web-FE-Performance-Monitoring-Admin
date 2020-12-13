@@ -8,11 +8,18 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
 import React, { useState } from 'react';
 import login from '@api/auth/login';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles((theme) => ({
+  background: {
+    backgroundImage: `url('public/img/background.jpg')`,
+    backgroundSize: 'cover',
+    height: '100vh',
+    position: 'relative',
+  },
   logo: {
     marginTop: theme.spacing(3),
     width: '400px',
@@ -152,85 +159,87 @@ export default function SignIn(): JSX.Element {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <img
-        src="public/img/santry_eye.png"
-        className={classes.eye}
-        id="eye"
-        alt="eye"
-      />
-      <img
-        src="public/img/santry_noeye.png"
-        className={classes.logo}
-        alt="logo"
-      />
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            onChange={({ target: { value } }) => setEmail(value)}
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onFocus={idAnimationPlay}
-            onBlur={AnimationDefault}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            onChange={({ target: { value } }) => setPassword(value)}
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onFocus={pwAnimationPlay}
-            onBlur={AnimationDefault}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="button"
-            fullWidth
-            onClick={handleClick}
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Button
-            type="button"
-            fullWidth
-            variant="contained"
-            href={`${process.env.API_URL}/api/auth/github`}
-            color="primary"
-            className={classes.github}
-          >
-            <GitHubIcon />
-            &nbsp;Sign In With Github
-          </Button>
-          <Grid container>
-            <Grid item xs />
-            <Grid item>
-              <Link href="/signup">Don&apos;t have an account? Sign Up</Link>
+    <div className={classes.background}>
+      <Container component="main" maxWidth="xs">
+        <img
+          src="public/img/santry_eye.png"
+          className={classes.eye}
+          id="eye"
+          alt="eye"
+        />
+        <img
+          src="public/img/santry_noeye.png"
+          className={classes.logo}
+          alt="logo"
+        />
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={classes.form}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              onChange={({ target: { value } }) => setEmail(value)}
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onFocus={idAnimationPlay}
+              onBlur={AnimationDefault}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              onChange={({ target: { value } }) => setPassword(value)}
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onFocus={pwAnimationPlay}
+              onBlur={AnimationDefault}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="button"
+              fullWidth
+              onClick={handleClick}
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign In
+            </Button>
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              href={`${process.env.API_URL}/api/auth/github`}
+              color="primary"
+              className={classes.github}
+            >
+              <GitHubIcon />
+              &nbsp;Sign In With Github
+            </Button>
+            <Grid container>
+              <Grid item xs />
+              <Grid item>
+                <Link href="/signup">Don&apos;t have an account? Sign Up</Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }
