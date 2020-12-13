@@ -3,6 +3,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import styled from '@emotion/styled';
 import convertDate from '@utils/convertDate';
+import deleteComment from '@api/comment/deleteComment';
 import CommentMarkdownConvertedArea from './CommentMarkdownConvertedArea';
 
 const BoxHeader = styled.div`
@@ -78,6 +79,7 @@ interface Props {
   timestamp: string;
   comment: string;
   setIsEditing: Dispatch<SetStateAction<boolean>>;
+  changeRenderFlip: { (): void };
 }
 const CommentBox: FC<Props> = ({
   commentId,
@@ -85,7 +87,15 @@ const CommentBox: FC<Props> = ({
   timestamp,
   comment,
   setIsEditing,
+  changeRenderFlip,
 }: Props) => {
+  const handleDeleteClick = async () => {
+    const result = await deleteComment(commentId);
+    changeRenderFlip();
+    /* if (result) changeRenderFlip();
+    else alert('댓글 등록 실패!'); */
+  };
+
   const classes = useStyles();
   return (
     <Paper className={classes.paper} elevation={4}>
@@ -94,7 +104,7 @@ const CommentBox: FC<Props> = ({
           <Nick>{nick}</Nick>
           <Buttons>
             <EditButton onClick={() => setIsEditing(true)}>Edit</EditButton>|
-            <DeleteButton>Remove</DeleteButton>
+            <DeleteButton onClick={handleDeleteClick}>Remove</DeleteButton>
           </Buttons>
         </NickButtonWrapper>
         <TimeStamp>{convertDate(timestamp)}</TimeStamp>

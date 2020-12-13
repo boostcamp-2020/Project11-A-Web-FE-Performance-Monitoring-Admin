@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import CommentHandleContainer from './CommentHandleContainer';
 import CommentBox from './CommentBox';
 
@@ -8,7 +8,7 @@ interface Props {
   timestamp: string;
   comment: string;
   commentId: string;
-  changeRenderFlip: any;
+  changeRenderFlip: { (): void };
 }
 
 const CommentBoxContainer: FC<Props> = ({
@@ -38,6 +38,7 @@ const CommentBoxContainer: FC<Props> = ({
       timestamp={timestamp}
       comment={comment}
       setIsEditing={setIsEditing}
+      changeRenderFlip={changeRenderFlip}
     />
   );
 };
