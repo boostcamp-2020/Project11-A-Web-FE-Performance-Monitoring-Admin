@@ -2,6 +2,7 @@ import React, { FC, Dispatch, SetStateAction } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import styled from '@emotion/styled';
+import convertDate from '@utils/convertDate';
 import CommentMarkdownConvertedArea from './CommentMarkdownConvertedArea';
 
 const BoxHeader = styled.div`
@@ -96,7 +97,7 @@ const CommentBox: FC<Props> = ({
             <DeleteButton>Remove</DeleteButton>
           </Buttons>
         </NickButtonWrapper>
-        <TimeStamp>{timestamp}</TimeStamp>
+        <TimeStamp>{convertDate(timestamp)}</TimeStamp>
       </BoxHeader>
       <Paper className={classes.paper} elevation={2}>
         <CommentMarkdownConvertedArea text={comment} />
