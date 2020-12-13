@@ -14,10 +14,16 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles((theme) => ({
   background: {
+    backgroundSize: 'cover',
+    height: '100vh',
+    position: 'relative',
+  },
+  backgroundMove:{
     backgroundImage: `url('public/img/background.jpg')`,
     backgroundSize: 'cover',
     height: '100vh',
     position: 'relative',
+    animation: `$fadeIn 2000ms ${theme.transitions.easing.easeInOut}` ,
   },
   logo: {
     marginTop: theme.spacing(3),
@@ -63,6 +69,14 @@ const useStyles = makeStyles((theme) => ({
     "100%": {
       opacity: 1,
       transform: "translateY(0)"
+    }
+  },
+  "@keyframes fadeIn":{
+    "0%": {
+      opacity: 0,
+    },
+    "100%": {
+      opacity: 1,
     }
   }
 }));
@@ -177,7 +191,11 @@ export default function SignIn(): JSX.Element {
   };
   const backGroundChange = () => {
     const animations = document.getAnimations();
+    const back = document.getElementById('background');
     animations.forEach((animation) => animation.play());
+    if(back){
+      back.className=classes.backgroundMove;
+    }
     setMent("Sign in");
   }
 
