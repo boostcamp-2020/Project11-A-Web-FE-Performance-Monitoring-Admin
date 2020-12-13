@@ -8,7 +8,6 @@ import {
   Paper,
   Divider,
 } from '@material-ui/core';
-import searchMember from '@api/project/searchMember';
 import { User } from '@store/type';
 
 const MIN_SEARCH_TEXT_LENGTH = 3;
@@ -37,20 +36,29 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface prop {
-  projectAdmins: User[];
-  setAdmins: React.Dispatch<React.SetStateAction<User[]>>;
+  title: string;
+  projectMembers: User[];
+  setMembers: React.Dispatch<React.SetStateAction<User[]>>;
+  handleSearchButtonClick: (searchQuery: any) => () => Promise<void>;
+  searchResult: User[];
 }
 
-const ProjectAdmin = (props: prop): JSX.Element => {
+const ProjectMember = ({
+  title,
+  projectMembers,
+  setMembers,
+  handleSearchButtonClick,
+  searchResult,
+}: prop): JSX.Element => {
   const classes = useStyles();
   const [searchQuery, setQuery] = useState('');
   const [errorText, setErrorText] = useState('');
-  const [searchResult, setSearchResult] = useState<User[]>([]);
+
   const handleDeleteMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    props.setAdmins(
-      props.projectAdmins.filter(
+    setMembers(
+      projectMembers.filter(
         (member) => event.currentTarget.value !== member._id,
       ),
     );
@@ -58,17 +66,13 @@ const ProjectAdmin = (props: prop): JSX.Element => {
   const handleAddMemberClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    props.setAdmins([
-      ...props.projectAdmins,
+    setMembers([
+      ...projectMembers,
       {
         _id: event.currentTarget.value,
         nickname: String(event.currentTarget.textContent),
       },
     ]);
-  };
-  const handleSearchButtonClick = async () => {
-    const searchArray = await searchMember(searchQuery);
-    setSearchResult(searchArray);
   };
 
   return (
@@ -76,9 +80,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
       <Paper>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography className={classes.contentTitle}>
-              프로젝트의 담당자들을 선택해주세요.
-            </Typography>
+            <Typography className={classes.contentTitle}>{title}</Typography>
           </Grid>
           <Grid
             className={classes.contentBody}
@@ -87,7 +89,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
             xs={12}
             spacing={0}
           >
-            {props.projectAdmins.map((member) => (
+            {projectMembers.map((member) => (
               <Grid key={member._id} item xs={2}>
                 <Button
                   variant="outlined"
@@ -113,7 +115,9 @@ const ProjectAdmin = (props: prop): JSX.Element => {
               onChange={({ target: { value } }) => {
                 setQuery(value);
                 setErrorText(
-                  searchQuery.length < MIN_SEARCH_TEXT_LENGTH ? '검색어가 너무 짧습니다.' : '',
+                  searchQuery.length < MIN_SEARCH_TEXT_LENGTH
+                    ? '검색어가 너무 짧습니다.'
+                    : '',
                 );
               }}
             />
@@ -122,7 +126,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
               variant="contained"
               color="primary"
               disabled={searchQuery.length < MIN_SEARCH_TEXT_LENGTH}
-              onClick={handleSearchButtonClick}
+              onClick={handleSearchButtonClick(searchQuery)}
             >
               찾기
             </Button>
@@ -135,7 +139,7 @@ const ProjectAdmin = (props: prop): JSX.Element => {
             spacing={1}
           >
             {searchResult.map((member) => (
-              <Grid key={`a${member._id}`} item xs={3}>
+              <Grid key={`m${member._id}`} item xs={3}>
                 <Button
                   variant="outlined"
                   value={member._id}
@@ -151,4 +155,4 @@ const ProjectAdmin = (props: prop): JSX.Element => {
     </Grid>
   );
 };
-export default ProjectAdmin;
+export default ProjectMember;

@@ -2,11 +2,13 @@ import React, { useEffect, useState, FC } from 'react';
 import { useSelector, DefaultRootState, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import getSingleProject from '@api/project/getSingleProject';
+import modifyProject from '@api/project/modifyProject';
 import deleteProject from '@api/project/deleteProject';
 import AlertDialog from '@common/AlertDialog';
 import { setCurrentProject } from '@store/curProject/curProjectActions';
+import { ProjectData, User } from '@store/type';
 
-import ProjectSetting from './ProjectSetting';
+import ProjectSetting from './components/ProjectSetting';
 
 interface State extends DefaultRootState {
   curProjectReducer: {
@@ -20,7 +22,7 @@ interface State extends DefaultRootState {
 }
 
 const ALERT_TITLE = '선택된 프로젝트가 없습니다';
-const ALERT_CONTENT = '프로젝트를 선택한 후 이슈를 확인해주세요';
+const ALERT_CONTENT = '프로젝트를 선택한 후 설정을 확인해주세요';
 
 const ProjectSettingContainer: FC = () => {
   const { projectId } = useSelector((state: State) => state.curProjectReducer);
@@ -36,15 +38,28 @@ const ProjectSettingContainer: FC = () => {
       />
     );
   }
-  const [project, setProject] = useState({});
+  const [project, setProject] = useState<ProjectData>({} as ProjectData);
+  const [projectName, setProjectName] = useState('');
+  const [projectMembers, setMembers] = useState<User[]>([]);
+  const [projectAdmins, setAdmins] = useState<User[]>([]);
+
   useEffect(() => {
     (async () => {
       const projectResult = await getSingleProject(projectId);
-      if (projectResult) setProject(projectResult);
+      if (projectResult) {
+        setProject(projectResult);
+        setProjectName(projectResult.projectName);
+        setMembers(projectResult.members);
+        setAdmins(projectResult.admins);
+      }
     })();
   }, []);
 
   if (JSON.stringify(project) === '{}') return <></>;
+
+  const handlePatchButton = () => {
+    modifyProject(projectId, projectName, projectAdmins, projectMembers);
+  };
 
   const handleDeleteButton = (projectIdToDelete: string) => {
     alert('정말로 삭제하시겠습니까??');
@@ -57,6 +72,13 @@ const ProjectSettingContainer: FC = () => {
     <ProjectSetting
       project={project}
       user={user}
+      projectName={projectName}
+      setProjectName={setProjectName}
+      projectMembers={projectMembers}
+      setMembers={setMembers}
+      projectAdmins={projectAdmins}
+      setAdmins={setAdmins}
+      handlePatchButton={handlePatchButton}
       handleDeleteButton={handleDeleteButton}
     />
   );
