@@ -11,7 +11,6 @@ import { Paper, Tabs, Tab, Button } from '@material-ui/core';
 import styled from '@emotion/styled';
 import addComment from '@api/comment/addComment';
 import editComment from '@api/comment/editComment';
-import { Comment } from '@state/type';
 import CommentTextArea from './CommentTextArea';
 import CommentMarkdownConvertedArea from './CommentMarkdownConvertedArea';
 
@@ -85,9 +84,12 @@ const CommentHandleContainer: FC<Props> = ({
 
   const handleAddClick = async () => {
     const result = await addComment(issueId, text);
+    setText('');
     changeRenderFlip();
-    /* if (result) changeRenderFlip();
-    else alert('댓글 등록 실패!'); */
+    if (result) {
+      setText('');
+      changeRenderFlip();
+    } else alert('댓글 등록 실패!');
   };
 
   const handleEditClick = async () => {
@@ -96,8 +98,8 @@ const CommentHandleContainer: FC<Props> = ({
       setIsEditing(false);
     }
     changeRenderFlip();
-    /* if (result) changeRenderFlip();
-    else alert('댓글 수정 실패!'); */
+    if (result) changeRenderFlip();
+    else alert('댓글 수정 실패!');
   };
 
   useEffect(() => {

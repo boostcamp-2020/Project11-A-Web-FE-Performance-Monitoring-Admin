@@ -92,8 +92,8 @@ const CommentBox: FC<Props> = ({
   const handleDeleteClick = async () => {
     const result = await deleteComment(commentId);
     changeRenderFlip();
-    /* if (result) changeRenderFlip();
-    else alert('댓글 등록 실패!'); */
+    if (result) changeRenderFlip();
+    else alert('댓글 삭제 실패!');
   };
 
   const classes = useStyles();

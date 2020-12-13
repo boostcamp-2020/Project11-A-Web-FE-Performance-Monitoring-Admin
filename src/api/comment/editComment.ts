@@ -4,10 +4,10 @@ const editComment = async (
   commentId: string,
   comment: string,
 ): Promise<boolean> => {
-  const { data: result } = await authAxios.patch(`/comment/${commentId}`, {
+  const result = await authAxios.patch(`/comment/${commentId}`, {
     comment,
   });
-  if (result.status === 201) return true;
+  if (result.status === 200) return true;
   return false;
 };
 

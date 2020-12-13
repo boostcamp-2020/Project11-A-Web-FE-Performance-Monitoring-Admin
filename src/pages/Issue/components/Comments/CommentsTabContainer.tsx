@@ -26,7 +26,7 @@ interface Props {
 }
 
 const DEFAULT_PAGE = 1;
-const DEFAULT_LIMIT = 10;
+const DEFAULT_LIMIT = 100;
 
 const CommentsTabContainer: FC<Props> = ({ issueId }: Props) => {
   const classes = useStyles();

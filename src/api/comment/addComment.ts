@@ -4,7 +4,7 @@ const addComment = async (
   issueId: string,
   comment: string,
 ): Promise<boolean> => {
-  const { data: result } = await authAxios.post(`/comment`, {
+  const result = await authAxios.post(`/comment`, {
     issueId,
     comment,
   });
