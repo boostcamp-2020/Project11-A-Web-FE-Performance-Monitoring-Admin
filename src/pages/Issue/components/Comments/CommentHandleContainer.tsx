@@ -49,6 +49,7 @@ interface Props {
   changeRenderFlip: { (): void };
   commentId?: string;
   setIsEditing?: Dispatch<SetStateAction<boolean>>;
+  editingText?: string;
 }
 
 interface PanelProps {
@@ -67,6 +68,7 @@ const CommentHandleContainer: FC<Props> = ({
   changeRenderFlip,
   commentId,
   setIsEditing,
+  editingText,
 }: Props) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
@@ -83,7 +85,6 @@ const CommentHandleContainer: FC<Props> = ({
 
   const handleAddClick = async () => {
     const result = await addComment(issueId, text);
-    setText('');
     changeRenderFlip();
     /* if (result) changeRenderFlip();
     else alert('댓글 등록 실패!'); */
@@ -101,7 +102,13 @@ const CommentHandleContainer: FC<Props> = ({
 
   useEffect(() => {
     if (textAreaRef.current) {
-      textAreaRef.current.value = text;
+      console.log(text);
+      textAreaRef.current.value = '';
+      if (text !== '') {
+        textAreaRef.current.value = text;
+      } else if (editingText) {
+        textAreaRef.current.value = editingText;
+      }
     }
   });
 

@@ -20,7 +20,6 @@ const CommentBoxContainer: FC<Props> = ({
   changeRenderFlip,
 }: Props) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
-
   if (isEditing)
     return (
       <CommentHandleContainer
@@ -29,6 +28,7 @@ const CommentBoxContainer: FC<Props> = ({
         isPost={!isEditing}
         setIsEditing={setIsEditing}
         changeRenderFlip={changeRenderFlip}
+        editingText={comment}
       />
     );
   return (
