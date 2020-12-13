@@ -2,8 +2,8 @@ import React, { FC, useState, useEffect } from 'react';
 import { SearchResult } from '@store/type';
 import getIssueTags from '@api/issue/getIssueTags';
 import makeSearchResults from '@utils/makeSearchResults';
-import IssueTags from './IssueTags';
-import TagDonutChart from './TagDonutChart';
+import IssueTags from './components/IssueTags';
+import TagDonutChart from './components/TagDonutChart';
 
 interface Props {
   issueId: string;

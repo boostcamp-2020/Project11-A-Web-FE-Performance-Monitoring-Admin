@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Container } from '@material-ui/core';
 import { Issue } from '@store/type';
-import AppbarShift from '../layout/AppbarShift';
-import IssueTabs from './components/IssueTabs';
-import IssueHeader from './components/IssueHeader';
+import AppbarShift from '../../layout/AppbarShift';
+import IssueTabs from './IssueTabs';
+import IssueHeader from './IssueHeader';
 
 interface Props {
   issue: Issue;

@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import getEventList from '@api/event/getEventList';
 import { Event, SearchEvent } from '@store/type';
-import EventsTab from './EventsTab';
+import EventsTab from './components/EventsTab';
 
 interface Props {
   issueId: string;
