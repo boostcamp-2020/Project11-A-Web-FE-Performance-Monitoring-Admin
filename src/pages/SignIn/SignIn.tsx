@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import React, { useState } from 'react';
 import login from '@api/auth/login';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -46,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    zIndex: 1,
+    animation: `$riseUp 3000ms ${theme.transitions.easing.easeInOut}`,
+    animationPlayState: 'paused',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -53,6 +55,16 @@ const useStyles = makeStyles((theme) => ({
   github: {
     margin: theme.spacing(3, 0, 2),
   },
+  "@keyframes riseUp":{
+    "0%": {
+      opacity: 0,
+      transform: "translateY(20%)"
+    },
+    "100%": {
+      opacity: 1,
+      transform: "translateY(0)"
+    }
+  }
 }));
 
 const idAnimationPlay = () => {
@@ -80,41 +92,46 @@ const idAnimationPlay = () => {
         transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
       },
     ],
-    { duration: 10000, iterations: Infinity },
+    { duration: 4000, iterations: Infinity },
   );
 };
 const pwAnimationPlay = () => {
   document.getElementById('eye')?.animate(
     [
       {
-        transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
+        transform: 'rotateX(0deg) rotateY(0deg)',
+        offset: 0,
       },
       {
-        transform: 'rotateX(10deg) rotateY(15deg) translateY(5px)',
+        transform: 'rotateX(70deg) rotateY(15deg)',
+        offset: 0.1,
       },
       {
-        transform: 'rotateX(70deg) rotateY(30deg) translateY(10px)',
+        transform: 'rotateX(70deg) rotateY(15deg)',
+        offset: 0.35,
       },
       {
-        transform: 'rotateX(70deg) rotateY(0deg) translateY(5px)',
+        transform: 'rotateX(70deg) rotateY(-30deg)',
+        offset: 0.4,
       },
       {
-        transform: 'rotateX(70deg) rotateY(-30deg) translateY(0px)',
+        transform: 'rotateX(70deg) rotateY(-30deg)',
+        offset: 0.6,
       },
       {
-        transform: 'rotateX(70deg) rotateY(0deg) translateY(5px)',
+        transform: 'rotateX(70deg) rotateY(30deg)',
+        offset: 0.65,
       },
       {
-        transform: 'rotateX(60deg) rotateY(30deg) translateY(10px)',
+        transform: 'rotateX(70deg) rotateY(30deg)',
+        offset: 0.9,
       },
       {
-        transform: 'rotateX(10deg) rotateY(15deg) translateY(5px)',
-      },
-      {
-        transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
+        transform: 'rotateX(0deg) rotateY(0deg)',
+        offset: 1,
       },
     ],
-    { duration: 10000, iterations: Infinity },
+    { duration: 6000, iterations: Infinity },
   );
 };
 
@@ -146,6 +163,7 @@ export default function SignIn(): JSX.Element {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [ment, setMent] = useState('Click Me');
 
   const handleClick = async () => {
     try {
@@ -157,27 +175,34 @@ export default function SignIn(): JSX.Element {
       setPassword('');
     }
   };
+  const backGroundChange = () => {
+    const animations = document.getAnimations();
+    animations.forEach((animation) => animation.play());
+    setMent("Sign in");
+  }
 
   return (
-    <div className={classes.background}>
+    <div id="background" className={classes.background}>
       <Container component="main" maxWidth="xs">
-        <img
-          src="public/img/santry_eye.png"
-          className={classes.eye}
-          id="eye"
-          alt="eye"
-        />
-        <img
-          src="public/img/santry_noeye.png"
-          className={classes.logo}
-          alt="logo"
-        />
+        <div onClick={backGroundChange}>
+          <img
+            src="public/img/santry_eye.png"
+            className={classes.eye}
+            id="eye"
+            alt="eye"
+          />
+          <img
+            src="public/img/santry_noeye.png"
+            className={classes.logo}
+            alt="logo"
+          />
+        </div>
         <CssBaseline />
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
-            Sign in
+            {ment}
           </Typography>
-          <form className={classes.form}>
+          <form id="form" className={classes.form}>
             <TextField
               variant="outlined"
               margin="normal"
