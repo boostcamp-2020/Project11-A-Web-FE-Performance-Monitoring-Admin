@@ -1,5 +1,4 @@
-import React, { FC, MouseEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Card,
@@ -10,7 +9,6 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Project } from '@store/type';
-import { setCurrentProject } from '@store/curProject/curProjectActions';
 
 const useStyles = makeStyles({
   link: {
@@ -44,23 +42,17 @@ const useStyles = makeStyles({
 interface Props {
   project: Project;
   projectNumber: number;
+  handleClickProject: (projectId: string) => (event: any) => void;
 }
 const SimpleCard: FC<Props> = ({
   project,
   projectNumber,
+  handleClickProject,
 }: Props): JSX.Element => {
   const classes = useStyles();
 
-  const dispatch = useDispatch();
-
-  const handleClick = (projectId: string) => (
-    event: MouseEvent<HTMLDivElement>,
-  ) => {
-    dispatch(setCurrentProject(projectId));
-  };
-
   return (
-    <Card className={classes.root} onClick={handleClick(project._id)}>
+    <Card className={classes.root} onClick={handleClickProject(project._id)}>
       <CardContent>
         <Typography
           className={classes.title}
