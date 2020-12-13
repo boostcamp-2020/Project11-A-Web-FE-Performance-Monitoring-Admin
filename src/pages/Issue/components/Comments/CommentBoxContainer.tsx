@@ -28,7 +28,7 @@ const CommentBoxContainer: FC<Props> = ({
         isPost={!isEditing}
         setIsEditing={setIsEditing}
         changeRenderFlip={changeRenderFlip}
-        editingText={comment}
+        comment={comment}
       />
     );
   return (

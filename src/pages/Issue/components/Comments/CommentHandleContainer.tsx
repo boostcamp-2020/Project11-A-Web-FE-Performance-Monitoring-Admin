@@ -49,7 +49,7 @@ interface Props {
   changeRenderFlip: { (): void };
   commentId?: string;
   setIsEditing?: Dispatch<SetStateAction<boolean>>;
-  editingText?: string;
+  comment?: string;
 }
 
 interface PanelProps {
@@ -68,11 +68,11 @@ const CommentHandleContainer: FC<Props> = ({
   changeRenderFlip,
   commentId,
   setIsEditing,
-  editingText,
+  comment,
 }: Props) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [text, setText] = useState<string>('');
+  const [text, setText] = useState<string>(comment || '');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -101,15 +101,7 @@ const CommentHandleContainer: FC<Props> = ({
   };
 
   useEffect(() => {
-    if (textAreaRef.current) {
-      console.log(text);
-      textAreaRef.current.value = '';
-      if (text !== '') {
-        textAreaRef.current.value = text;
-      } else if (editingText) {
-        textAreaRef.current.value = editingText;
-      }
-    }
+    if (textAreaRef.current) textAreaRef.current.value = text;
   });
 
   return (
@@ -142,7 +134,9 @@ const CommentHandleContainer: FC<Props> = ({
             <Button
               variant="contained"
               color="secondary"
-              onClick={() => setIsEditing(false)}
+              onClick={() => {
+                setIsEditing(false);
+              }}
             >
               cancle
             </Button>
