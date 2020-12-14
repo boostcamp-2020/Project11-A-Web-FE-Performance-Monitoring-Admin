@@ -11,7 +11,7 @@ import {
   List,
 } from '@material-ui/core';
 import { Menu, ChevronLeft, LockOpen } from '@material-ui/icons';
-import SecondLogo from '@common/SecondLogo';
+import SecondLogo from '@common/svg/SecondLogo';
 import MainListItems from './SideBar';
 
 const drawerWidth = 200;
@@ -134,7 +134,10 @@ export default function AppBarShift(): JSX.Element {
           </IconButton>
           <div className={classes.mainHeader}>
             <div className={classes.flexDisplay}>
-              <Link to="/project" style={{ textDecoration: 'none', color: "inherit" }}>
+              <Link
+                to="/project"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
                 <Typography
                   component="h1"
                   variant="h6"

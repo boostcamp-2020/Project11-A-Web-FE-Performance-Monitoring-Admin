@@ -1,6 +1,9 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Button, Grid, Typography, Paper, Divider } from '@material-ui/core';
+import JavaScript from '@common/svg/JavaScript';
+import NodeJS from '@common/svg/NodeJS';
+import Express from '@common/svg/Express';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,6 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
     buttonImg: {
       marginRight: '15px',
       display: 'flex',
+      height: 50,
+      width: 50,
     },
     buttonContext: {
       display: 'flex',
@@ -35,7 +40,13 @@ interface Props {
   setPlatform: React.Dispatch<React.SetStateAction<string>>;
 }
 
+type Platforms = 'JavaScript' | 'NodeJS' | 'Express';
 const platforms = ['JavaScript', 'NodeJS', 'Express'];
+const platformIcons = {
+  JavaScript: <JavaScript />,
+  NodeJS: <NodeJS />,
+  Express: <Express />,
+};
 
 export default function PlatformSelecter({
   selectedPlatform,
@@ -46,9 +57,6 @@ export default function PlatformSelecter({
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     setPlatform(String(event.currentTarget.textContent));
-  };
-  const imgsource = (platform: string) => {
-    return `public/img/${platform}.svg`;
   };
 
   return (
@@ -70,13 +78,9 @@ export default function PlatformSelecter({
           </Typography>
           {platforms.map((platform) => (
             <Button key={platform} variant="outlined" onClick={platfromSelect}>
-              <img
-                className={classes.buttonImg}
-                src={imgsource(platform)}
-                height="50"
-                width="50"
-                alt={platform}
-              />
+              <div className={classes.buttonImg}>
+                {platformIcons[platform as Platforms]}
+              </div>
               <span className={classes.buttonContext}>{platform}</span>
             </Button>
           ))}
