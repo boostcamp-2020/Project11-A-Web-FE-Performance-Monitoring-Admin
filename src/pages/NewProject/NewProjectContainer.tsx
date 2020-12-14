@@ -24,7 +24,7 @@ const NewProjectContainer: FC = () => {
     };
     const token = await create(data);
 
-    history.push('/newprojectexample', {
+    history.push('/newproject/example', {
       token,
       platform: selectedPlatform,
     });
