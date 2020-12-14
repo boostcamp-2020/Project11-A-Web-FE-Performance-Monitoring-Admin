@@ -16,11 +16,17 @@ const EventsTabContainer: FC<Props> = ({ issueId }: Props) => {
     limit: DEFAULT_LIMIT,
   });
   const [eventList, setEventList] = useState<Event[]>([]);
+  const [totalPageNum, setTotalPageNum] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     (async () => {
       const searchedEventList = await getEventList(issueId, searchQuery);
-      if (searchedEventList) setEventList(searchedEventList.docs);
+      if (searchedEventList) {
+        setEventList(searchedEventList.docs);
+        searchedEventList.totalPages &&
+          setTotalPageNum(searchedEventList.totalPages);
+      }
     })();
   }, [searchQuery]);
 
@@ -31,6 +37,9 @@ const EventsTabContainer: FC<Props> = ({ issueId }: Props) => {
       searchQuery={rest as any}
       setSearchQuery={setSearchQuery}
       eventList={eventList}
+      totalPageNum={totalPageNum}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
     />
   );
 };
