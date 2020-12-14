@@ -58,8 +58,9 @@ export default function Router(): JSX.Element {
           <Route path="/signup" component={SignUp} />
           <Route path="/github" component={Github} />
           <PrivateRouter>
-            <Route path="/newproject" component={NewProjectContainer} />
+            <Route exact path="/newproject" component={NewProjectContainer} />
             <Route
+              exact
               path="/newproject/example"
               component={NewProjectExampleContainer}
             />
