@@ -29,18 +29,18 @@ const useStyles = makeStyles((theme) => ({
 
 const StackContext: FC<Props> = ({ contexts, lineno }: Props) => {
   const classes = useStyles();
-  const totalContext:string[] = [];
-  totalContext.concat(contexts.preErrorContext);
-  totalContext.concat(contexts.errorContext);
-  totalContext.concat(contexts.postErrorContext);
-
+  const totalContext:string[] = [
+    ...contexts.preErrorContext,
+    ...contexts.errorContext,
+    ...contexts.postErrorContext,
+  ];
   return (
     <ol start={lineno - contexts.preErrorContext.length} className={classes.orderedList}>
       {totalContext.map((context, idx) => (
         <li
           key={idx}
           className={`${classes.listItem} ${
-            idx === contexts.preErrorContext.length+1 ? classes.activate : undefined
+            idx === contexts.preErrorContext.length ? classes.activate : undefined
           }`}
         >
           <code>

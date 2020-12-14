@@ -27,7 +27,7 @@
     "react": "^16.13.1",
     "react-app-polyfill": "^2.0.0",
     "react-async": "^10.0.1",
-    "react-billboardjs": "^1.5.5",
+    "react-billboardjs": "^1.4.3",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.13.0",
     "react-redux": "^7.2.2",
