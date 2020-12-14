@@ -11,8 +11,8 @@ import { Paper, Tabs, Tab, Button } from '@material-ui/core';
 import styled from '@emotion/styled';
 import addComment from '@api/comment/addComment';
 import editComment from '@api/comment/editComment';
-import CommentTextArea from './CommentTextArea';
-import CommentMarkdownConvertedArea from './CommentMarkdownConvertedArea';
+import CommentTextArea from './components/CommentTextArea';
+import CommentMarkdownConvertedArea from './components/CommentMarkdownConvertedArea';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

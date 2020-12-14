@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import CommentHandleContainer from './CommentHandleContainer';
-import CommentBox from './CommentBox';
+import CommentBox from './components/CommentBox';
 
 interface Props {
   issueId: string;
