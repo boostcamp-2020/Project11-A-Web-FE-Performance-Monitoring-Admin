@@ -1,12 +1,16 @@
 import React, { useEffect, useState, FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import getIssue from '@api/issue/getIssue';
 import { Issue } from '@store/type';
 import IssuePresenter from './IssuePresenter';
 
+interface IssueRouteParams {
+  id: string;
+}
+
 const IssueContainer: FC = () => {
-  const location = useLocation();
-  const issueId = location.pathname.split('/').slice(-1)[0];
+  const match = useRouteMatch<IssueRouteParams>();
+  const issueId = match.params.id;
 
   const [issue, setIssue] = useState<Issue>({} as Issue);
 

@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, useRouteMatch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 import { Issue } from '@store/type';
@@ -18,25 +18,27 @@ interface Props {
   issue: Issue;
 }
 
-interface PanelProps {
-  children: JSX.Element;
-  value: number;
-  index: number;
-}
-
-const TabPanel: FC<PanelProps> = ({ children, value, index }: PanelProps) => {
-  return <Paper>{value === index && children}</Paper>;
-};
+const ID_LENGTH = 24;
 
 const IssueTabs: FC<Props> = ({ issue }: Props): JSX.Element => {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('');
+  const history = useHistory();
+  const match = useRouteMatch();
 
   const handleChange = (
     event: React.ChangeEvent<unknown>,
-    newValue: number,
+    newValue: string,
   ) => {
     setValue(newValue);
+    history.push(`${match.url}${newValue}`);
+  };
+
+  window.onpopstate = () => {
+    const url = location.href;
+    const [lastUrl] = url.split('/').slice(-1);
+    if (lastUrl.length === ID_LENGTH) setValue('');
+    else setValue(`/${lastUrl}`);
   };
 
   return (
@@ -47,20 +49,24 @@ const IssueTabs: FC<Props> = ({ issue }: Props): JSX.Element => {
         indicatorColor="primary"
         textColor="primary"
       >
-        <Tab label="Details" component={Link} to="details" />
-        <Tab label="Tags" component={Link} to="tags" />
-        <Tab label="Events" />
-        <Tab label="Comments" />
+        <Tab label="Details" value="" />
+        <Tab label="Tags" value="/tags" />
+        <Tab label="Events" value="/events" />
+        <Tab label="Comments" value="/comments" />
       </Tabs>
-      <TabPanel value={value} index={0}>
-        <DetailsTabContainer events={issue.events} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <IssueTagsContainer issueId={issue._id} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <EventsTabContainer issueId={issue._id} />
-      </TabPanel>
+      <Route
+        exact
+        path={`${match.path}`}
+        render={() => <DetailsTabContainer events={issue.events} />}
+      />
+      <Route
+        path={`${match.path}/tags`}
+        render={() => <IssueTagsContainer issueId={issue._id} />}
+      />
+      <Route
+        path={`${match.path}/events`}
+        render={() => <EventsTabContainer issueId={issue._id} />}
+      />
     </Paper>
   );
 };
