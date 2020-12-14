@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { ErrorContext } from '@store/type';
 
 interface Props {
-  contexts: string[];
+  contexts: ErrorContext;
   lineno: number;
 }
 
-const MIDDLE = 2;
 
 const useStyles = makeStyles((theme) => ({
   activate: {
@@ -29,13 +29,18 @@ const useStyles = makeStyles((theme) => ({
 
 const StackContext: FC<Props> = ({ contexts, lineno }: Props) => {
   const classes = useStyles();
+  const totalContext:string[] = [
+    ...contexts.preErrorContext,
+    ...contexts.errorContext,
+    ...contexts.postErrorContext,
+  ];
   return (
-    <ol start={lineno - MIDDLE} className={classes.orderedList}>
-      {contexts.map((context, idx) => (
+    <ol start={lineno - contexts.preErrorContext.length} className={classes.orderedList}>
+      {totalContext.map((context, idx) => (
         <li
           key={idx}
           className={`${classes.listItem} ${
-            idx === MIDDLE ? classes.activate : undefined
+            idx === contexts.preErrorContext.length ? classes.activate : undefined
           }`}
         >
           <code>

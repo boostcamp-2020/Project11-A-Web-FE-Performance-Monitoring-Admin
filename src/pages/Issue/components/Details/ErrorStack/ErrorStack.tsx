@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
-import { StackTrace } from '@store/type';
+import { ErrorContext, StackTrace } from '@store/type';
 import EventDetailHeader from '../EventDetailHeader';
 import StackHeader from './StackHeader';
 import StackContext from './StackContext';
 
 interface Props {
   stacktrace: StackTrace[];
-  errorContexts: string[][];
+  errorContexts: ErrorContext[];
 }
+
 
 const ErrorStack: FC<Props> = ({ stacktrace, errorContexts }: Props) => (
   <div>
@@ -15,7 +16,7 @@ const ErrorStack: FC<Props> = ({ stacktrace, errorContexts }: Props) => (
     {stacktrace.length !== 0 &&
       stacktrace.map((stack, idx) => (
         <StackHeader stacktrace={stack} key={idx} idx={idx}>
-          {errorContexts.length !== 0 && errorContexts[idx].length ? (
+          {errorContexts.length !== 0 && errorContexts[idx].errorContext.length ? (
             <StackContext
               contexts={errorContexts[idx]}
               lineno={stack.lineno ? stack.lineno : 0}

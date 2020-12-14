@@ -26,7 +26,11 @@ export interface ProjectState {
   projects: Project[];
   error: string;
 }
-
+export interface ErrorContext {
+  preErrorContext: string[];
+  errorContext: string[];
+  postErrorContext: string[];
+}
 export interface Issue {
   _id: string;
   projectId: string;
@@ -67,7 +71,7 @@ export interface Event {
   type?: string; // error.name
   value?: string; // error.message
   stacktrace?: StackTrace[];
-  errorContexts?: string[][];
+  errorContexts?: ErrorContext[];
   version?: string;
   platform?: string;
   serverName?: string;
