@@ -62,7 +62,8 @@ const ProjectSettingContainer: FC = () => {
   };
 
   const handleDeleteButton = (projectIdToDelete: string) => {
-    alert('정말로 삭제하시겠습니까??');
+    const checkDelete = confirm('정말로 삭제하시겠습니까??');
+    if (!checkDelete) return;
     deleteProject(projectIdToDelete);
     dispatch(setCurrentProject(''));
     history.push('/project');
