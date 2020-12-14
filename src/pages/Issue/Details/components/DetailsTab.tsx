@@ -2,10 +2,10 @@ import React, { FC, Dispatch } from 'react';
 import { Event, Tags } from '@store/type';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import SummarizedTags from './Tags/SummarizedTags';
+import SummarizedTags from './SummarizedTags';
 import EventHeader from './EventHeader';
-import ErrorStack from './ErrorStack/ErrorStack';
-import Info from './Info/Info';
+import ErrorStack from './ErrorStack';
+import Info from './Context';
 import EventDetailHeader from './EventDetailHeader';
 
 interface Props {

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 import Tag from './Tag';
-import EventDetailHeader from '../EventDetailHeader';
+import EventDetailHeader from './EventDetailHeader';
 
 interface Tags {
   environment?: string;

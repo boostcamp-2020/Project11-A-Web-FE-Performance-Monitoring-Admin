@@ -1,13 +1,12 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { CssBaseline, Container } from '@material-ui/core';
-import { Issue } from '@store/type';
-import AppbarShift from '../layout/AppbarShift';
-import IssueTabs from './components/IssueTabs';
-import IssueHeader from './components/IssueHeader';
+import { CssBaseline, Grid, Container } from '@material-ui/core';
+import { Docs, Issue } from '@store/type';
+import AppbarShift from '../../layout/AppbarShift';
+import IssueTable from './IssueTable';
 
 interface Props {
-  issue: Issue;
+  issues: Docs<Issue>;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Issue: FC<Props> = ({ issue }: Props) => {
+const IssueList = ({ issues }: Props): JSX.Element => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -34,13 +33,14 @@ const Issue: FC<Props> = ({ issue }: Props) => {
       <AppbarShift />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="xl" className={classes.container}>
-          <IssueHeader issue={issue} />
-          <IssueTabs issue={issue} />
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={2}>
+            <IssueTable issues={issues} />
+          </Grid>
         </Container>
       </main>
     </div>
   );
 };
 
-export default Issue;
+export default IssueList;

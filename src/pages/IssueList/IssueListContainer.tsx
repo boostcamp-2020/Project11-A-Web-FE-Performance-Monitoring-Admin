@@ -4,7 +4,7 @@ import getIssues from '@api/issue/getIssues';
 import AlertDialog from '@common/AlertDialog';
 
 import { Issue, Docs } from '@store/type';
-import IssueList from './IssueList';
+import IssueList from './components/IssueList';
 
 interface State extends DefaultRootState {
   curProjectReducer: {

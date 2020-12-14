@@ -2,7 +2,7 @@ import React, { useEffect, useState, FC } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import getIssue from '@api/issue/getIssue';
 import { Issue } from '@store/type';
-import IssuePresenter from './IssuePresenter';
+import IssuePresenter from './components/IssuePresenter';
 
 interface IssueRouteParams {
   id: string;

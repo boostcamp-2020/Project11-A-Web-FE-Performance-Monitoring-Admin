@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, MouseEvent } from 'react';
 import { Project, Docs } from '@store/type';
 import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
 import fetchProjects from '@store/projects/index';
+import { setCurrentProject } from '@store/curProject/curProjectActions';
 
 import Loading from '@common/Loading';
-import ProjectList from './ProjectList';
+import ProjectList from './components/ProjectList';
 
 interface State extends DefaultRootState {
   projectsReducer: {
@@ -20,6 +21,12 @@ const ProjectListContainer: FC = (): JSX.Element => {
     (state: State) => state.projectsReducer,
   );
   const dispatch = useDispatch();
+
+  const handleClickProject = (projectId: string) => (
+    event: MouseEvent<HTMLDivElement>,
+  ) => {
+    dispatch(setCurrentProject(projectId));
+  };
 
   useEffect(() => {
     dispatch(fetchProjects());
@@ -37,7 +44,9 @@ const ProjectListContainer: FC = (): JSX.Element => {
     );
   }
   if (!projects) return <></>;
-  return <ProjectList projects={projects} />;
+  return (
+    <ProjectList projects={projects} handleClickProject={handleClickProject} />
+  );
 };
 
 export default ProjectListContainer;

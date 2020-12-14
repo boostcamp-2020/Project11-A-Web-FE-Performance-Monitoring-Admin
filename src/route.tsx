@@ -52,7 +52,7 @@ const ProjectSettingContainer = lazy(
 export default function Router(): JSX.Element {
   return (
     <BrowserRouter>
-      <Suspense fallback={Loading}>
+      <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/" component={SignIn} />
           <Route path="/signup" component={SignUp} />

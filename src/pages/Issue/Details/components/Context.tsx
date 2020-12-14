@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
-import EvendDetailHeader from '../EventDetailHeader';
+import EvendDetailHeader from './EventDetailHeader';
 
 interface Props {
   title: string;
@@ -32,7 +32,7 @@ const Value = styled.code`
   padding: 6px 12px;
 `;
 
-const Info: FC<Props> = ({ title, datas }: Props) => (
+const Context: FC<Props> = ({ title, datas }: Props) => (
   <MarginTop>
     <EvendDetailHeader title={title} />
     {Object.entries(datas).map((data) => (
@@ -44,4 +44,4 @@ const Info: FC<Props> = ({ title, datas }: Props) => (
   </MarginTop>
 );
 
-export default Info;
+export default Context;

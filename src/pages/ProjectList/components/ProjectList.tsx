@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 import React, { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container, Tooltip, Fab } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
@@ -8,8 +9,8 @@ import { Add } from '@material-ui/icons';
 
 import { Project, Docs } from '@store/type';
 
-import SimpleCard from './components/SimpleCard';
-import AppbarShift from '../layout/AppbarShift';
+import SimpleCard from './SimpleCard';
+import AppbarShift from '../../layout/AppbarShift';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,9 +59,13 @@ const useStyles = makeStyles((theme) => ({
 
 interface Props {
   projects: Docs<Project>;
+  handleClickProject: (projectId: string) => (event: any) => void;
 }
 
-const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
+const ProjectList: FunctionComponent<Props> = ({
+  projects,
+  handleClickProject,
+}: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -76,7 +81,8 @@ const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
                 <Fab
                   color="secondary"
                   className={classes.fab}
-                  href="/newproject"
+                  component={Link}
+                  to="/newproject"
                 >
                   <Add />
                 </Fab>
@@ -87,7 +93,11 @@ const ProjectList: FunctionComponent<Props> = ({ projects }: Props) => {
             <Grid container spacing={2}>
               {projects.docs?.map((project, idx) => (
                 <Grid item key={project._id} xs={3}>
-                  <SimpleCard projectNumber={idx + 1} project={project} />
+                  <SimpleCard
+                    projectNumber={idx + 1}
+                    project={project}
+                    handleClickProject={handleClickProject}
+                  />
                 </Grid>
               ))}
             </Grid>

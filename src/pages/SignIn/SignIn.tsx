@@ -23,15 +23,15 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     position: 'relative',
   },
-  backgroundMove:{
+  backgroundMove: {
     backgroundImage: `url('public/img/background.jpg')`,
     backgroundSize: 'cover',
     height: '100vh',
     position: 'relative',
-    animation: `$fadeIn 2000ms ${theme.transitions.easing.easeInOut}` ,
+    animation: `$fadeIn 2000ms ${theme.transitions.easing.easeInOut}`,
   },
   logo: {
-    marginTop: theme.spacing(3),
+    marginTop: -14,
     width: '400px',
     zIndex: 1,
   },
@@ -40,11 +40,10 @@ const useStyles = makeStyles((theme) => ({
     height: '60px',
     position: 'relative',
     right: '-158.5px',
-    top: '110px',
+    top: '70px',
     perspective: '400px',
   },
   paper: {
-    marginTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -66,24 +65,24 @@ const useStyles = makeStyles((theme) => ({
   github: {
     margin: theme.spacing(3, 0, 2),
   },
-  "@keyframes riseUp":{
-    "0%": {
+  '@keyframes riseUp': {
+    '0%': {
       opacity: 0,
-      transform: "translateY(20%)"
+      transform: 'translateY(20%)',
     },
-    "100%": {
+    '100%': {
       opacity: 1,
-      transform: "translateY(0)"
-    }
+      transform: 'translateY(0)',
+    },
   },
-  "@keyframes fadeIn":{
-    "0%": {
+  '@keyframes fadeIn': {
+    '0%': {
       opacity: 0,
     },
-    "100%": {
+    '100%': {
       opacity: 1,
-    }
-  }
+    },
+  },
 }));
 
 const idAnimationPlay = () => {
@@ -202,11 +201,11 @@ export default function SignIn(): JSX.Element {
     const animations = document.getAnimations();
     const back = document.getElementById('background');
     animations.forEach((animation) => animation.play());
-    if(back){
-      back.className=classes.backgroundMove;
+    if (back) {
+      back.className = classes.backgroundMove;
     }
-    setMent("Sign in");
-  }
+    setMent('Sign in');
+  };
 
   return (
     <div id="background" className={classes.background}>

@@ -9,6 +9,10 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: theme.palette.primary.main,
   },
+  listItem: {
+    fontWeight: 600,
+    color: theme.palette.primary.dark,
+  },
 }));
 
 export default function mainListItems(): JSX.Element {
@@ -20,7 +24,10 @@ export default function mainListItems(): JSX.Element {
           <ListItemIcon>
             <FolderOpen />
           </ListItemIcon>
-          <ListItemText primary="Projects" />
+          <ListItemText
+            primary="PROJECTS"
+            classes={{ primary: classes.listItem }}
+          />
         </ListItem>
       </Link>
       <Link to="/issue" className={classes.link}>
@@ -28,7 +35,10 @@ export default function mainListItems(): JSX.Element {
           <ListItemIcon>
             <AllInbox />
           </ListItemIcon>
-          <ListItemText primary="Issues" />
+          <ListItemText
+            primary="ISSUES"
+            classes={{ primary: classes.listItem }}
+          />
         </ListItem>
       </Link>
       <Link to="/setting" className={classes.link}>
@@ -36,7 +46,10 @@ export default function mainListItems(): JSX.Element {
           <ListItemIcon>
             <Settings />
           </ListItemIcon>
-          <ListItemText primary="Setting" />
+          <ListItemText
+            primary="SETTING"
+            classes={{ primary: classes.listItem }}
+          />
         </ListItem>
       </Link>
     </div>
