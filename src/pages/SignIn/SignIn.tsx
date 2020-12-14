@@ -19,19 +19,16 @@ import { setUser } from '@store/user/userActions';
 
 const useStyles = makeStyles((theme) => ({
   background: {
-    backgroundImage: `url('public/img/background.jpg')`,
     backgroundSize: 'cover',
-    height: '100%',
+    height: '100vh',
     position: 'relative',
   },
-  container: {
-    backgroundColor: '#FFF',
-    height: '90%',
-    position: 'absolute',
-    top: '5%',
-    left: '35%',
-    borderRadius: 12,
-    filter: 'drop-shadow(2px 4px 6px black)',
+  backgroundMove: {
+    backgroundImage: `url('public/img/background.jpg')`,
+    backgroundSize: 'cover',
+    height: '100vh',
+    position: 'relative',
+    animation: `$fadeIn 2000ms ${theme.transitions.easing.easeInOut}`,
   },
   logo: {
     marginTop: -14,
@@ -58,12 +55,33 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    zIndex: 1,
+    animation: `$riseUp 3000ms ${theme.transitions.easing.easeInOut}`,
+    animationPlayState: 'paused',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
   github: {
     margin: theme.spacing(3, 0, 2),
+  },
+  '@keyframes riseUp': {
+    '0%': {
+      opacity: 0,
+      transform: 'translateY(20%)',
+    },
+    '100%': {
+      opacity: 1,
+      transform: 'translateY(0)',
+    },
+  },
+  '@keyframes fadeIn': {
+    '0%': {
+      opacity: 0,
+    },
+    '100%': {
+      opacity: 1,
+    },
   },
 }));
 
@@ -92,41 +110,46 @@ const idAnimationPlay = () => {
         transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
       },
     ],
-    { duration: 10000, iterations: Infinity },
+    { duration: 4000, iterations: Infinity },
   );
 };
 const pwAnimationPlay = () => {
   document.getElementById('eye')?.animate(
     [
       {
-        transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
+        transform: 'rotateX(0deg) rotateY(0deg)',
+        offset: 0,
       },
       {
-        transform: 'rotateX(10deg) rotateY(15deg) translateY(5px)',
+        transform: 'rotateX(70deg) rotateY(15deg)',
+        offset: 0.1,
       },
       {
-        transform: 'rotateX(70deg) rotateY(30deg) translateY(10px)',
+        transform: 'rotateX(70deg) rotateY(15deg)',
+        offset: 0.35,
       },
       {
-        transform: 'rotateX(70deg) rotateY(0deg) translateY(5px)',
+        transform: 'rotateX(70deg) rotateY(-30deg)',
+        offset: 0.4,
       },
       {
-        transform: 'rotateX(70deg) rotateY(-30deg) translateY(0px)',
+        transform: 'rotateX(70deg) rotateY(-30deg)',
+        offset: 0.6,
       },
       {
-        transform: 'rotateX(70deg) rotateY(0deg) translateY(5px)',
+        transform: 'rotateX(70deg) rotateY(30deg)',
+        offset: 0.65,
       },
       {
-        transform: 'rotateX(60deg) rotateY(30deg) translateY(10px)',
+        transform: 'rotateX(70deg) rotateY(30deg)',
+        offset: 0.9,
       },
       {
-        transform: 'rotateX(10deg) rotateY(15deg) translateY(5px)',
-      },
-      {
-        transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
+        transform: 'rotateX(0deg) rotateY(0deg)',
+        offset: 1,
       },
     ],
-    { duration: 10000, iterations: Infinity },
+    { duration: 6000, iterations: Infinity },
   );
 };
 
@@ -159,6 +182,7 @@ export default function SignIn(): JSX.Element {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [ment, setMent] = useState('Click Me');
 
   const dispatch = useDispatch();
 
@@ -173,27 +197,38 @@ export default function SignIn(): JSX.Element {
       setPassword('');
     }
   };
+  const backGroundChange = () => {
+    const animations = document.getAnimations();
+    const back = document.getElementById('background');
+    animations.forEach((animation) => animation.play());
+    if (back) {
+      back.className = classes.backgroundMove;
+    }
+    setMent('Sign in');
+  };
 
   return (
-    <div className={classes.background}>
-      <Container component="main" maxWidth="xs" className={classes.container}>
-        <img
-          src="public/img/santry_eye.png"
-          className={classes.eye}
-          id="eye"
-          alt="eye"
-        />
-        <img
-          src="public/img/santry_noeye.png"
-          className={classes.logo}
-          alt="logo"
-        />
+    <div id="background" className={classes.background}>
+      <Container component="main" maxWidth="xs">
+        <div onClick={backGroundChange}>
+          <img
+            src="public/img/santry_eye.png"
+            className={classes.eye}
+            id="eye"
+            alt="eye"
+          />
+          <img
+            src="public/img/santry_noeye.png"
+            className={classes.logo}
+            alt="logo"
+          />
+        </div>
         <CssBaseline />
         <div className={classes.paper}>
           <Typography component="h1" variant="h5">
-            Sign in
+            {ment}
           </Typography>
-          <form className={classes.form}>
+          <form id="form" className={classes.form}>
             <TextField
               variant="outlined"
               margin="normal"
