@@ -22,6 +22,7 @@ const NewProjectContainer: FC = () => {
       emails: alertMails,
       admins: projectAdmins,
       members: projectMembers,
+      alertLevel,
     };
     const token = await create(data);
 

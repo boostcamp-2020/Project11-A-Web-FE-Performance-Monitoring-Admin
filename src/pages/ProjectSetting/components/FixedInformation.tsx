@@ -28,7 +28,7 @@ interface prop {
   owner: string;
   platform: string;
   sdkToken: string;
-
+  alertLevel: number;
 }
 const FixedInformation = (props: prop) : JSX.Element => {
   const classes = useStyles();
@@ -56,6 +56,10 @@ const FixedInformation = (props: prop) : JSX.Element => {
             <tr>
               <th>DSN</th>
               <td>{props.sdkToken}</td>
+            </tr>
+            <tr>
+              <th>알람 레벨</th>
+              <td>{props.alertLevel}</td>
             </tr>
           </tbody>
         </table>

@@ -58,7 +58,7 @@ const ProjectSetting = ({
   handleDeleteButton,
 }: Props): JSX.Element => {
   const classes = useStyles();
-  const { _id: projectId, platform, sdkToken, owner } = project;
+  const { _id: projectId, platform, sdkToken, owner, alertLevel } = project;
 
   return (
     <div className={classes.root}>
@@ -73,6 +73,7 @@ const ProjectSetting = ({
               owner={owner.nickname}
               platform={platform}
               sdkToken={sdkToken}
+              alertLevel={alertLevel}
             />
             <ProjectNameInput {...{ projectName, setProjectName }} />
             <ProjectAdminSettingContainer {...{ projectAdmins, setAdmins }} />
