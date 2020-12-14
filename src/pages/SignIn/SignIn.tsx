@@ -18,6 +18,18 @@ import { useHistory } from 'react-router-dom';
 import { setUser } from '@store/user/userActions';
 
 const useStyles = makeStyles((theme) => ({
+  background: {
+    backgroundSize: 'cover',
+    height: '100vh',
+    position: 'relative',
+  },
+  backgroundMove:{
+    backgroundImage: `url('public/img/background.jpg')`,
+    backgroundSize: 'cover',
+    height: '100vh',
+    position: 'relative',
+    animation: `$fadeIn 2000ms ${theme.transitions.easing.easeInOut}` ,
+  },
   logo: {
     marginTop: theme.spacing(3),
     width: '400px',
@@ -44,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    zIndex: 1,
+    animation: `$riseUp 3000ms ${theme.transitions.easing.easeInOut}`,
+    animationPlayState: 'paused',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -51,6 +66,24 @@ const useStyles = makeStyles((theme) => ({
   github: {
     margin: theme.spacing(3, 0, 2),
   },
+  "@keyframes riseUp":{
+    "0%": {
+      opacity: 0,
+      transform: "translateY(20%)"
+    },
+    "100%": {
+      opacity: 1,
+      transform: "translateY(0)"
+    }
+  },
+  "@keyframes fadeIn":{
+    "0%": {
+      opacity: 0,
+    },
+    "100%": {
+      opacity: 1,
+    }
+  }
 }));
 
 const idAnimationPlay = () => {
@@ -78,41 +111,46 @@ const idAnimationPlay = () => {
         transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
       },
     ],
-    { duration: 10000, iterations: Infinity },
+    { duration: 4000, iterations: Infinity },
   );
 };
 const pwAnimationPlay = () => {
   document.getElementById('eye')?.animate(
     [
       {
-        transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
+        transform: 'rotateX(0deg) rotateY(0deg)',
+        offset: 0,
       },
       {
-        transform: 'rotateX(10deg) rotateY(15deg) translateY(5px)',
+        transform: 'rotateX(70deg) rotateY(15deg)',
+        offset: 0.1,
       },
       {
-        transform: 'rotateX(70deg) rotateY(30deg) translateY(10px)',
+        transform: 'rotateX(70deg) rotateY(15deg)',
+        offset: 0.35,
       },
       {
-        transform: 'rotateX(70deg) rotateY(0deg) translateY(5px)',
+        transform: 'rotateX(70deg) rotateY(-30deg)',
+        offset: 0.4,
       },
       {
-        transform: 'rotateX(70deg) rotateY(-30deg) translateY(0px)',
+        transform: 'rotateX(70deg) rotateY(-30deg)',
+        offset: 0.6,
       },
       {
-        transform: 'rotateX(70deg) rotateY(0deg) translateY(5px)',
+        transform: 'rotateX(70deg) rotateY(30deg)',
+        offset: 0.65,
       },
       {
-        transform: 'rotateX(60deg) rotateY(30deg) translateY(10px)',
+        transform: 'rotateX(70deg) rotateY(30deg)',
+        offset: 0.9,
       },
       {
-        transform: 'rotateX(10deg) rotateY(15deg) translateY(5px)',
-      },
-      {
-        transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
+        transform: 'rotateX(0deg) rotateY(0deg)',
+        offset: 1,
       },
     ],
-    { duration: 10000, iterations: Infinity },
+    { duration: 6000, iterations: Infinity },
   );
 };
 
@@ -145,6 +183,7 @@ export default function SignIn(): JSX.Element {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [ment, setMent] = useState('Click Me');
 
   const dispatch = useDispatch();
 
@@ -159,87 +198,100 @@ export default function SignIn(): JSX.Element {
       setPassword('');
     }
   };
+  const backGroundChange = () => {
+    const animations = document.getAnimations();
+    const back = document.getElementById('background');
+    animations.forEach((animation) => animation.play());
+    if(back){
+      back.className=classes.backgroundMove;
+    }
+    setMent("Sign in");
+  }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <img
-        src="public/img/santry_eye.png"
-        className={classes.eye}
-        id="eye"
-        alt="eye"
-      />
-      <img
-        src="public/img/santry_noeye.png"
-        className={classes.logo}
-        alt="logo"
-      />
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            onChange={({ target: { value } }) => setEmail(value)}
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onFocus={idAnimationPlay}
-            onBlur={AnimationDefault}
+    <div id="background" className={classes.background}>
+      <Container component="main" maxWidth="xs">
+        <div onClick={backGroundChange}>
+          <img
+            src="public/img/santry_eye.png"
+            className={classes.eye}
+            id="eye"
+            alt="eye"
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            onChange={({ target: { value } }) => setPassword(value)}
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onFocus={pwAnimationPlay}
-            onBlur={AnimationDefault}
+          <img
+            src="public/img/santry_noeye.png"
+            className={classes.logo}
+            alt="logo"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="button"
-            fullWidth
-            onClick={handleClick}
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Button
-            type="button"
-            fullWidth
-            variant="contained"
-            href={`${process.env.API_URL}/api/auth/github`}
-            color="primary"
-            className={classes.github}
-          >
-            <GitHubIcon />
-            &nbsp;Sign In With Github
-          </Button>
-          <Grid container>
-            <Grid item xs />
-            <Grid item>
-              <Link href="/signup">Don&apos;t have an account? Sign Up</Link>
+        </div>
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            {ment}
+          </Typography>
+          <form id="form" className={classes.form}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              onChange={({ target: { value } }) => setEmail(value)}
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onFocus={idAnimationPlay}
+              onBlur={AnimationDefault}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              onChange={({ target: { value } }) => setPassword(value)}
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onFocus={pwAnimationPlay}
+              onBlur={AnimationDefault}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="button"
+              fullWidth
+              onClick={handleClick}
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign In
+            </Button>
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              href={`${process.env.API_URL}/api/auth/github`}
+              color="primary"
+              className={classes.github}
+            >
+              <GitHubIcon />
+              &nbsp;Sign In With Github
+            </Button>
+            <Grid container>
+              <Grid item xs />
+              <Grid item>
+                <Link href="/signup">Don&apos;t have an account? Sign Up</Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }
