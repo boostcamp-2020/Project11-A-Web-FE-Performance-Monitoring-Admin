@@ -17,7 +17,7 @@ module.exports = {
   entry: './src/index',
 
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@api': path.resolve(__dirname, 'src/api'),
@@ -27,6 +27,7 @@ module.exports = {
       '@store': path.resolve(__dirname, 'src/store'),
       '@themes': path.resolve(__dirname, 'src/themes'),
       '@utils': path.resolve(__dirname, 'src/utils'),
+      '@public': path.resolve(__dirname, 'public'),
     },
   },
 
