@@ -38,14 +38,14 @@ interface Props {
   selectedPlatform: string;
   projectName: string;
   alertSetting: string;
-  alertLevel: number;
+  alertLevel: string;
   alertMails: string[];
   projectMembers: User[];
   projectAdmins: User[];
   setPlatform: React.Dispatch<React.SetStateAction<string>>;
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
   setAlert: React.Dispatch<React.SetStateAction<string>>;
-  setAlertLevel: React.Dispatch<React.SetStateAction<number>>;
+  setAlertLevel: React.Dispatch<React.SetStateAction<string>>;
   setMails: React.Dispatch<React.SetStateAction<string[]>>;
   setMembers: React.Dispatch<React.SetStateAction<User[]>>;
   setAdmins: React.Dispatch<React.SetStateAction<User[]>>;

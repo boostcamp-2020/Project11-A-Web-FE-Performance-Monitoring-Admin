@@ -56,10 +56,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 interface Props {
   alertSetting: string;
-  alertLevel: number;
+  alertLevel: string;
   alertMails: string[];
   setAlert: React.Dispatch<React.SetStateAction<string>>;
-  setAlertLevel: React.Dispatch<React.SetStateAction<number>>;
+  setAlertLevel: React.Dispatch<React.SetStateAction<string>>;
   setMails: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
@@ -78,7 +78,7 @@ const ProjectAlert = ({
   };
 
   const handleLevelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAlertLevel(event.target.value as number);
+    setAlertLevel(event.target.value as string);
   }
 
   const handleButtonClick = () => {
