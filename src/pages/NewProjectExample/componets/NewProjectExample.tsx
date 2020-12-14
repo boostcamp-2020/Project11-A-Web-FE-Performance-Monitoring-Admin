@@ -161,7 +161,7 @@ const NewProjectExample = (props: prop): JSX.Element => {
             <ManualBar key={scenario.contentTitle} {...scenario} />
           ))}
           <Grid item xs={12} className={classes.buttonWrap}>
-            <Link to="./project" style={{ textDecoration: 'none' }}>
+            <Link to="/project" style={{ textDecoration: 'none' }}>
               <Button
                 variant="contained"
                 color="secondary"
