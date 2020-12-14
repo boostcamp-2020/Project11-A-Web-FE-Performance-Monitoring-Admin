@@ -38,12 +38,14 @@ interface Props {
   selectedPlatform: string;
   projectName: string;
   alertSetting: string;
+  alertLevel: number;
   alertMails: string[];
   projectMembers: User[];
   projectAdmins: User[];
   setPlatform: React.Dispatch<React.SetStateAction<string>>;
   setProjectName: React.Dispatch<React.SetStateAction<string>>;
   setAlert: React.Dispatch<React.SetStateAction<string>>;
+  setAlertLevel: React.Dispatch<React.SetStateAction<number>>;
   setMails: React.Dispatch<React.SetStateAction<string[]>>;
   setMembers: React.Dispatch<React.SetStateAction<User[]>>;
   setAdmins: React.Dispatch<React.SetStateAction<User[]>>;
@@ -57,6 +59,8 @@ const NewProjectForm = ({
   setProjectName,
   alertSetting,
   setAlert,
+  alertLevel,
+  setAlertLevel,
   alertMails,
   setMails,
   projectMembers,
@@ -99,8 +103,10 @@ const NewProjectForm = ({
           />
           <ProjectAlert
             alertMails={alertMails}
+            alertLevel={alertLevel}
             alertSetting={alertSetting}
             setAlert={setAlert}
+            setAlertLevel={setAlertLevel}
             setMails={setMails}
           />
           <Grid item xs className={classes.buttonWrap}>

@@ -11,6 +11,9 @@ import {
   Grid,
   Paper,
   Divider,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -25,6 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     inputSet: {
       height: '30px',
+    },
+    levelBox: {
+      marginTop: '10px',
+      width: '80%',
     },
     emailBox: {
       border: '1px solid gray',
@@ -49,15 +56,19 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 interface Props {
   alertSetting: string;
+  alertLevel: number;
   alertMails: string[];
   setAlert: React.Dispatch<React.SetStateAction<string>>;
+  setAlertLevel: React.Dispatch<React.SetStateAction<number>>;
   setMails: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const ProjectAlert = ({
   alertSetting,
   alertMails,
+  alertLevel,
   setAlert,
+  setAlertLevel,
   setMails,
 }: Props): JSX.Element => {
   const classes = useStyles();
@@ -65,6 +76,10 @@ const ProjectAlert = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAlert((event.target as HTMLInputElement).value);
   };
+
+  const handleLevelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setAlertLevel(event.target.value as number);
+  }
 
   const handleButtonClick = () => {
     const newText = document.createElement('p');
@@ -170,6 +185,21 @@ const ProjectAlert = ({
               >
                 넣기
               </Button>
+              <FormControl variant="outlined" className={classes.levelBox}>
+                <InputLabel id="demo-simple-select-outlined-label">오류 감지 레벨</InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  value={alertLevel}
+                  onChange={handleLevelChange}
+                  label="ErrorLevel"
+                >
+                  <MenuItem value={0} selected>fatal</MenuItem>
+                  <MenuItem value={1}>critical</MenuItem>
+                  <MenuItem value={2}>error</MenuItem>
+                  <MenuItem value={3}>warning</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
               <div id="mailBox" className={classes.emailBox} />
