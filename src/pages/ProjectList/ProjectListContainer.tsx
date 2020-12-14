@@ -6,7 +6,7 @@ import fetchProjects from '@store/projects/index';
 import { setCurrentProject } from '@store/curProject/curProjectActions';
 
 import Loading from '@common/Loading';
-import ProjectList from './ProjectList';
+import ProjectList from './components/ProjectList';
 
 interface State extends DefaultRootState {
   projectsReducer: {

@@ -9,8 +9,8 @@ import { Add } from '@material-ui/icons';
 
 import { Project, Docs } from '@store/type';
 
-import SimpleCard from './components/SimpleCard';
-import AppbarShift from '../layout/AppbarShift';
+import SimpleCard from './SimpleCard';
+import AppbarShift from '../../layout/AppbarShift';
 
 const useStyles = makeStyles((theme) => ({
   root: {
