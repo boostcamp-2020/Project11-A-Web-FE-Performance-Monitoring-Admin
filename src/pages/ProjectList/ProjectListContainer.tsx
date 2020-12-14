@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { FC, useEffect, MouseEvent } from 'react';
+import React, { FC, useEffect, MouseEvent, useState } from 'react';
 import { Project, Docs } from '@store/type';
 import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
 import fetchProjects from '@store/projects/index';
@@ -17,6 +17,7 @@ interface State extends DefaultRootState {
 }
 
 const ProjectListContainer: FC = (): JSX.Element => {
+  const [currentPage, setCurrentPage] = useState(1);
   const { loading, projects, errorMsg } = useSelector(
     (state: State) => state.projectsReducer,
   );
@@ -29,8 +30,8 @@ const ProjectListContainer: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
+    dispatch(fetchProjects(currentPage));
+  }, [dispatch, currentPage]);
 
   if (loading) {
     return <Loading />;
@@ -45,7 +46,12 @@ const ProjectListContainer: FC = (): JSX.Element => {
   }
   if (!projects) return <></>;
   return (
-    <ProjectList projects={projects} handleClickProject={handleClickProject} />
+    <ProjectList
+      projects={projects}
+      handleClickProject={handleClickProject}
+      setCurrentPage={setCurrentPage}
+      currentPage={currentPage}
+    />
   );
 };
 

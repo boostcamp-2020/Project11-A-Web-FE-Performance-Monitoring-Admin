@@ -60,13 +60,22 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   projects: Docs<Project>;
   handleClickProject: (projectId: string) => (event: any) => void;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  currentPage: number;
 }
 
 const ProjectList: FunctionComponent<Props> = ({
   projects,
   handleClickProject,
+  setCurrentPage,
+  currentPage,
 }: Props) => {
   const classes = useStyles();
+
+  const handlePaginate = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -107,6 +116,8 @@ const ProjectList: FunctionComponent<Props> = ({
           className={classes.pagenation}
           count={projects.totalPages}
           color="primary"
+          onChange={handlePaginate}
+          page={currentPage}
         />
       </main>
     </div>
