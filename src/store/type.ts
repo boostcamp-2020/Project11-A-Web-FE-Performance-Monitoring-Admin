@@ -141,3 +141,16 @@ export interface SearchResult {
   title: string;
   contents: { tag: string; count: number }[];
 }
+
+export interface Comment {
+  _id: string;
+  userId: {
+    _id: string;
+    email: string;
+    nickname: string;
+  };
+  issueId: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+}

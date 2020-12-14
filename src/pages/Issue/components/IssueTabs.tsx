@@ -3,9 +3,11 @@ import { useHistory, useRouteMatch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 import { Issue } from '@store/type';
+
 import DetailsTabContainer from '../Details/DetailsTabContainer';
 import EventsTabContainer from '../Events/EventsTabContainer';
 import IssueTagsContainer from '../Tags/IssueTagsContainer';
+import CommentsTabContainer from '../Comments/CommentsTabContainer';
 
 const useStyles = makeStyles({
   root: {
@@ -66,6 +68,10 @@ const IssueTabs: FC<Props> = ({ issue }: Props): JSX.Element => {
       <Route
         path={`${match.path}/events`}
         render={() => <EventsTabContainer issueId={issue._id} />}
+      />
+      <Route
+        path={`${match.path}/comments`}
+        render={() => <CommentsTabContainer issueId={issue._id} />}
       />
     </Paper>
   );
