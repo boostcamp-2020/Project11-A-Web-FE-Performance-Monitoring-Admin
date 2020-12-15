@@ -2,7 +2,7 @@
 import React, { FC, useEffect } from 'react';
 import { Project, Docs } from '@store/type';
 import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
-import fetchProjects from '@store/projects/index';
+import fetchProjects from '@/store/projects';
 
 import Loading from '@common/Loading';
 import ProjectList from './ProjectList';

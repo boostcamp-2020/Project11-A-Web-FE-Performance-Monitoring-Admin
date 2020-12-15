@@ -7,7 +7,25 @@
     "dev": "webpack-dev-server --mode development --progress --open --hot",
     "storybook": "start-storybook -p 6006 -c .storybook",
     "build": "NODE_ENV=production webpack --env=build",
-    "test": "react-scripts test"
+    "test": "jest"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/jest.init.js"
+     ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "^@api/(.*)$": "<rootDir>/src/api/$1",
+      "^@common/(.*)$": "<rootDir>/src/common/$1",
+      "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
+      "^@pages/(.*)$": "<rootDir>/src/pages/$1",
+      "^@store/(.*)$": "<rootDir>/src/store/$1",
+      "^@themes/(.*)$": "<rootDir>/src/themes/$1",
+      "^@utils/(.*)$": "<rootDir>/src/utils/$1",
+      "^@public/(.*)$": "<rootDir>/public/$1",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   },
   "repository": {
     "type": "git",
@@ -24,7 +42,7 @@
     "clsx": "^1.1.1",
     "emotion-reset": "^2.0.7",
     "emotion-theming": "^10.0.27",
-    "react": "^16.13.1",
+    "react": "^17.0.1",
     "react-async": "^10.0.1",
     "react-billboardjs": "^1.5.5",
     "react-dom": "^16.13.1",
@@ -50,13 +68,16 @@
     "@storybook/react": "^6.0.28",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.1.2",
+    "@testing-library/user-event": "^12.6.0",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
     "@types/react-redux": "^7.1.11",
     "@types/react-router-dom": "^5.1.6",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^10.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
@@ -72,11 +93,15 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.6.3",
     "jest-fetch-mock": "^3.0.3",
+    "msw": "^0.24.2",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "prettier": "^2.1.2",
+    "react-test-renderer": "^17.0.1",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^4.2.3",
+    "ts-jest": "^26.4.4",
     "ts-loader": "^8.0.7",
     "typescript": "^4.0.5",
     "webpack": "^4.43.0",

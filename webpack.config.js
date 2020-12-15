@@ -102,7 +102,7 @@ module.exports = {
         : {},
     }),
     new Dotenv(),
-    new BundleAnalyzerPlugin(),
+    prod ? new BundleAnalyzerPlugin() : null,
     new CleanWebpackPlugin(),
   ],
 };
