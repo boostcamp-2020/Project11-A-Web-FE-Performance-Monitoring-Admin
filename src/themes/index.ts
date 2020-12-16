@@ -3,7 +3,7 @@ import './index.css';
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: `'Nanum Gothic','IBMPlexSansKR-Regular','DM Serif Display', serif`,
+    fontFamily: `'Spoqa Han Sans','Nanum Gothic','DM Serif Display', serif`,
     h1: {
       fontFamily: 'IBMPlexSansKR-Bold',
     },

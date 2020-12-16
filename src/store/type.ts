@@ -36,6 +36,12 @@ export interface Issue {
   projectId: string;
   eventName: string;
   errorMessage: string;
+  errorStack?: {
+    filename: string;
+    function: string;
+    lineno: number;
+    colno: number;
+  };
   issueType: string;
   isResolved: boolean;
   comments?: string[];
@@ -140,4 +146,17 @@ export interface Docs<T> {
 export interface SearchResult {
   title: string;
   contents: { tag: string; count: number }[];
+}
+
+export interface Comment {
+  _id: string;
+  userId: {
+    _id: string;
+    email: string;
+    nickname: string;
+  };
+  issueId: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
 }

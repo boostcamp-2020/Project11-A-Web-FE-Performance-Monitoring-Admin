@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, MouseEvent, useState } from 'react';
 import { Project, Docs } from '@store/type';
 import { useDispatch, useSelector, DefaultRootState } from 'react-redux';
 import fetchProjects from '@store/projects/index';
+import { setCurrentProject } from '@store/curProject/curProjectActions';
 
 import Loading from '@common/Loading';
-import ProjectList from './ProjectList';
+import ProjectList from './components/ProjectList';
 
 interface State extends DefaultRootState {
   projectsReducer: {
@@ -13,17 +14,30 @@ interface State extends DefaultRootState {
     projects: Docs<Project>;
     errorMsg: string;
   };
+  curProjectReducer: {
+    projectId: string;
+  };
 }
 
 const ProjectListContainer: FC = (): JSX.Element => {
+  const [currentPage, setCurrentPage] = useState(1);
   const { loading, projects, errorMsg } = useSelector(
     (state: State) => state.projectsReducer,
   );
+  const { projectId: currentProjectId } = useSelector(
+    (state: State) => state.curProjectReducer,
+  );
   const dispatch = useDispatch();
 
+  const handleClickProject = (projectId: string) => (
+    event: MouseEvent<HTMLDivElement>,
+  ) => {
+    dispatch(setCurrentProject(projectId));
+  };
+
   useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
+    dispatch(fetchProjects(currentPage));
+  }, [dispatch, currentPage]);
 
   if (loading) {
     return <Loading />;
@@ -37,7 +51,15 @@ const ProjectListContainer: FC = (): JSX.Element => {
     );
   }
   if (!projects) return <></>;
-  return <ProjectList projects={projects} />;
+  return (
+    <ProjectList
+      projects={projects}
+      handleClickProject={handleClickProject}
+      setCurrentPage={setCurrentPage}
+      currentPage={currentPage}
+      currentProjectId={currentProjectId}
+    />
+  );
 };
 
 export default ProjectListContainer;
