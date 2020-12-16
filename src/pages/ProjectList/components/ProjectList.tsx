@@ -62,6 +62,7 @@ interface Props {
   handleClickProject: (projectId: string) => (event: any) => void;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
+  currentProjectId: string;
 }
 
 const ProjectList: FunctionComponent<Props> = ({
@@ -69,6 +70,7 @@ const ProjectList: FunctionComponent<Props> = ({
   handleClickProject,
   setCurrentPage,
   currentPage,
+  currentProjectId,
 }: Props) => {
   const classes = useStyles();
 
@@ -100,15 +102,19 @@ const ProjectList: FunctionComponent<Props> = ({
           </header>
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={2}>
-              {projects.docs?.map((project, idx) => (
-                <Grid item key={project._id} xs={3}>
-                  <SimpleCard
-                    projectNumber={idx + 1}
-                    project={project}
-                    handleClickProject={handleClickProject}
-                  />
-                </Grid>
-              ))}
+              {projects.docs?.map((project, idx) => {
+                const clicked = project._id === currentProjectId;
+                return (
+                  <Grid item key={project._id} xs={3}>
+                    <SimpleCard
+                      projectNumber={idx + 1}
+                      project={project}
+                      handleClickProject={handleClickProject}
+                      isClicked={clicked}
+                    />
+                  </Grid>
+                );
+              })}
             </Grid>
           </Container>
         </section>
