@@ -60,13 +60,8 @@ const IssueHeader: FC<Props> = ({ issue }: Props): JSX.Element => {
             <>
               <ErrorName>{issue.eventName}</ErrorName>
               <ErrorMessage>{issue.errorMessage}</ErrorMessage>
+              <div>Occured file name: {issue.errorStack?.filename}</div>
               <div>First Created at: {convertDate(issue.createdAt)}</div>
-              <div>
-                Last Occured at:{' '}
-                {issue.updatedAt
-                  ? convertDate(issue.updatedAt)
-                  : convertDate(issue.createdAt)}
-              </div>
             </>
           )}
         </Paper>
