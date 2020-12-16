@@ -36,6 +36,12 @@ export interface Issue {
   projectId: string;
   eventName: string;
   errorMessage: string;
+  errorStack?: {
+    filename: string;
+    function: string;
+    lineno: number;
+    colno: number;
+  };
   issueType: string;
   isResolved: boolean;
   comments?: string[];
