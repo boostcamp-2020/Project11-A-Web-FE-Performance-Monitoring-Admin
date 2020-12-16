@@ -12,6 +12,7 @@ const MIN_PROJECT_NAME_LENGTH = 4;
 interface Props {
   project: any;
   user: any;
+  projectAlert: string;
   projectName: string;
   setProjectName: Dispatch<any>;
   projectMembers: User[];
@@ -20,6 +21,7 @@ interface Props {
   setAdmins: Dispatch<React.SetStateAction<User[]>>;
   handlePatchButton: () => void;
   handleDeleteButton: (projectId: string) => void;
+  handleLevelChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 const ProjectSetting = ({
   project,
   user,
+  projectAlert,
   projectName,
   setProjectName,
   projectMembers,
@@ -56,9 +59,10 @@ const ProjectSetting = ({
   setAdmins,
   handlePatchButton,
   handleDeleteButton,
+  handleLevelChange,
 }: Props): JSX.Element => {
   const classes = useStyles();
-  const { _id: projectId, platform, sdkToken, owner, alertLevel } = project;
+  const { _id: projectId, platform, sdkToken, owner } = project;
 
   return (
     <div className={classes.root}>
@@ -73,7 +77,8 @@ const ProjectSetting = ({
               owner={owner.nickname}
               platform={platform}
               sdkToken={sdkToken}
-              alertLevel={alertLevel}
+              alertLevel={projectAlert}
+              handleLevelChange={handleLevelChange}
             />
             <ProjectNameInput {...{ projectName, setProjectName }} />
             <ProjectAdminSettingContainer {...{ projectAdmins, setAdmins }} />

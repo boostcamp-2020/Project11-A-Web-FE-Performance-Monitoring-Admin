@@ -62,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  singup: {
+    color: 'white',
+  },
   github: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -286,7 +289,7 @@ export default function SignIn(): JSX.Element {
             <Grid container>
               <Grid item xs />
               <Grid item>
-                <Link href="/signup">Don&apos;t have an account? Sign Up</Link>
+                <Link className={classes.singup} href="/signup">Don&apos;t have an account? Sign Up</Link>
               </Grid>
             </Grid>
           </form>

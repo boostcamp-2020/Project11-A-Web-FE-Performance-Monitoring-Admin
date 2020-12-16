@@ -194,7 +194,7 @@ const ProjectAlert = ({
                   onChange={handleLevelChange}
                   label="ErrorLevel"
                 >
-                  <MenuItem value={'fatal'} selected>fatal</MenuItem>
+                  <MenuItem value={'fatal'}>fatal</MenuItem>
                   <MenuItem value={'critical'}>critical</MenuItem>
                   <MenuItem value={'error'}>error</MenuItem>
                   <MenuItem value={'warning'}>warning</MenuItem>
