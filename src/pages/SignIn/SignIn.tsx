@@ -28,7 +28,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     height: '100vh',
     position: 'relative',
+    WebkitAnimation: `$fadeIn 2000ms ${theme.transitions.easing.easeInOut}`,
+    MozAnimation: `$fadeIn 2000ms ${theme.transitions.easing.easeInOut}`,
     animation: `$fadeIn 2000ms ${theme.transitions.easing.easeInOut}`,
+
   },
   logo: {
     marginTop: -14,
@@ -56,8 +59,18 @@ const useStyles = makeStyles((theme) => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
     zIndex: 1,
+    WebkitAnimation: `$riseUp 3000ms ${theme.transitions.easing.easeInOut}`,
+    WebkitanimationPlayState: 'paused',
+    MozAnimation: `$riseUp 3000ms ${theme.transitions.easing.easeInOut}`,
+    MozAnimationPlayState: 'paused',
     animation: `$riseUp 3000ms ${theme.transitions.easing.easeInOut}`,
     animationPlayState: 'paused',
+  },
+  formIE: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+    zIndex: 1,
+    animation: `$riseUp 3000ms ${theme.transitions.easing.easeInOut}`,
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -89,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const idAnimationPlay = () => {
+  if(document.getElementById('eye')?.animate===undefined)return;
   document.getElementById('eye')?.animate(
     [
       {
@@ -117,6 +131,7 @@ const idAnimationPlay = () => {
   );
 };
 const pwAnimationPlay = () => {
+  if(document.getElementById('eye')?.animate===undefined)return;
   document.getElementById('eye')?.animate(
     [
       {
@@ -157,6 +172,7 @@ const pwAnimationPlay = () => {
 };
 
 const AnimationDefault = () => {
+  if(document.getElementById('eye')?.animate===undefined)return;
   document.getElementById('eye')?.animate(
     [
       {
@@ -202,9 +218,14 @@ export default function SignIn(): JSX.Element {
     }
   };
   const backGroundChange = () => {
-    const animations = document.getAnimations();
     const back = document.getElementById('background');
-    animations.forEach((animation) => animation.play());
+    const form = document.getElementById('form');
+    if(document.getAnimations !== undefined){
+      const animations = document.getAnimations();
+      animations.forEach((animation) => animation.play());
+    }else if(form){
+        form.className = classes.formIE;
+    }
     if (back) {
       back.className = classes.backgroundMove;
     }
