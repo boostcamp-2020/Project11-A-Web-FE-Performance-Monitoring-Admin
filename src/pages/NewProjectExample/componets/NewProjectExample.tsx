@@ -42,7 +42,22 @@ interface prop {
 }
 const NewProjectExample = (props: prop): JSX.Element => {
   const classes = useStyles();
-
+  let suffix = 'node';
+  switch(props.platform){
+    case 'JavaScript':
+      suffix = 'browser';
+      break;
+    case 'NodeJS':
+      suffix = 'node';
+      break;
+    case 'Express':
+      suffix = 'node';
+      break;
+    default:
+      suffix = 'node'
+  }
+  
+  const npm = `$ npm i @santry/${suffix}`;
   const code =
     props.platform !== 'Express'
       ? `          
@@ -120,7 +135,7 @@ const NewProjectExample = (props: prop): JSX.Element => {
       contentText: (
         <div className={classes.contentText}>
           <SyntaxHighlighter language="powershell" style={dark}>
-            $ npm i @santry/browser
+            {npm}
           </SyntaxHighlighter>
           <Typography className={classes.contentText}>
             다음과 같이 입력하여 설치할 수 있습니다.
