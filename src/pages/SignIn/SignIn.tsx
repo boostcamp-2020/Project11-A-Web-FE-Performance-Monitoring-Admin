@@ -12,6 +12,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useState } from 'react';
 import login from '@api/auth/login';
+import { createAuthAxios } from '@utils/axios';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -192,6 +193,8 @@ export default function SignIn(): JSX.Element {
   const handleClick = async () => {
     try {
       const user = await login(email, password);
+      localStorage.setItem('token', user.token);
+      createAuthAxios();
       dispatch(setUser(user.email, user.nickname, user._id));
       history.push('/project');
     } catch (error) {
