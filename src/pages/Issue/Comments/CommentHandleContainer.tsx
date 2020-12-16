@@ -9,8 +9,10 @@ import React, {
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab, Button } from '@material-ui/core';
 import styled from '@emotion/styled';
+import { Comment } from '@store/type';
 import addComment from '@api/comment/addComment';
 import editComment from '@api/comment/editComment';
+import { useSelector, DefaultRootState } from 'react-redux';
 import CommentTextArea from './components/CommentTextArea';
 import CommentMarkdownConvertedArea from './components/CommentMarkdownConvertedArea';
 
@@ -24,8 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     tab: {
-      minWidth: 80, // a number of your choice
-      width: 80, // a number of your choice
+      minWidth: 80,
+      width: 80,
     },
   }),
 );
@@ -45,7 +47,8 @@ const Buttons = styled.div`
 interface Props {
   issueId: string;
   isPost: boolean;
-  changeRenderFlip: { (): void };
+  comments: Comment[];
+  setComments: Dispatch<SetStateAction<Comment[]>>;
   commentId?: string;
   setIsEditing?: Dispatch<SetStateAction<boolean>>;
   comment?: string;
@@ -61,16 +64,28 @@ const TabPanel: FC<PanelProps> = ({ children, value, index }: PanelProps) => {
   return <Paper>{value === index && children}</Paper>;
 };
 
+interface State extends DefaultRootState {
+  userReducer: {
+    email: string;
+    nickname: string;
+    id: string;
+  };
+}
+
 const CommentHandleContainer: FC<Props> = ({
   issueId,
   isPost,
-  changeRenderFlip,
+  comments,
+  setComments,
   commentId,
   setIsEditing,
   comment,
 }: Props) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
+
+  const user = useSelector((state: State) => state.userReducer);
+
   const [text, setText] = useState<string>(comment || '');
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -82,13 +97,28 @@ const CommentHandleContainer: FC<Props> = ({
     setText(event.target.value);
   };
 
+  const makeNewComment = (id: string, issueId: string, description: string) => {
+    return {
+      _id: id,
+      userId: {
+        _id: user.id,
+        email: user.email,
+        nickname: user.nickname,
+      },
+      issueId,
+      description,
+      createdAt: new Date().toString(),
+      updatedAt: new Date().toString(),
+    };
+  };
+
   const handleAddClick = async () => {
     const result = await addComment(issueId, text);
     setText('');
-    changeRenderFlip();
+
     if (result) {
+      setComments([makeNewComment(result._id, issueId, text), ...comments]);
       setText('');
-      changeRenderFlip();
     } else alert('댓글 등록 실패!');
   };
 
@@ -97,9 +127,20 @@ const CommentHandleContainer: FC<Props> = ({
     if (setIsEditing) {
       setIsEditing(false);
     }
-    changeRenderFlip();
-    if (result) changeRenderFlip();
-    else alert('댓글 수정 실패!');
+
+    if (result) {
+      setComments(
+        comments.map((comment) =>
+          commentId === comment._id
+            ? {
+                ...comment,
+                description: text,
+                updatedAt: new Date().toString(),
+              }
+            : comment,
+        ),
+      );
+    } else alert('댓글 수정 실패!');
   };
 
   useEffect(() => {
