@@ -38,21 +38,30 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  clicked: {
+    boxShadow:
+      'inset 6px 6px 10px 0 rgba(0, 0, 0, 0.2), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5)',
+  },
 });
 interface Props {
   project: Project;
   projectNumber: number;
   handleClickProject: (projectId: string) => (event: any) => void;
+  isClicked: boolean;
 }
 const SimpleCard: FC<Props> = ({
   project,
   projectNumber,
   handleClickProject,
+  isClicked,
 }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} onClick={handleClickProject(project._id)}>
+    <Card
+      className={`${classes.root} ${isClicked ? classes.clicked : ''}`}
+      onClick={handleClickProject(project._id)}
+    >
       <CardContent>
         <Typography
           className={classes.title}
