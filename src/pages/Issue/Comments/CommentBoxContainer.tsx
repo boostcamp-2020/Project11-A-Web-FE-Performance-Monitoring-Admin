@@ -1,4 +1,6 @@
 import React, { FC, useState } from 'react';
+import deleteComment from '@api/comment/deleteComment';
+import { Comment } from '@store/type';
 import CommentHandleContainer from './CommentHandleContainer';
 import CommentBox from './components/CommentBox';
 
@@ -8,7 +10,8 @@ interface Props {
   timestamp: string;
   comment: string;
   commentId: string;
-  changeRenderFlip: { (): void };
+  setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
+  comments: Comment[];
 }
 
 const CommentBoxContainer: FC<Props> = ({
@@ -17,9 +20,21 @@ const CommentBoxContainer: FC<Props> = ({
   timestamp,
   comment,
   commentId,
-  changeRenderFlip,
+  setComments,
+  comments,
 }: Props) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const handleDeleteClick = async () => {
+    const result = await deleteComment(commentId);
+
+    if (result) {
+      setComments(
+        comments.filter((curComment) => curComment._id !== commentId),
+      );
+    } else alert('댓글 삭제 실패!');
+  };
+
   if (isEditing)
     return (
       <CommentHandleContainer
@@ -27,8 +42,9 @@ const CommentBoxContainer: FC<Props> = ({
         commentId={commentId}
         isPost={!isEditing}
         setIsEditing={setIsEditing}
-        changeRenderFlip={changeRenderFlip}
         comment={comment}
+        comments={comments}
+        setComments={setComments}
       />
     );
   return (
@@ -38,7 +54,7 @@ const CommentBoxContainer: FC<Props> = ({
       timestamp={timestamp}
       comment={comment}
       setIsEditing={setIsEditing}
-      changeRenderFlip={changeRenderFlip}
+      handleDeleteClick={handleDeleteClick}
     />
   );
 };
