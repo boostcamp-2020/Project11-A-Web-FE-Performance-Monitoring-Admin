@@ -68,7 +68,7 @@ const EventsTable: FC<Props> = ({ events }: Props) => {
                 return (
                   <TableCell align="left" key={idx}>
                     {typeof value === 'object'
-                      ? Object.values(value).reverse().join(' ')
+                      ? Object.values(value).join(' ')
                       : value}
                   </TableCell>
                 );
