@@ -12,6 +12,8 @@ import {
 } from '@material-ui/core';
 import { Menu, ChevronLeft, LockOpen } from '@material-ui/icons';
 import SecondLogo from '@common/svg/SecondLogo';
+import { useDispatch } from 'react-redux';
+import { setUser } from '@store/user/userActions';
 import MainListItems from './SideBar';
 
 const drawerWidth = 200;
@@ -102,6 +104,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AppBarShift(): JSX.Element {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const dispatch = useDispatch();
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -111,6 +114,7 @@ export default function AppBarShift(): JSX.Element {
   const LogoutHandler = () => {
     localStorage.removeItem('nickname');
     localStorage.removeItem('token');
+    dispatch(setUser('', '', ''));
     window.location.reload();
   };
   return (
