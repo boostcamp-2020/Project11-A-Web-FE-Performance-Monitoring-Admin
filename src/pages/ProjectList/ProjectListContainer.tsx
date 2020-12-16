@@ -14,12 +14,18 @@ interface State extends DefaultRootState {
     projects: Docs<Project>;
     errorMsg: string;
   };
+  curProjectReducer: {
+    projectId: string;
+  };
 }
 
 const ProjectListContainer: FC = (): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(1);
   const { loading, projects, errorMsg } = useSelector(
     (state: State) => state.projectsReducer,
+  );
+  const { projectId: currentProjectId } = useSelector(
+    (state: State) => state.curProjectReducer,
   );
   const dispatch = useDispatch();
 
@@ -51,6 +57,7 @@ const ProjectListContainer: FC = (): JSX.Element => {
       handleClickProject={handleClickProject}
       setCurrentPage={setCurrentPage}
       currentPage={currentPage}
+      currentProjectId={currentProjectId}
     />
   );
 };
