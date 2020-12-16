@@ -16,7 +16,7 @@ const NewProjectContainer: FC = () => {
   const history = useHistory();
 
   const handleCreateButton = async () => {
-    const alert = alertSetting === '거부'?'':alertLevel;
+    const alert = alertSetting === '거부'?'수신거부':alertLevel;
     const data = {
       platform: selectedPlatform,
       projectName,

@@ -70,11 +70,11 @@ const FixedInformation = (props: prop) : JSX.Element => {
                   <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={props.alertLevel===''?'안 받음':props.alertLevel}
+                    value={props.alertLevel}
                     onChange={props.handleLevelChange}
                     label="ErrorLevel"
                   >
-                    <MenuItem value={''}>안받음</MenuItem>
+                    <MenuItem value={'수신거부'}>수신거부</MenuItem>
                     <MenuItem value={'fatal'}>fatal</MenuItem>
                     <MenuItem value={'critical'}>critical</MenuItem>
                     <MenuItem value={'error'}>error</MenuItem>
