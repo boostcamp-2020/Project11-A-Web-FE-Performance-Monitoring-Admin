@@ -1,10 +1,13 @@
 import { authAxios } from '@utils/axios';
-import { Comment } from '@store/type';
+
+interface Response {
+  _id: string;
+}
 
 const addComment = async (
   issueId: string,
   comment: string,
-): Promise<Comment | boolean> => {
+): Promise<Response | boolean> => {
   const result = await authAxios.post(`/comment`, {
     issueId,
     comment,

@@ -116,7 +116,7 @@ const CommentHandleContainer: FC<Props> = ({
     const result = await addComment(issueId, text);
     setText('');
 
-    if (result) {
+    if (typeof result !== 'boolean') {
       setComments([makeNewComment(result._id, issueId, text), ...comments]);
       setText('');
     } else alert('댓글 등록 실패!');
