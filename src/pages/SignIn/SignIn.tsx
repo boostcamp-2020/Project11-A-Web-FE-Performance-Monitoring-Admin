@@ -189,6 +189,7 @@ export default function SignIn(): JSX.Element {
   const handleClick = async () => {
     try {
       const user = await login(email, password);
+      localStorage.setItem('token',user.token);
       dispatch(setUser(user.email, user.nickname, user._id));
       history.push('/project');
     } catch (error) {

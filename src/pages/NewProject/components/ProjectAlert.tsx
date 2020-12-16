@@ -194,10 +194,10 @@ const ProjectAlert = ({
                   onChange={handleLevelChange}
                   label="ErrorLevel"
                 >
-                  <MenuItem value={0} selected>fatal</MenuItem>
-                  <MenuItem value={1}>critical</MenuItem>
-                  <MenuItem value={2}>error</MenuItem>
-                  <MenuItem value={3}>warning</MenuItem>
+                  <MenuItem value={'fatal'} selected>fatal</MenuItem>
+                  <MenuItem value={'critical'}>critical</MenuItem>
+                  <MenuItem value={'error'}>error</MenuItem>
+                  <MenuItem value={'warning'}>warning</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

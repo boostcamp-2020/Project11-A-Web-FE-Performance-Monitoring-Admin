@@ -16,13 +16,14 @@ const NewProjectContainer: FC = () => {
   const history = useHistory();
 
   const handleCreateButton = async () => {
+    const alert = alertSetting === '거부'?'':alertLevel;
     const data = {
       platform: selectedPlatform,
       projectName,
       emails: alertMails,
       admins: projectAdmins,
       members: projectMembers,
-      alertLevel,
+      alertLevel: alert,
     };
     const token = await create(data);
 
