@@ -78,7 +78,7 @@ const FixedInformation = (props: prop) : JSX.Element => {
                     onChange={props.handleLevelChange}
                     label="ErrorLevel"
                   >
-                    <MenuItem value={'수신거부'}>수신거부</MenuItem>
+                    <MenuItem value={'unsubscribe'}>unsubscribe</MenuItem>
                     <MenuItem value={'fatal'}>fatal</MenuItem>
                     <MenuItem value={'critical'}>critical</MenuItem>
                     <MenuItem value={'error'}>error</MenuItem>
