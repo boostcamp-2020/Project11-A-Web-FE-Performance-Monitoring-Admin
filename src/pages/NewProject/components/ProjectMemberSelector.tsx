@@ -37,12 +37,8 @@ interface Props {
   title: string;
   context: string;
   selectedUsers: User[];
-  searchResult: User[];
   handleSearchButtonClick: (searchQuery: any) => Promise<void>;
   handleDeleteMemberClick: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => void;
-  handleAddMemberClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
 }
@@ -51,10 +47,8 @@ const ProjectMemberSelector: FC<Props> = ({
   title,
   context,
   selectedUsers,
-  searchResult,
   handleSearchButtonClick,
   handleDeleteMemberClick,
-  handleAddMemberClick,
 }: Props): JSX.Element => {
   const classes = useStyles();
   const [searchQuery, setQuery] = useState('');
@@ -114,19 +108,6 @@ const ProjectMemberSelector: FC<Props> = ({
               >
                 찾기
               </Button>
-            </Grid>
-            <Grid container item xs={12} spacing={0}>
-              {searchResult.map((member) => (
-                <Grid key={member._id} item xs={2}>
-                  <Button
-                    variant="outlined"
-                    value={member._id}
-                    onClick={handleAddMemberClick}
-                  >
-                    <span>{member.nickname}</span>
-                  </Button>
-                </Grid>
-              ))}
             </Grid>
           </Grid>
         </div>
