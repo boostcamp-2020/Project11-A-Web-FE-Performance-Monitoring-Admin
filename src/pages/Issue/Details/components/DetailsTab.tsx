@@ -52,9 +52,9 @@ const DetailsTab: FC<Props> = ({
     url,
     version,
   };
-  eventTags.sdk = sdk && Object.values(sdk).reverse().join(' ');
-  eventTags.browser = browser && Object.values(browser).reverse().join(' ');
-  eventTags.os = os && Object.values(os).reverse().join(' ');
+  eventTags.sdk = sdk && Object.values(sdk).join(' ');
+  eventTags.browser = browser && Object.values(browser).join(' ');
+  eventTags.os = os && Object.values(os).join(' ');
 
   const hasTags = Object.values(eventTags).reduce(
     (prev, cur) => prev || cur !== undefined,

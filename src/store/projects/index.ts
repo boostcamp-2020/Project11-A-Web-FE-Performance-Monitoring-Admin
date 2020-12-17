@@ -6,10 +6,12 @@ import {
   getProjectsFail,
 } from './projectsActions';
 
-const fetchProjects = () => async (dispatch: Dispatch): Promise<void> => {
+const fetchProjects = (page?: number) => async (
+  dispatch: Dispatch,
+): Promise<void> => {
   dispatch(getProjectsRequest());
   try {
-    const projects = await getProjects();
+    const projects = await getProjects(page);
     if (projects) dispatch(getProjectsSuccess(projects));
   } catch (error) {
     dispatch(getProjectsFail(error.message));

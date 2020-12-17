@@ -9,7 +9,6 @@ let chartColorIdx = 0;
 const chartColorNum = chartColors.length;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {},
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',

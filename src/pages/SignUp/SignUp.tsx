@@ -59,6 +59,11 @@ export default function SignUp(): JSX.Element {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Typography component="h1">
+                사용하실 이메일을 이메일형식에 맞게 입력해주세요.
+              </Typography>
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -72,6 +77,11 @@ export default function SignUp(): JSX.Element {
               />
             </Grid>
             <Grid item xs={12}>
+              <Typography component="h1">
+                비밀번호는 대문자1자, 소문자1자, 숫자1자, 특수문자1개 이상 8자리 이상 입력해주세요.
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -82,12 +92,6 @@ export default function SignUp(): JSX.Element {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="저는 아무튼 약관에 동의합니다."
               />
             </Grid>
           </Grid>

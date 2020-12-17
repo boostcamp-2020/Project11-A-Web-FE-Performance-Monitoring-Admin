@@ -12,10 +12,14 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useState } from 'react';
 import login from '@api/auth/login';
+import { createAuthAxios } from '@utils/axios';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { setUser } from '@store/user/userActions';
+import Background from '@public/img/background.jpg';
+import SantryEye from '@public/img/santry_eye.png';
+import SantryWithoutEye from '@public/img/santry_noeye.png';
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -24,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   backgroundMove: {
-    backgroundImage: `url('public/img/background.jpg')`,
+    backgroundImage: `url(${Background})`,
     backgroundSize: 'cover',
     height: '100vh',
     position: 'relative',
@@ -208,7 +212,8 @@ export default function SignIn(): JSX.Element {
   const handleClick = async () => {
     try {
       const user = await login(email, password);
-      localStorage.setItem('token',user.token);
+      localStorage.setItem('token', user.token);
+      createAuthAxios();
       dispatch(setUser(user.email, user.nickname, user._id));
       history.push('/project');
     } catch (error) {
@@ -236,17 +241,8 @@ export default function SignIn(): JSX.Element {
     <div id="background" className={classes.background}>
       <Container component="main" maxWidth="xs">
         <div onClick={backGroundChange}>
-          <img
-            src="public/img/santry_eye.png"
-            className={classes.eye}
-            id="eye"
-            alt="eye"
-          />
-          <img
-            src="public/img/santry_noeye.png"
-            className={classes.logo}
-            alt="logo"
-          />
+          <img src={SantryEye} className={classes.eye} id="eye" alt="eye" />
+          <img src={SantryWithoutEye} className={classes.logo} alt="logo" />
         </div>
         <CssBaseline />
         <div className={classes.paper}>
