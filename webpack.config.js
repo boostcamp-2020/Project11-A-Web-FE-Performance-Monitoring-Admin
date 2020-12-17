@@ -13,7 +13,8 @@ const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: prod ? 'production' : 'development',
-
+  devtool: prod ? 'cheap-module-source-map' : 'eval',
+  
   entry: './src/index',
 
   resolve: {
