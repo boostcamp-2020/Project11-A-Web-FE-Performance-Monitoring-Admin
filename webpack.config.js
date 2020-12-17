@@ -62,7 +62,18 @@ module.exports = {
   },
 
   optimization: {
-    minimizer: [],
+    minimizer: prod
+      ? [
+          new OptimizeCSSAssetsPlugin(),
+          new TerserPlugin({
+            terserOptions: {
+              compress: {
+                drop_console: true, // 콘솔 로그 제거
+              },
+            },
+          }),
+        ]
+      : [],
     splitChunks: {
       chunks: 'all',
       minSize: 51200,
@@ -89,7 +100,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico',
-      minify: {},
+      minify: prod
+        ? {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true,
+          }
+        : {},
     }),
     new CompressionPlugin({
       test: /\.js(\?.*)?$/i,
