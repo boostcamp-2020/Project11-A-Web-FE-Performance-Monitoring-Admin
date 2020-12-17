@@ -13,7 +13,6 @@ const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: prod ? 'production' : 'development',
-  devtool: 'eval',
 
   entry: './src/index',
 
