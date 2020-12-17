@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --progress --open --hot",
     "storybook": "start-storybook -p 6006 -c .storybook",
-    "build": "webpack --env=build",
+    "build": "NODE_ENV=production webpack --env=build",
     "test": "react-scripts test"
   },
   "repository": {
