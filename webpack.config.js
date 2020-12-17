@@ -7,6 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 
@@ -57,6 +58,7 @@ module.exports = {
     port: 3000,
     hot: true,
     publicPath: '/',
+    compress: true,
   },
 
   optimization: {
@@ -72,6 +74,17 @@ module.exports = {
           }),
         ]
       : [],
+    splitChunks: {
+      chunks: 'all',
+      minSize: 51200,
+      cacheGroups: {
+        vendor: {
+          chunks: 'all',
+          name: 'vendor',
+          test: /[\\/]node_modules[\\/]/,
+        },
+      },
+    },
   },
 
   output: {
@@ -102,8 +115,12 @@ module.exports = {
           }
         : {},
     }),
+    new CompressionPlugin({
+      test: /\.js(\?.*)?$/i,
+      threshold: 10240, // 10kb
+    }),
     new Dotenv(),
-    //new BundleAnalyzerPlugin(), 
+    // new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(),
   ],
 };
