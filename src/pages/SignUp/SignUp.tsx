@@ -60,7 +60,7 @@ export default function SignUp(): JSX.Element {
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
           <Grid item xs={12}>
-              <Typography component="h1">
+            <Typography component="h1">
                 사용하실 이메일을 이메일형식에 맞게 입력해주세요.
               </Typography>
             </Grid>
