@@ -62,18 +62,7 @@ module.exports = {
   },
 
   optimization: {
-    minimizer: prod
-      ? [
-          new OptimizeCSSAssetsPlugin(),
-          new TerserPlugin({
-            terserOptions: {
-              compress: {
-                drop_console: true, // 콘솔 로그 제거
-              },
-            },
-          }),
-        ]
-      : [],
+    minimizer: [],
     splitChunks: {
       chunks: 'all',
       minSize: 51200,
