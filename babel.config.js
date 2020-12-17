@@ -9,7 +9,7 @@ module.exports = (api) => {
     '@babel/preset-react',
     '@babel/preset-typescript',
   ];
-  const plugins = ['react-hot-loader/babel', '@babel/plugin-transform-classes'];
+  const plugins = ['react-hot-loader/babel', '@babel/plugin-transform-classes', '@babel/plugin-transform-arrow-functions'];
 
   return { presets, plugins };
 };
