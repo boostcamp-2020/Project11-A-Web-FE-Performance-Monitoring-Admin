@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
   contentBody: {
     padding: '10px',
   },
+  alertForm: {
+    marginTop: '20px',
+    width: '150px',
+  }
 }));
 
 interface prop {
@@ -65,7 +69,7 @@ const FixedInformation = (props: prop) : JSX.Element => {
             <tr>
               <th>알람 레벨</th>
               <td>
-                <FormControl variant="outlined" >
+                <FormControl variant="outlined" className={classes.alertForm}>
                   <InputLabel id="demo-simple-select-outlined-label">오류 감지 레벨</InputLabel>
                   <Select
                     labelId="demo-simple-select-outlined-label"

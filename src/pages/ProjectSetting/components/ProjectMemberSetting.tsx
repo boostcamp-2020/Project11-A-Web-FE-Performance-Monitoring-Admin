@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1),
       padding: '5px',
     },
+    contentDescription: {
+      margin: theme.spacing(1),
+      padding: '5px',
+    },
     contentBody: {
       marginLeft: '20px',
       marginBottom: '20px',
@@ -38,6 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface prop {
   title: string;
   projectMembers: User[];
+  context: string;
   setMembers: React.Dispatch<React.SetStateAction<User[]>>;
   handleSearchButtonClick: (searchQuery: any) => () => Promise<void>;
 }
@@ -45,6 +50,7 @@ interface prop {
 const ProjectMember = ({
   title,
   projectMembers,
+  context,
   setMembers,
   handleSearchButtonClick,
 }: prop): JSX.Element => {
@@ -68,6 +74,9 @@ const ProjectMember = ({
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography className={classes.contentTitle}>{title}</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography className={classes.contentDescription}>{context}</Typography>
           </Grid>
           <Grid
             className={classes.contentBody}
