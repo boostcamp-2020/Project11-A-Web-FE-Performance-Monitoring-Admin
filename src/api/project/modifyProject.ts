@@ -6,11 +6,13 @@ const modifiProject = async (
   projectName: string,
   admins: User[],
   members: User[],
+  alertLevel: string,
 ): Promise<void> => {
   const result = await authAxios.put(`/project/${projectId}`, {
     projectName,
     admins,
     members,
+    alertLevel,
   });
   if (result.status === 200) {
     window.location.href = '/project';

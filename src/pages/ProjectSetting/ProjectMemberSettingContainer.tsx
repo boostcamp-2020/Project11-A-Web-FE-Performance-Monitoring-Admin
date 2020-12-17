@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import searchMember from '@api/project/searchMember';
 import { User } from '@store/type';
 import ProjectMemberSetting from './components/ProjectMemberSetting';
@@ -12,11 +12,15 @@ const ProjectMemberSettingContainer: FC<Props> = ({
   projectMembers,
   setMembers,
 }: Props) => {
-  const [searchResult, setSearchResult] = useState<User[]>([]);
 
   const handleSearchButtonClick = (searchQuery: string) => async () => {
     const searchArray = await searchMember(searchQuery);
-    setSearchResult(searchArray);
+    if(searchArray[0].nickname === searchQuery){
+      setMembers([...projectMembers,searchArray[0]]);
+      alert('멤버가 추가되었습니다.');
+    }else{
+      alert('멤버를 찾을 수 없습니다.');
+    }  
   };
 
   return (
@@ -25,7 +29,6 @@ const ProjectMemberSettingContainer: FC<Props> = ({
       projectMembers={projectMembers}
       setMembers={setMembers}
       handleSearchButtonClick={handleSearchButtonClick}
-      searchResult={searchResult}
     />
   );
 };

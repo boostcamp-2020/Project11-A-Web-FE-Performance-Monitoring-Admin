@@ -4,6 +4,10 @@ import { makeStyles,
   Grid,
   Paper,
   Divider,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
  } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +32,8 @@ interface prop {
   owner: string;
   platform: string;
   sdkToken: string;
-
+  alertLevel: string;
+  handleLevelChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
 }
 const FixedInformation = (props: prop) : JSX.Element => {
   const classes = useStyles();
@@ -56,6 +61,27 @@ const FixedInformation = (props: prop) : JSX.Element => {
             <tr>
               <th>DSN</th>
               <td>{props.sdkToken}</td>
+            </tr>
+            <tr>
+              <th>알람 레벨</th>
+              <td>
+                <FormControl variant="outlined" >
+                  <InputLabel id="demo-simple-select-outlined-label">오류 감지 레벨</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={props.alertLevel}
+                    onChange={props.handleLevelChange}
+                    label="ErrorLevel"
+                  >
+                    <MenuItem value={'수신거부'}>수신거부</MenuItem>
+                    <MenuItem value={'fatal'}>fatal</MenuItem>
+                    <MenuItem value={'critical'}>critical</MenuItem>
+                    <MenuItem value={'error'}>error</MenuItem>
+                    <MenuItem value={'warning'}>warning</MenuItem>
+                  </Select>
+                </FormControl>  
+              </td>
             </tr>
           </tbody>
         </table>

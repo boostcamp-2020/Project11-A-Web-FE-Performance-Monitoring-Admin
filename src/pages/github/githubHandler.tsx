@@ -2,6 +2,7 @@ import React from 'react';
 import { RouteComponentProps, Redirect } from 'react-router-dom';
 import { useAsync } from 'react-async';
 
+import { createAuthAxios } from '@utils/axios';
 import githubAxios from '@api/auth/github';
 import Loading from '@common/Loading';
 
@@ -20,6 +21,7 @@ const GithubHandler: React.FC<RouteComponentProps> = (props) => {
 
   window.localStorage.setItem('token', data.token);
   window.localStorage.setItem('nickname', data.nickname);
+  createAuthAxios();
 
   return <Redirect to={{ pathname: '/project' }} />;
 };
