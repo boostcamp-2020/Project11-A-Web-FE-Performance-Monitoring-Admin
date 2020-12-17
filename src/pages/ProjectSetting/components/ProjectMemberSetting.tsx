@@ -40,7 +40,6 @@ interface prop {
   projectMembers: User[];
   setMembers: React.Dispatch<React.SetStateAction<User[]>>;
   handleSearchButtonClick: (searchQuery: any) => () => Promise<void>;
-  searchResult: User[];
 }
 
 const ProjectMember = ({
@@ -48,7 +47,6 @@ const ProjectMember = ({
   projectMembers,
   setMembers,
   handleSearchButtonClick,
-  searchResult,
 }: prop): JSX.Element => {
   const classes = useStyles();
   const [searchQuery, setQuery] = useState('');
@@ -62,17 +60,6 @@ const ProjectMember = ({
         (member) => event.currentTarget.value !== member._id,
       ),
     );
-  };
-  const handleAddMemberClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    setMembers([
-      ...projectMembers,
-      {
-        _id: event.currentTarget.value,
-        nickname: String(event.currentTarget.textContent),
-      },
-    ]);
   };
 
   return (
@@ -130,25 +117,6 @@ const ProjectMember = ({
             >
               찾기
             </Button>
-          </Grid>
-          <Grid
-            className={classes.contentBody}
-            container
-            item
-            xs={12}
-            spacing={1}
-          >
-            {searchResult.map((member) => (
-              <Grid key={`m${member._id}`} item xs={3}>
-                <Button
-                  variant="outlined"
-                  value={member._id}
-                  onClick={handleAddMemberClick}
-                >
-                  <span>{member.nickname}</span>
-                </Button>
-              </Grid>
-            ))}
           </Grid>
         </Grid>
       </Paper>

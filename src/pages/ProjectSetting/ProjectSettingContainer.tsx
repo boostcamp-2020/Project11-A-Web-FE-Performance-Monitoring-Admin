@@ -42,6 +42,7 @@ const ProjectSettingContainer: FC = () => {
   const [projectName, setProjectName] = useState('');
   const [projectMembers, setMembers] = useState<User[]>([]);
   const [projectAdmins, setAdmins] = useState<User[]>([]);
+  const [projectAlert, setAlert] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -51,6 +52,7 @@ const ProjectSettingContainer: FC = () => {
         setProjectName(projectResult.projectName);
         setMembers(projectResult.members);
         setAdmins(projectResult.admins);
+        setAlert(projectResult.alertLevel);
       }
     })();
   }, []);
@@ -58,7 +60,7 @@ const ProjectSettingContainer: FC = () => {
   if (JSON.stringify(project) === '{}') return <></>;
 
   const handlePatchButton = () => {
-    modifyProject(projectId, projectName, projectAdmins, projectMembers);
+    modifyProject(projectId, projectName, projectAdmins, projectMembers, projectAlert);
   };
 
   const handleDeleteButton = (projectIdToDelete: string) => {
@@ -69,10 +71,15 @@ const ProjectSettingContainer: FC = () => {
     history.push('/project');
   };
 
+  const handleLevelChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setAlert(event.target.value as string);
+  }
+
   return (
     <ProjectSetting
       project={project}
       user={user}
+      projectAlert={projectAlert}
       projectName={projectName}
       setProjectName={setProjectName}
       projectMembers={projectMembers}
@@ -81,6 +88,7 @@ const ProjectSettingContainer: FC = () => {
       setAdmins={setAdmins}
       handlePatchButton={handlePatchButton}
       handleDeleteButton={handleDeleteButton}
+      handleLevelChange={handleLevelChange}
     />
   );
 };
