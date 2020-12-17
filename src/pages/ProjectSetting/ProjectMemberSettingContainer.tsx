@@ -26,6 +26,7 @@ const ProjectMemberSettingContainer: FC<Props> = ({
   return (
     <ProjectMemberSetting
       title="함께 프로젝트를 진행할 사람들을 선정해주세요."
+      context="함께 프로젝트를 진행할 사람들을 선정해주세요 멤버가 될 계정의 이메일을 정확히 입력해주세요. ( 깃허브에 경우에는 nickname을 입력하시기 바랍니다. )"
       projectMembers={projectMembers}
       setMembers={setMembers}
       handleSearchButtonClick={handleSearchButtonClick}

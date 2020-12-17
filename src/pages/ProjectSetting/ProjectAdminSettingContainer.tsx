@@ -26,6 +26,7 @@ const ProjectAdminSettingContainer: FC<Props> = ({
   return (
     <ProjectMemberSetting
       title="프로젝트의 담당자들을 선택해주세요."
+      context="프로젝트의 담당자들을 선택해주세요. 담당자가 될 계정의 이메일을 정확히 입력해주세요. ( 깃허브에 경우에는 nickname을 입력하시기 바랍니다. )"
       projectMembers={projectAdmins}
       setMembers={setAdmins}
       handleSearchButtonClick={handleSearchButtonClick}
