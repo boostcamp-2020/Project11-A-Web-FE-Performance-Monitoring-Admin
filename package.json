@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --progress --open --hot",
     "storybook": "start-storybook -p 6006 -c .storybook",
-    "build": "NODE_ENV=production webpack --env=build",
+    "build": "webpack --env=build",
     "test": "react-scripts test"
   },
   "repository": {
@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/plugin-transform-classes": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
