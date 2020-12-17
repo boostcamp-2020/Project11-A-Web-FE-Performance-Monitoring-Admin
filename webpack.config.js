@@ -74,17 +74,6 @@ module.exports = {
           }),
         ]
       : [],
-    splitChunks: {
-      chunks: 'all',
-      minSize: 51200,
-      cacheGroups: {
-        vendor: {
-          chunks: 'all',
-          name: 'vendor',
-          test: /[\\/]node_modules[\\/]/,
-        },
-      },
-    },
   },
 
   output: {
