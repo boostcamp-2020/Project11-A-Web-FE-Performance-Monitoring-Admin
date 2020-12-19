@@ -13,7 +13,7 @@ const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: prod ? 'production' : 'development',
-  devtool: prod ? false : 'eval',
+  devtool: prod ? 'cheap-module-source-map' : 'eval',
 
   entry: './src/index',
 
@@ -36,7 +36,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: ['babel-loader', 'ts-loader'],
+        use: ['babel-loader'],
         exclude: /node_modules/,
       },
       {
