@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Issue: FC<Props> = ({ issue }: Props) => {
+const IssuePresenter: FC<Props> = ({ issue }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -43,4 +43,4 @@ const Issue: FC<Props> = ({ issue }: Props) => {
   );
 };
 
-export default Issue;
+export default IssuePresenter;
