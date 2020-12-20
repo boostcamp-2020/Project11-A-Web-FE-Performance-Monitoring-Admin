@@ -25,11 +25,7 @@ const NewProjectContainer: FC = () => {
       members: projectMembers,
       alertLevel: alert,
     };
-    console.log('보내기')
-    console.log(data)
     const token = await create(data);
-    console.log('여기')
-
     history.push('/newproject/example', {
       token,
       platform: selectedPlatform,
