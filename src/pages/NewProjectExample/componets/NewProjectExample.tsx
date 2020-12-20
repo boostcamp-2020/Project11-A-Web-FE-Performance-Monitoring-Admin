@@ -61,7 +61,7 @@ const NewProjectExample = (props: prop): JSX.Element => {
   const code =
     props.platform !== 'Express'
       ? `          
-  const { init, captureError } = require('@santry/browser');
+  const { init, captureError } = require('@santry/${suffix}');
 
   const dsn = '${props.token}@118.67.129.120:3000/sdk/event';
 
@@ -84,7 +84,6 @@ const NewProjectExample = (props: prop): JSX.Element => {
     errorHandler,
     captureMessage,
     setContext,
-    setLevel,
   } = require('@santry/node');
 
   const app = express();
@@ -105,7 +104,6 @@ const NewProjectExample = (props: prop): JSX.Element => {
       name: 'Hera',
       age: 26,
     });
-    setLevel('fatal');
     captureMessage("helllo I'm Hera");
     throw new Error('My second Sentry error get!');
   });
