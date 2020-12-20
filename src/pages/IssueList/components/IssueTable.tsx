@@ -67,7 +67,7 @@ const IssueTable: FC<Props> = ({ issues }: Props): JSX.Element => {
                   style={{ display: 'flex' }}
                 >
                   <AccessTime style={{ fontSize: '1rem', marginRight: 5 }} />{' '}
-                  {timeDiff(new Date(), new Date(issue.createdAt))}
+                  {timeDiff(new Date(), new Date(issue.updatedAt))}
                 </Typography>
               </TableCell>
               <TableCell align="center">{issue.events?.length}</TableCell>

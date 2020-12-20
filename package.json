@@ -26,7 +26,6 @@
     "emotion-reset": "^2.0.7",
     "emotion-theming": "^10.0.27",
     "react": "^16.13.1",
-    "react-app-polyfill": "^2.0.0",
     "react-async": "^10.0.1",
     "react-billboardjs": "^1.4.3",
     "react-dom": "^16.13.1",
@@ -42,7 +41,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
-    "@babel/plugin-transform-arrow-functions": "^7.12.1",
     "@babel/plugin-transform-classes": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
@@ -84,7 +82,6 @@
     "prettier": "^2.1.2",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^4.2.3",
-    "ts-loader": "^8.0.7",
     "typescript": "^4.0.5",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^4.2.0",
