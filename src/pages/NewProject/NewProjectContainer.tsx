@@ -8,7 +8,7 @@ const NewProjectContainer: FC = () => {
   const [selectedPlatform, setPlatform] = useState('아직 선택하지 않았습니다.');
   const [projectName, setProjectName] = useState('New Project');
   const [alertSetting, setAlert] = useState('거부');
-  const [alertLevel, setAlertLevel] = useState('1');
+  const [alertLevel, setAlertLevel] = useState('fatal');
   const [alertMails, setMails] = useState<string[]>([]);
   const [projectMembers, setMembers] = useState<User[]>([]);
   const [projectAdmins, setAdmins] = useState<User[]>([]);
@@ -25,7 +25,10 @@ const NewProjectContainer: FC = () => {
       members: projectMembers,
       alertLevel: alert,
     };
+    console.log('보내기')
+    console.log(data)
     const token = await create(data);
+    console.log('여기')
 
     history.push('/newproject/example', {
       token,

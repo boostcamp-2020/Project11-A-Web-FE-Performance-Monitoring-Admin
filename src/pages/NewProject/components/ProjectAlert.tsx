@@ -193,8 +193,9 @@ const ProjectAlert = ({
                   value={alertLevel}
                   onChange={handleLevelChange}
                   label="ErrorLevel"
+                  disabled={alertSetting === '거부'}
                 >
-                  <MenuItem value={'fatal'}>fatal</MenuItem>
+                  <MenuItem value={'fatal'} selected>fatal</MenuItem>
                   <MenuItem value={'critical'}>critical</MenuItem>
                   <MenuItem value={'error'}>error</MenuItem>
                   <MenuItem value={'warning'}>warning</MenuItem>
