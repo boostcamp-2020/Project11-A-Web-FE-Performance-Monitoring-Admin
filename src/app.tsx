@@ -8,10 +8,20 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '@store/store';
 import Router from './route';
 
+const curProject = localStorage.getItem('curProject');
+const persistedState = curProject ? JSON.parse(curProject) : {};
+const initialState = { curProjectReducer: persistedState };
+
 const store = createStore(
   rootReducer,
+  initialState,
   composeWithDevTools(applyMiddleware(thunkMiddleware)),
 );
+
+store.subscribe(() => {
+  const projectId = store.getState().curProjectReducer;
+  localStorage.setItem('curProject', JSON.stringify(projectId));
+});
 
 const App: FunctionComponent = () => (
   <Provider store={store}>
